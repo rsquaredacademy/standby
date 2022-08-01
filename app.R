@@ -13,7 +13,7 @@ ui <- fluidPage(
   tags$div(
     class = "standby",
     tags$div(
-      class = "dot-windmill wait"
+      class = "dot-bouncing wait"
     )
   ),
 
