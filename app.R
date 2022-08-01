@@ -12,15 +12,14 @@ ui <- fluidPage(
 
   tags$div(
     class = "standby",
-    plotOutput("plot"),
     tags$div(
-      class = "dot-elastic wait"
-    ),
-    actionButton("render", "Render")
-  )
+      class = "dot-windmill wait"
+    )
+  ),
 
+  plotOutput("plot"),
+  actionButton("render", "Render")
 
-  
 )
 
 server <- function(input, output, session) {
