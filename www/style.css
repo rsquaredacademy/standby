@@ -1,8 +1,6 @@
-.wait {
-  height: 100vh;
+.standby {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
-  visibility: hidden;
+  flex-direction: column;
 }
