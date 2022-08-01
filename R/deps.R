@@ -1,9 +1,9 @@
-#' export
+#' @export
 use_three <- function() {
 
   pkg <- htmltools::htmlDependency(
     name = "sby-pkg",
-    version = "1.0.0",
+    version = "0.1.0",
     src = "",
     script = "script.js",
     stylesheet = "three-dots.css",
@@ -12,7 +12,7 @@ use_three <- function() {
 
   sby_style <- htmltools::htmlDependency(
     name = "sby-css",
-    version = "1.0.0",
+    version = "0.1.0",
     src = "",
     stylesheet = "style.css",
     package = "standby"
