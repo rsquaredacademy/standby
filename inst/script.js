@@ -1,15 +1,35 @@
 $(document).on('shiny:busy', function (event) {
+  let noman = [];
+
+  document.querySelectorAll('.standby').forEach(function (item, index) {
+    noman.push('#' + item.lastElementChild.id);
+  });
+
+  noman.map(function (item) {
+    document.querySelector(item).style.visibility = 'hidden';
+  });
+
   let allWait = $('.wait');
-  let output = $('.standby').children().last()[0].id;
-  let selector = '#' + output;
-  $(selector).css('visibility', 'hidden');
   $('.standby').find(allWait).css('visibility', 'visible');
 });
 
 $(document).on('shiny:idle', function (event) {
+  let noman = [];
+  document.querySelectorAll('.standby').forEach(function (item, index) {
+    noman.push('#' + item.lastElementChild.id);
+  });
+  noman.map(function (item) {
+    document.querySelector(item).style.visibility = 'visible';
+  });
+
   let allWait = $('.wait');
-  let output = $('.standby').children().last()[0].id;
-  let selector = '#' + output;
-  $(selector).css('visibility', 'visible');
   $('.standby').find(allWait).css('visibility', 'hidden');
 });
+
+// let noman = [];
+// document.querySelectorAll('.standby').forEach(function (item, index) {
+//   noman.push('#' + item.lastElementChild.id);
+// });
+// noman.map(function (item) {
+//   document.querySelector(item).style.visibility = 'hidden';
+// });
