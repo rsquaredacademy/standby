@@ -1,9 +1,9 @@
 $(document).on('shiny:busy', function (event) {
-  let waiter = document.querySelector('.wait');
-  waiter.style.visibility = 'visible';
+  let allWait = $('.wait');
+  $('.standby').find(allWait).css('visibility', 'visible');
 });
 
 $(document).on('shiny:idle', function (event) {
-  let waiter = document.querySelector('.wait');
-  waiter.style.visibility = 'hidden';
+  let allWait = $('.wait');
+  $('.standby').find(allWait).css('visibility', 'hidden');
 });

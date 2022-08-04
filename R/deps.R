@@ -5,7 +5,7 @@ use_three <- function() {
     name = "sby-pkg",
     version = "0.1.0",
     src = "",
-    script = "script.js",
+    script = list(src = "script.js", defer = NA),
     stylesheet = "three-dots.css",
     package = "standby"
   )
