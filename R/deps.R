@@ -22,7 +22,30 @@ useThreeDots <- function() {
 
 }
 
-# useThreeDots()
-# useSpinKit()
+#' @export
+useSpinkit <- function() {
+
+  htmltools::htmlDependency(
+    name = "sby-spinkit",
+    version = "0.1.0",
+    src = "",
+    stylesheet = "spinkit.min.css",
+    package = "standby"
+  )
+}
+
+#' @export
+useVizLoad <- function() {
+
+  htmltools::htmlDependency(
+    name = "sby-vizload",
+    version = "0.1.0",
+    src = "",
+    script = "ridics.js",
+    stylesheet = "ridics.css",
+    package = "standby"
+  )
+}
+
 # useCssLoaders()
 # useCssSpinners()
