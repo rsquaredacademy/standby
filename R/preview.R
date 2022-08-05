@@ -1,6 +1,6 @@
 #' @export
 #' @import htmltools shiny
-preview_standby <- function(standby, bg_color = "black") {
+previewStandby <- function(standby, bg_color = "black") {
 
   if(missing(standby))
     stop("Missing standby", call. = FALSE)

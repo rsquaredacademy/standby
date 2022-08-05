@@ -1,5 +1,5 @@
 #' @export
-use_three <- function() {
+useThreeDots <- function() {
 
   pkg <- htmltools::htmlDependency(
     name = "sby-pkg",
@@ -21,3 +21,8 @@ use_three <- function() {
   htmltools::tagList(pkg, sby_style)
 
 }
+
+# useThreeDots()
+# useSpinKit()
+# useCssLoaders()
+# useCssSpinners()
