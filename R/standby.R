@@ -47,3 +47,15 @@ spinners <- function(ui_element, type = "load1") {
   )
 }
 
+#' @export 
+loaders <- function(ui_element, type = "default") {
+  tags$div(
+    class = "standby",
+    tags$div(
+      id = "loader",
+      class = paste0("loader loader-", type, " is-active")
+    ),
+    ui_element
+  )
+}
+

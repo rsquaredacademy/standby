@@ -42,3 +42,14 @@ glanceSpinners <- function(type = "load1") {
     )
   )
 }
+
+#' @export 
+glanceLoaders <- function(type = "default") {
+  tags$div(
+    class = "standby",
+    tags$div(
+      id = "loader",
+      class = paste0("loader loader-", type, " is-active")
+    )
+  )
+}

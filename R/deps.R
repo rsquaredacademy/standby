@@ -59,5 +59,17 @@ useSpinners <- function() {
   )
 }
 
+#' @export
+useLoaders <- function() {
+
+  htmltools::htmlDependency(
+    name = "sby-loaders",
+    version = "0.1.0",
+    src = "",
+    stylesheet = "loaders.css",
+    package = "standby"
+  )
+}
+
 # useCssLoaders()
 # useCssSpinners()
