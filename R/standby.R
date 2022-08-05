@@ -34,3 +34,16 @@ vizLoad <- function(ui_element, type = "bars") {
     ui_element
   )
 }
+
+#' @export 
+spinners <- function(ui_element, type = "load1") {
+  tags$div(
+    class = "standby",
+    tags$div(
+      class = type,
+      tags$div(class = "loader")
+    ),
+    ui_element
+  )
+}
+

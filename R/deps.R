@@ -47,5 +47,17 @@ useVizLoad <- function() {
   )
 }
 
+#' @export
+useSpinners <- function() {
+
+  htmltools::htmlDependency(
+    name = "sby-spinners",
+    version = "0.1.0",
+    src = "",
+    stylesheet = "spinners.css",
+    package = "standby"
+  )
+}
+
 # useCssLoaders()
 # useCssSpinners()

@@ -31,3 +31,14 @@ glanceVizLoad <- function(type = "bars") {
     )
   )
 }
+
+#' @export 
+glanceSpinners <- function(type = "load1") {
+  tags$div(
+    class = "standby",
+    tags$div(
+      class = type,
+      tags$div(class = "loader")
+    )
+  )
+}
