@@ -19,11 +19,13 @@ spinkit <- function(ui_element, type = "rotating-plane", width = NULL, height = 
 }
 
 #' @export 
-vizLoad <- function(ui_element, type = "bars", size = "large", add_label = FALSE, label = "Loading...") {
+vizLoad <- function(ui_element, type = "bars", size = "large", bg_color = NULL, add_label = FALSE, label = "Loading...") {
 
   base <- tags$div(
       class = paste0("lv-bars lv-mid lg", " wait"),
-      lapply(1:8, function(i) div())
+      lapply(1:8, function(i) div(
+        style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
+      ))
     )
 
   if (add_label) {
