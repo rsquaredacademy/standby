@@ -13,12 +13,13 @@ threeDots <- function(ui_element, type = "bouncing") {
 spinkit <- function(ui_element, type = "rotating-plane", width = NULL, height = NULL, bg_color = NULL) {
   tags$div(
     class = "standby",
-    tags$div(
-      class = paste0("sk-plane", " wait"),
-      style = c(paste0('width:', width, ';'), 
-                paste0('height:', height, ';'),
-                paste0('background-color:', bg_color, ';'))
-    ),
+    spinkit_plane(width, height, bg_color),
+    # tags$div(
+    #   class = paste0("sk-plane", " wait"),
+    #   style = c(paste0('width:', width, ';'), 
+    #             paste0('height:', height, ';'),
+    #             paste0('background-color:', bg_color, ';'))
+    # ),
     ui_element
   )
 }

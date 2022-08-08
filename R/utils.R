@@ -14,14 +14,14 @@ glanceSpinkit <- function(type = "rotating-plane", width = NULL, height = NULL, 
     class = "standby",
     tags$div(
       class = paste0("sk-plane", " wait"),
-      style = c(paste0('width:', width, ';'), 
+      style = c(paste0('width:', width, ';'),
                 paste0('height:', height, ';'),
                 paste0('background-color:', bg_color, ';'))
     )
   )
 }
 
-#' @export 
+#' @export
 glanceVizLoad <- function(type = "bars") {
   tags$div(
     class = "standby",
@@ -32,7 +32,7 @@ glanceVizLoad <- function(type = "bars") {
   )
 }
 
-#' @export 
+#' @export
 glanceSpinners <- function(type = "load1") {
   tags$div(
     class = "standby",
@@ -43,7 +43,7 @@ glanceSpinners <- function(type = "load1") {
   )
 }
 
-#' @export 
+#' @export
 glanceLoaders <- function(type = "default") {
   tags$div(
     class = "standby",
@@ -51,5 +51,94 @@ glanceLoaders <- function(type = "default") {
       id = "loader",
       class = paste0("loader loader-", type, " is-active")
     )
+  )
+}
+
+spinkit_plane <- function(width = NULL, height = NULL, bg_color = NULL) {
+  tags$div(
+    class = "sk-plane wait",
+    style = c(if (!is.null(width)) paste0('width:', width, ';'),
+              if (!is.null(height)) paste0('height:', height, ';'),
+              if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
+  )
+}
+
+spinkit_chase <- function(width = NULL, height = NULL, bg_color = NULL) {
+  tags$div(
+    class = "sk-chase wait",
+    lapply(1:6, function(i) div(class = "sk-chase-dot",
+                                style = c(if (!is.null(width)) paste0('width:', width, ';'),
+                                          if (!is.null(height)) paste0('height:', height, ';'),
+                                          if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))))
+  )
+}
+
+spinkit_bounce <- function() {
+  tags$div(
+    class = "sk-bounce wait",
+    lapply(1:2, function(i) div(class = "sk-bounce-dot"))
+  )
+}
+
+spinkit_wave <- function() {
+  tags$div(
+    class = "sk-wave wait",
+    lapply(1:5, function(i) div(class = "sk-wave-rect"))
+  )
+}
+
+spinkit_pulse <- function() {
+  tags$div(
+    class = "sk-pulse wait"
+  )
+}
+
+spinkit_flow <- function() {
+  tags$div(
+    class = "sk-flow wait",
+    lapply(1:3, function(i) div(class = "sk-flow-dot"))
+  )
+}
+
+spinkit_swing <- function() {
+  tags$div(
+    class = "sk-swing wait",
+    lapply(1:3, function(i) div(class = "sk-swing-dot"))
+  )
+}
+
+
+spinkit_circle <- function() {
+  tags$div(
+    class = "sk-circle wait",
+    lapply(1:12, function(i) div(class = "sk-circle-dot"))
+  )
+}
+
+spinkit_circle_fade <- function() {
+  tags$div(
+    class = "sk-circle-fade wait",
+    lapply(1:12, function(i) div(class = "sk-circle-fade-dot"))
+  )
+}
+
+spinkit_grid <- function() {
+  tags$div(
+    class = "sk-grid wait",
+    lapply(1:9, function(i) div(class = "sk-grid-cube"))
+  )
+}
+
+spinkit_fold <- function() {
+  tags$div(
+    class = "sk-fold wait",
+    lapply(1:4, function(i) div(class = "sk-fold-cube"))
+  )
+}
+
+spinkit_wander <- function() {
+  tags$div(
+    class = "sk-wander wait",
+    lapply(1:4, function(i) div(class = "sk-wander-cube"))
   )
 }
