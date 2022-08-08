@@ -40,7 +40,7 @@ spinners <- function(ui_element, type = "load1") {
   tags$div(
     class = "standby",
     tags$div(
-      class = type,
+      class = paste0(type, " wait"),
       tags$div(class = "loader")
     ),
     ui_element
@@ -53,7 +53,7 @@ loaders <- function(ui_element, type = "default") {
     class = "standby",
     tags$div(
       id = "loader",
-      class = paste0("loader loader-", type, " is-active")
+      class = paste0("loader loader-", type, " is-active wait")
     ),
     ui_element
   )
