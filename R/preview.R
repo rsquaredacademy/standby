@@ -1,6 +1,6 @@
 #' @export
 #' @import htmltools shiny
-previewStandby <- function(glance, bg_color = "black") {
+previewThreeDots <- function(glance, bg_color = "black") {
 
   if(missing(glance))
     stop("Missing standby", call. = FALSE)

@@ -1,5 +1,5 @@
 #' @export
-standby <- function(ui_element, type = "bouncing") {
+threeDots <- function(ui_element, type = "bouncing") {
   tags$div(
     class = "standby",
     tags$div(
