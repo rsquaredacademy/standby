@@ -14,24 +14,25 @@ spinkit <- function(ui_element, type = "rotating-plane", width = NULL, height = 
   tags$div(
     class = "standby",
     spinkit_plane(width, height, bg_color),
-    # tags$div(
-    #   class = paste0("sk-plane", " wait"),
-    #   style = c(paste0('width:', width, ';'), 
-    #             paste0('height:', height, ';'),
-    #             paste0('background-color:', bg_color, ';'))
-    # ),
     ui_element
   )
 }
 
 #' @export 
-vizLoad <- function(ui_element, type = "bars") {
-  tags$div(
-    class = "standby",
-    tags$div(
+vizLoad <- function(ui_element, type = "bars", size = "large", add_label = FALSE, label = "Loading...") {
+
+  base <- tags$div(
       class = paste0("lv-bars lv-mid lg", " wait"),
       lapply(1:8, function(i) div())
-    ),
+    )
+
+  if (add_label) {
+    base$attribs[["data-label"]] <- label
+  }
+
+  tags$div(
+    class = "standby",
+    base,
     ui_element
   )
 }
