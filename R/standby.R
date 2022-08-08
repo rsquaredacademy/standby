@@ -48,13 +48,18 @@ spinners <- function(ui_element, type = "load1") {
 }
 
 #' @export 
-loaders <- function(ui_element, type = "default") {
-  tags$div(
-    class = "standby",
-    tags$div(
+loaders <- function(ui_element, type = "default", style = NULL) {
+  
+  data_tag <- tags$div(
       id = "loader",
       class = paste0("loader loader-", type, " is-active wait")
-    ),
+    )
+
+  data_tag$attribs[[paste0('data-', style)]] <- NA
+  
+  tags$div(
+    class = "standby",
+    data_tag,
     ui_element
   )
 }
