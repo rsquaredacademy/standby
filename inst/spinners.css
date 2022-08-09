@@ -1,7 +1,12 @@
 /* Import this if you are using modernizr (recommended) 
 It means that loaders will fallback to a text state of simply saying "Loading..." in older browsers
 */
-.no-cssanimations .load-container .loader {
+
+:root {
+  --loader-color: #0275d8;
+}
+
+.no-cssanimations.load-container .loader {
   text-indent: 0;
   text-align: center;
   color: #fff;
@@ -24,14 +29,16 @@ It means that loaders will fallback to a text state of simply saying "Loading...
 .load1 .loader,
 .load1 .loader:before,
 .load1 .loader:after {
-  background: #ffffff;
+  /* background: #ffffff; */
+  background: var(--loader-color);
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
 }
 .load1 .loader {
-  color: #ffffff;
+  /* color: #ffffff; */
+  color: var(--loader-color);
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;
@@ -87,7 +94,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   border-radius: 50%;
 }
 .load2 .loader {
-  color: #ffffff;
+  /* color: #ffffff; */
+  color: var(--loader-color);
   font-size: 11px;
   text-indent: -99999em;
   margin: 55px auto;
@@ -107,7 +115,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
 .load2 .loader:before {
   width: 5.2em;
   height: 10.2em;
-  background: #0dc5c1;
+  /* background: #0dc5c1; */
+  background: #fff;
   border-radius: 10.2em 0 0 10.2em;
   top: -0.1em;
   left: -0.1em;
@@ -119,7 +128,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
 .load2 .loader:after {
   width: 5.2em;
   height: 10.2em;
-  background: #0dc5c1;
+  /* background: #0dc5c1; */
+  background: #fff;
   border-radius: 0 10.2em 10.2em 0;
   top: -0.1em;
   left: 4.9em;
@@ -188,7 +198,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
 .load3 .loader:before {
   width: 50%;
   height: 50%;
-  background: #ffffff;
+  /* background: #ffffff; */
+  background: var(--loader-color);
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;
@@ -196,7 +207,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   content: '';
 }
 .load3 .loader:after {
-  background: #0dc5c1;
+  /* background: #0dc5c1; */
+  background: #fff;
   width: 75%;
   height: 75%;
   border-radius: 50%;
@@ -230,7 +242,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
 }
 
 .load4 .loader {
-  color: #ffffff;
+  /* color: #ffffff; */
+  color: var(--loader-color);
   font-size: 20px;
   margin: 100px auto;
   width: 1em;
@@ -332,7 +345,7 @@ It means that loaders will fallback to a text state of simply saying "Loading...
 @-webkit-keyframes load5 {
   0%,
   100% {
-    box-shadow: 0em -2.6em 0em 0em #ffffff,
+    box-shadow: 0em -2.6em 0em 0em var(--loader-color),
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
       2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
@@ -343,7 +356,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   }
   12.5% {
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7),
-      1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em var(--loader-color),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
@@ -352,7 +366,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   }
   25% {
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #ffffff,
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7),
+      2.5em 0em 0 0em var(--loader-color),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
@@ -362,7 +377,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   37.5% {
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #ffffff,
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.7),
+      1.75em 1.75em 0 0em var(--loader-color),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
@@ -372,7 +388,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
       2.5em 0em 0 0em rgba(255, 255, 255, 0.5),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #ffffff,
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7),
+      0em 2.5em 0 0em var(--loader-color),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
@@ -382,7 +399,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
       2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #ffffff,
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.7),
+      -1.8em 1.8em 0 0em var(--loader-color),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
   }
@@ -392,7 +410,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
       2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #ffffff,
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7),
+      -2.6em 0em 0 0em var(--loader-color),
       -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
   }
   87.5% {
@@ -402,13 +421,14 @@ It means that loaders will fallback to a text state of simply saying "Loading...
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7),
+      -1.8em -1.8em 0 0em var(--loader-color);
   }
 }
 @keyframes load5 {
   0%,
   100% {
-    box-shadow: 0em -2.6em 0em 0em #ffffff,
+    box-shadow: 0em -2.6em 0em 0em var(--loader-color),
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
       2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
@@ -419,7 +439,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   }
   12.5% {
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7),
-      1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em var(--loader-color),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
@@ -428,7 +449,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   }
   25% {
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #ffffff,
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7),
+      2.5em 0em 0 0em var(--loader-color),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
@@ -438,7 +460,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   37.5% {
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #ffffff,
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.7),
+      1.75em 1.75em 0 0em var(--loader-color),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
@@ -448,7 +471,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
       2.5em 0em 0 0em rgba(255, 255, 255, 0.5),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #ffffff,
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7),
+      0em 2.5em 0 0em var(--loader-color),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
@@ -458,7 +482,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
       1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
       2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #ffffff,
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.7),
+      -1.8em 1.8em 0 0em var(--loader-color),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
   }
@@ -468,7 +493,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
       2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #ffffff,
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7),
+      -2.6em 0em 0 0em var(--loader-color),
       -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
   }
   87.5% {
@@ -478,12 +504,14 @@ It means that loaders will fallback to a text state of simply saying "Loading...
       1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
       0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7),
+      -1.8em -1.8em 0 0em var(--loader-color);
   }
 }
 
 .load6 .loader {
-  color: #ffffff;
+  /* color: #ffffff; */
+  color: var(--loader-color);
   font-size: 90px;
   text-indent: -9999em;
   overflow: hidden;
@@ -593,7 +621,8 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   animation: load7 1.8s infinite ease-in-out;
 }
 .load7 .loader {
-  color: #ffffff;
+  /* color: #ffffff; */
+  color: var(--loader-color);
   font-size: 10px;
   margin: 80px auto;
   position: relative;
@@ -650,10 +679,11 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
-  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-left: 1.1em solid #ffffff;
+  border-top: 1.1em solid rgba(2, 117, 216, 0.2);
+  border-right: 1.1em solid rgba(2, 117, 216, 0.2);
+  border-bottom: 1.1em solid rgba(2, 117, 216, 0.2);
+  /* border-left: 1.1em solid #ffffff; */
+  border-left: 1.1em solid var(--loader-color);
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
