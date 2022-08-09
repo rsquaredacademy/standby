@@ -33,7 +33,8 @@ vizLoad <- function(ui_element, type = "bars", size = "large", bg_color = NULL, 
                 "squares" = viz_squares(size, bg_color),
                 "circles" = viz_circles(size),
                 "dots"    = viz_dots(size),
-                "spinner"    = viz_spinner(size, bg_color))
+                "spinner" = viz_spinner(size, bg_color),
+                "dashed"  = viz_dashed(size, bg_color))
 
   if (add_label) {
     base$attribs[["data-label"]] <- label

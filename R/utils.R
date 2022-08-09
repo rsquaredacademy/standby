@@ -220,6 +220,22 @@ viz_spinner <- function(size = "large", bg_color = NULL) {
   )
 }
 
+viz_dashed <- function(size = "large", bg_color = NULL) {
+
+  scale <- switch(size,
+                  "large"  = "lv-mid lg",
+                  "medium" = "lv-mid md",
+                  "small"  = "sm lvl-5",
+                  "tiny"   = "tiny lvl-5")
+
+  tags$div(
+    class = paste0("lv-dashed ", scale, " wait"),
+    div(
+      style = c(if (!is.null(bg_color)) paste0('border: 12px dashed ', bg_color, ';'))
+    )
+  )
+}
+
 
 
 
