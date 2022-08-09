@@ -10,7 +10,7 @@ threeDots <- function(ui_element, type = "bouncing") {
 }
 
 #' @export
-spinkit <- function(ui_element, type = "rotating-plane", width = NULL, height = NULL, bg_color = NULL) {
+spinkit <- function(ui_element, type = "plane", width = NULL, height = NULL, bg_color = NULL) {
   tags$div(
     class = "standby",
     spinkit_plane(width, height, bg_color),
@@ -21,12 +21,16 @@ spinkit <- function(ui_element, type = "rotating-plane", width = NULL, height = 
 #' @export 
 vizLoad <- function(ui_element, type = "bars", size = "large", bg_color = NULL, add_label = FALSE, label = "Loading...") {
 
-  base <- tags$div(
-      class = paste0("lv-bars lv-mid lg", " wait"),
-      lapply(1:8, function(i) div(
-        style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
-      ))
-    )
+  # base <- tags$div(
+  #     class = paste0("lv-bars lv-mid lg", " wait"),
+  #     lapply(1:8, function(i) div(
+  #       style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
+  #     ))
+  #   )
+
+  base <- switch(type,
+                "bars" = viz_bars(size, bg_color),
+                "squares" = viz_squares(size, bg_color))
 
   if (add_label) {
     base$attribs[["data-label"]] <- label

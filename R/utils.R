@@ -142,3 +142,43 @@ spinkit_wander <- function() {
     lapply(1:4, function(i) div(class = "sk-wander-cube"))
   )
 }
+
+# vizLoad
+viz_bars <- function(size = "large", bg_color = NULL) {
+
+  scale <- switch(size,
+                  "large"  = "lv-mid lg",
+                  "medium" = "lv-mid md",
+                  "small"  = "sm lvl-5",
+                  "tiny"   = "tiny lvl-5")
+
+  tags$div(
+    class = paste0("lv-bars ", scale, " wait"),
+    lapply(1:8, function(i) div(
+      style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
+    ))
+  )
+}
+
+viz_squares <- function(size = "large", bg_color = NULL) {
+
+  scale <- switch(size,
+                  "large"  = "lv-mid lg",
+                  "medium" = "lv-mid md",
+                  "small"  = "sm lvl-5",
+                  "tiny"   = "tiny lvl-5")
+
+  tags$div(
+    class = paste0("lv-squares ", scale, " wait"),
+    lapply(1:4, function(i) div(
+      style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
+    ))
+  )
+}
+
+
+
+
+
+
+
