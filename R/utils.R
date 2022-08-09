@@ -176,6 +176,20 @@ viz_squares <- function(size = "large", bg_color = NULL) {
   )
 }
 
+viz_circles <- function(size = "large", bg_color = NULL) {
+
+  scale <- switch(size,
+                  "large"  = "lv-mid lg",
+                  "medium" = "lv-mid md",
+                  "small"  = "sm lvl-5",
+                  "tiny"   = "tiny lvl-5")
+
+  tags$div(
+    class = paste0("lv-circles ", scale, " wait"),
+    lapply(1:12, function(i) div())
+  )
+}
+
 
 
 
