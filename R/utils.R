@@ -254,6 +254,25 @@ viz_line <- function(size = "large", bg_color = NULL) {
   )
 }
 
+viz_bordered_line <- function(size = "large", bg_color = NULL) {
+
+  scale <- switch(size,
+                  "fluid"  = "lv-mid",
+                  "large"  = "lg lv-mid",
+                  "medium" = "md lv-mid",
+                  "small"  = "sm lv-mid")
+
+  tags$div(
+    class = paste0("lv-bordered_line ", scale, " wait"),
+    style = c("height: 21px;",
+              if (!is.null(bg_color)) paste0('border: 5px solid ', bg_color, ';')),
+    div(
+      style = c(if (!is.null(bg_color)) paste0('background-color: ', bg_color, ';'),
+                'height: 5px;')
+    )
+  )
+}
+
 
 
 

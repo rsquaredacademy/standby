@@ -29,13 +29,14 @@ vizLoad <- function(ui_element, type = "bars", size = "large", bg_color = NULL, 
   #   )
 
   base <- switch(type,
-                "bars"    = viz_bars(size, bg_color),
-                "squares" = viz_squares(size, bg_color),
-                "circles" = viz_circles(size),
-                "dots"    = viz_dots(size),
-                "spinner" = viz_spinner(size, bg_color),
-                "dashed"  = viz_dashed(size, bg_color),
-                "line"    = viz_line(size, bg_color))
+                "bars"          = viz_bars(size, bg_color),
+                "squares"       = viz_squares(size, bg_color),
+                "circles"       = viz_circles(size),
+                "dots"          = viz_dots(size),
+                "spinner"       = viz_spinner(size, bg_color),
+                "dashed"        = viz_dashed(size, bg_color),
+                "line"          = viz_line(size, bg_color),
+                "bordered-line" = viz_bordered_line(size, bg_color))
 
   if (add_label) {
     base$attribs[["data-label"]] <- label
