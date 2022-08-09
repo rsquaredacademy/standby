@@ -190,6 +190,36 @@ viz_circles <- function(size = "large", bg_color = NULL) {
   )
 }
 
+viz_dots <- function(size = "large", bg_color = NULL) {
+
+  scale <- switch(size,
+                  "large"  = "lv-mid lg",
+                  "medium" = "lv-mid md",
+                  "small"  = "sm lvl-5",
+                  "tiny"   = "tiny lvl-5")
+
+  tags$div(
+    class = paste0("lv-dots ", scale, " wait"),
+    lapply(1:4, function(i) div())
+  )
+}
+
+viz_spinner <- function(size = "large", bg_color = NULL) {
+
+  scale <- switch(size,
+                  "large"  = "lv-mid lg",
+                  "medium" = "lv-mid md",
+                  "small"  = "sm lvl-5",
+                  "tiny"   = "tiny lvl-5")
+
+  tags$div(
+    class = paste0("lv-spinner ", scale, " wait"),
+    div(
+      style = c(if (!is.null(bg_color)) paste0('border-top: 10px solid ', bg_color, ';'))
+    )
+  )
+}
+
 
 
 
