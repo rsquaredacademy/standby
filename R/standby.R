@@ -1,5 +1,5 @@
 #' @export
-threeDots <- function(ui_element, type = "bouncing", color = '#9880ff') {
+threeDots <- function(ui_element, type = "elastic", color = '#9880ff') {
 
   id <- uuid::UUIDgenerate()
   dots_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { color: ', color, '; background-color: ', color, ';}')
@@ -59,14 +59,29 @@ vizLoad <- function(ui_element, type = "bars", size = "large", bg_color = NULL, 
 }
 
 #' @export 
-spinners <- function(ui_element, type = "load1") {
-  tags$div(
-    class = "standby",
-    tags$div(
-      class = paste0(type, " wait"),
-      tags$div(class = "loader")
+spinners <- function(ui_element, type = "load1", color = "#0275d8") {
+
+  id <- uuid::UUIDgenerate()
+  spin_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { background: ', color, ';}', 
+                    ' #', id, '{ color: ', color, ';}')
+
+  shiny::tagList(
+    tags$head(
+      tags$style(
+        HTML(
+          spin_css
+        )
+      )
     ),
-    ui_element
+
+    tags$div(
+      class = "standby",
+      tags$div(
+        class = paste0(type, " wait"),
+        tags$div(class = "loader", id = id)
+      ),
+      ui_element
+    )
   )
 }
 
