@@ -1,11 +1,26 @@
 #' @export
 threeDots <- function(ui_element, type = "bouncing") {
+  
   tags$div(
     class = "standby",
     tags$div(
-      class = paste0("dot-", type, " wait")
+      class = paste0("wait dot-", type)
     ),
     ui_element
+  )
+
+}
+
+#' @export 
+updateThreeDots <- function(color = NULL, session = getDefaultReactiveDomain()) {
+
+  notice = list(
+    color = color
+  )
+
+  session$sendCustomMessage(
+    type = "dots.send",
+    message = notice
   )
 }
 
