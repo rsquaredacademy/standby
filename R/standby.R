@@ -4,24 +4,12 @@ threeDots <- function(ui_element, type = "bouncing") {
   tags$div(
     class = "standby",
     tags$div(
-      class = paste0("wait dot-", type)
+      class = paste0("wait dot-", type),
+      id = if(!is.null(id)) id
     ),
     ui_element
   )
 
-}
-
-#' @export 
-updateThreeDots <- function(color = NULL, session = getDefaultReactiveDomain()) {
-
-  notice = list(
-    color = color
-  )
-
-  session$sendCustomMessage(
-    type = "dots.send",
-    message = notice
-  )
 }
 
 #' @export
@@ -35,13 +23,6 @@ spinkit <- function(ui_element, type = "plane", width = NULL, height = NULL, bg_
 
 #' @export 
 vizLoad <- function(ui_element, type = "bars", size = "large", bg_color = NULL, add_label = FALSE, label = "Loading...") {
-
-  # base <- tags$div(
-  #     class = paste0("lv-bars lv-mid lg", " wait"),
-  #     lapply(1:8, function(i) div(
-  #       style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
-  #     ))
-  #   )
 
   base <- switch(type,
                 "bars"          = viz_bars(size, bg_color),

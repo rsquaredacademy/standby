@@ -1,8 +1,3 @@
-Shiny.addCustomMessageHandler((type = 'dots.send'), function (message) {
-  let root = document.querySelector(':root');
-  root.style.setProperty('--primary-color', message.color);
-});
-
 $(document).on('shiny:busy', function (event) {
   let noman = [];
 
