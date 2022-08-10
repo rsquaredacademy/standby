@@ -1,14 +1,27 @@
 #' @export
-threeDots <- function(ui_element, type = "bouncing") {
-  
-  tags$div(
-    class = "standby",
-    tags$div(
-      class = paste0("wait dot-", type),
-      id = if(!is.null(id)) id
+threeDots <- function(ui_element, type = "bouncing", color = '#9880ff') {
+
+  id <- uuid::UUIDgenerate()
+  dots_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { color: ', color, '; background-color: ', color, ';}')
+
+  shiny::tagList(
+    tags$head(
+      tags$style(
+        HTML(
+          dots_css
+        )
+      )
     ),
-    ui_element
-  )
+    
+    tags$div(
+      class = "standby",
+      tags$div(
+        class = paste0("wait dot-", type),
+        id = id
+      ),
+      ui_element
+    )
+  ) 
 
 }
 
