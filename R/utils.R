@@ -54,92 +54,102 @@ glanceLoaders <- function(type = "default") {
   )
 }
 
-spinkit_plane <- function(width = NULL, height = NULL, bg_color = NULL) {
+spinkit_plane <- function(color = NULL, width = NULL, height = NULL) {
   tags$div(
     class = "sk-plane standby-wait",
-    style = c(if (!is.null(width)) paste0('width:', width, ';'),
-              if (!is.null(height)) paste0('height:', height, ';'),
-              if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
+    style = c(if (!is.null(width)) paste0('width: ', width, ';'),
+              if (!is.null(height)) paste0('height: ', height, ';'),
+              if (!is.null(color)) paste0('background-color: ', color, ';'))
   )
 }
 
-spinkit_chase <- function(width = NULL, height = NULL, bg_color = NULL) {
+spinkit_chase <- function(color = NULL, width = NULL, height = NULL) {
   tags$div(
     class = "sk-chase standby-wait",
     lapply(1:6, function(i) div(class = "sk-chase-dot",
-                                style = c(if (!is.null(width)) paste0('width:', width, ';'),
-                                          if (!is.null(height)) paste0('height:', height, ';'),
-                                          if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))))
+                                style = c(if (!is.null(width)) paste0('width: ', width, ';'),
+                                          if (!is.null(height)) paste0('height: ', height, ';'),
+                                          if (!is.null(color)) paste0('background-color: ', color, ';'))))
   )
 }
 
-spinkit_bounce <- function() {
+spinkit_bounce <- function(color = NULL) {
   tags$div(
     class = "sk-bounce standby-wait",
-    lapply(1:2, function(i) div(class = "sk-bounce-dot"))
+    lapply(1:2, function(i) div(class = "sk-bounce-dot",
+                                style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 
-spinkit_wave <- function() {
+spinkit_wave <- function(color = NULL) {
   tags$div(
     class = "sk-wave standby-wait",
-    lapply(1:5, function(i) div(class = "sk-wave-rect"))
+    lapply(1:5, function(i) div(class = "sk-wave-rect",
+                                style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 
-spinkit_pulse <- function() {
+spinkit_pulse <- function(color = NULL) {
   tags$div(
-    class = "sk-pulse standby-wait"
+    class = "sk-pulse standby-wait",
+    style = c(if (!is.null(color)) paste0('background-color:', color, ';'))
   )
 }
 
-spinkit_flow <- function() {
+spinkit_flow <- function(color = NULL) {
   tags$div(
     class = "sk-flow standby-wait",
-    lapply(1:3, function(i) div(class = "sk-flow-dot"))
+    lapply(1:3, function(i) div(class = "sk-flow-dot",
+                                style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 
-spinkit_swing <- function() {
+spinkit_swing <- function(color = NULL) {
   tags$div(
     class = "sk-swing standby-wait",
-    lapply(1:3, function(i) div(class = "sk-swing-dot"))
+    lapply(1:3, function(i) div(class = "sk-swing-dot",
+                                style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 
 
-spinkit_circle <- function() {
+spinkit_circle <- function(color = NULL) {
   tags$div(
     class = "sk-circle standby-wait",
-    lapply(1:12, function(i) div(class = "sk-circle-dot"))
+    lapply(1:12, function(i) div(class = "sk-circle-dot",
+                                 style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 
-spinkit_circle_fade <- function() {
+spinkit_circle_fade <- function(color = NULL) {
   tags$div(
     class = "sk-circle-fade standby-wait",
-    lapply(1:12, function(i) div(class = "sk-circle-fade-dot"))
+    lapply(1:12, function(i) div(class = "sk-circle-fade-dot",
+                                 style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 
-spinkit_grid <- function() {
+spinkit_grid <- function(color = NULL) {
   tags$div(
     class = "sk-grid standby-wait",
-    lapply(1:9, function(i) div(class = "sk-grid-cube"))
+    lapply(1:9, function(i) div(class = "sk-grid-cube",
+                                style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 
-spinkit_fold <- function() {
+spinkit_fold <- function(color = NULL) {
   tags$div(
     class = "sk-fold standby-wait",
-    lapply(1:4, function(i) div(class = "sk-fold-cube"))
+    lapply(1:4, function(i) div(class = "sk-fold-cube",
+                                style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 
-spinkit_wander <- function() {
+spinkit_wander <- function(color = NULL) {
   tags$div(
     class = "sk-wander standby-wait",
-    lapply(1:4, function(i) div(class = "sk-wander-cube"))
+    lapply(1:4, function(i) div(class = "sk-wander-cube",
+                                style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
 

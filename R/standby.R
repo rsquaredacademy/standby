@@ -101,9 +101,23 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 #' @export
 #' 
 spinkit <- function(uiOutput, type = "plane", color = NULL, width = NULL, height = NULL) {
+
+  base <- switch(type,
+                "plane"       = spinkit_plane(color),
+                "chase"       = spinkit_chase(color),
+                "bounce"      = spinkit_bounce(color),
+                "wave"        = spinkit_wave(color),
+                "pulse"       = spinkit_pulse(color),
+                "flow"        = spinkit_flow(color),
+                "swing"       = spinkit_swing(color),
+                "circle"      = spinkit_circle(color),
+                "circle_fade" = spinkit_circle_fade(color),
+                "grid"        = spinkit_grid(color),
+                "fold"        = spinkit_fold(color),
+                "wander"      = spinkit_wander(color))
   tags$div(
     class = "standby",
-    spinkit_plane(width, height, color),
+    base,
     uiOutput
   )
 }
