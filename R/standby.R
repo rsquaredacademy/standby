@@ -182,8 +182,37 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
   )
 }
 
+#' Single Element CSS Spinners
+#' 
+#' A collection of loading spinners animated with CSS
+#' 
+#' @param uiOutput An output element to be wrapped within a spinner.
+#' @param type The type of spinner to use. Any integer between 1 and 8 is valid.
+#' @param color The color of the spinner.
+#' 
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   shinyApp(
+#'     ui = fluidPage(
+#'       useSpinners(),
+#'       actionButton("render", "Render"),
+#'       spinners(plotOutput("plot"))
+#'     ),
+#'     server = function(input, output) {
+#'       output$plot <- renderPlot({
+#'         input$render
+#'         Sys.sleep(3)
+#'         hist(mtcars$mpg)
+#'       })
+#'     }
+#'   )
+#' }
+#' 
 #' @export 
-spinners <- function(uiOutput, type = "load1", color = "#0275d8") {
+#' 
+spinners <- function(uiOutput, type = "1", color = "#0275d8") {
 
   id <- uuid::UUIDgenerate()
   spin_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { background: ', color, ';}', 
@@ -201,7 +230,7 @@ spinners <- function(uiOutput, type = "load1", color = "#0275d8") {
     tags$div(
       class = "standby",
       tags$div(
-        class = paste0(type, " standby-wait"),
+        class = paste0(paste0("load", type), " standby-wait"),
         tags$div(class = "loader", id = id)
       ),
       uiOutput
@@ -209,7 +238,50 @@ spinners <- function(uiOutput, type = "load1", color = "#0275d8") {
   )
 }
 
+#' CSS Loaders
+#' 
+#' Simple CSS loaders
+#' 
+#' @param uiOutput An output element to be wrapped within a loader.
+#' @param type The type of loader to use. heck out \url{https://css-loader.raphaelfabeni.com/} to see the   #' different options.
+#' \itemize{
+#' \item default
+#' \item bar
+#' \item bar-ping-pong
+#' \item border
+#' \item double
+#' \item clock
+#' \item curtain
+#' \item pokeball
+#' \item ball
+#' \item smartphone
+#' \item bouncing
+#' \item music
+#' }
+#' @param style Custom styling for the loaders.
+#' 
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   shinyApp(
+#'     ui = fluidPage(
+#'       useSpinners(),
+#'       actionButton("render", "Render"),
+#'       spinners(plotOutput("plot"))
+#'     ),
+#'     server = function(input, output) {
+#'       output$plot <- renderPlot({
+#'         input$render
+#'         Sys.sleep(3)
+#'         hist(mtcars$mpg)
+#'       })
+#'     }
+#'   )
+#' }
+#' 
 #' @export 
+#' 
 loaders <- function(uiOutput, type = "default", style = NULL) {
   
   data_tag <- tags$div(
