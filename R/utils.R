@@ -3,7 +3,7 @@ glanceThreeDots <- function(type = "bouncing") {
   tags$div(
     class = "standby",
     tags$div(
-      class = paste0("dot-", type, " buzz-wait")
+      class = paste0("dot-", type, " standby-wait")
     )
   )
 }
@@ -13,7 +13,7 @@ glanceSpinkit <- function(type = "rotating-plane", width = NULL, height = NULL, 
   tags$div(
     class = "standby",
     tags$div(
-      class = paste0("sk-plane", " buzz-wait"),
+      class = paste0("sk-plane", " standby-wait"),
       style = c(paste0('width:', width, ';'),
                 paste0('height:', height, ';'),
                 paste0('background-color:', bg_color, ';'))
@@ -26,7 +26,7 @@ glanceVizLoad <- function(type = "bars") {
   tags$div(
     class = "standby",
     tags$div(
-      class = paste0("lv-bars lv-mid lg", " buzz-wait"),
+      class = paste0("lv-bars lv-mid lg", " standby-wait"),
       lapply(1:8, function(i) div())
     )
   )
@@ -56,7 +56,7 @@ glanceLoaders <- function(type = "default") {
 
 spinkit_plane <- function(width = NULL, height = NULL, bg_color = NULL) {
   tags$div(
-    class = "sk-plane buzz-wait",
+    class = "sk-plane standby-wait",
     style = c(if (!is.null(width)) paste0('width:', width, ';'),
               if (!is.null(height)) paste0('height:', height, ';'),
               if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
@@ -65,7 +65,7 @@ spinkit_plane <- function(width = NULL, height = NULL, bg_color = NULL) {
 
 spinkit_chase <- function(width = NULL, height = NULL, bg_color = NULL) {
   tags$div(
-    class = "sk-chase buzz-wait",
+    class = "sk-chase standby-wait",
     lapply(1:6, function(i) div(class = "sk-chase-dot",
                                 style = c(if (!is.null(width)) paste0('width:', width, ';'),
                                           if (!is.null(height)) paste0('height:', height, ';'),
@@ -75,34 +75,34 @@ spinkit_chase <- function(width = NULL, height = NULL, bg_color = NULL) {
 
 spinkit_bounce <- function() {
   tags$div(
-    class = "sk-bounce buzz-wait",
+    class = "sk-bounce standby-wait",
     lapply(1:2, function(i) div(class = "sk-bounce-dot"))
   )
 }
 
 spinkit_wave <- function() {
   tags$div(
-    class = "sk-wave buzz-wait",
+    class = "sk-wave standby-wait",
     lapply(1:5, function(i) div(class = "sk-wave-rect"))
   )
 }
 
 spinkit_pulse <- function() {
   tags$div(
-    class = "sk-pulse buzz-wait"
+    class = "sk-pulse standby-wait"
   )
 }
 
 spinkit_flow <- function() {
   tags$div(
-    class = "sk-flow buzz-wait",
+    class = "sk-flow standby-wait",
     lapply(1:3, function(i) div(class = "sk-flow-dot"))
   )
 }
 
 spinkit_swing <- function() {
   tags$div(
-    class = "sk-swing buzz-wait",
+    class = "sk-swing standby-wait",
     lapply(1:3, function(i) div(class = "sk-swing-dot"))
   )
 }
@@ -110,35 +110,35 @@ spinkit_swing <- function() {
 
 spinkit_circle <- function() {
   tags$div(
-    class = "sk-circle buzz-wait",
+    class = "sk-circle standby-wait",
     lapply(1:12, function(i) div(class = "sk-circle-dot"))
   )
 }
 
 spinkit_circle_fade <- function() {
   tags$div(
-    class = "sk-circle-fade buzz-wait",
+    class = "sk-circle-fade standby-wait",
     lapply(1:12, function(i) div(class = "sk-circle-fade-dot"))
   )
 }
 
 spinkit_grid <- function() {
   tags$div(
-    class = "sk-grid buzz-wait",
+    class = "sk-grid standby-wait",
     lapply(1:9, function(i) div(class = "sk-grid-cube"))
   )
 }
 
 spinkit_fold <- function() {
   tags$div(
-    class = "sk-fold buzz-wait",
+    class = "sk-fold standby-wait",
     lapply(1:4, function(i) div(class = "sk-fold-cube"))
   )
 }
 
 spinkit_wander <- function() {
   tags$div(
-    class = "sk-wander buzz-wait",
+    class = "sk-wander standby-wait",
     lapply(1:4, function(i) div(class = "sk-wander-cube"))
   )
 }
@@ -153,7 +153,7 @@ viz_bars <- function(size = "large", bg_color = NULL) {
                   "tiny"   = "tiny lvl-5")
 
   tags$div(
-    class = paste0("lv-bars ", scale, " buzz-wait"),
+    class = paste0("lv-bars ", scale, " standby-wait"),
     lapply(1:8, function(i) div(
       style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
     ))
@@ -169,7 +169,7 @@ viz_squares <- function(size = "large", bg_color = NULL) {
                   "tiny"   = "tiny lvl-5")
 
   tags$div(
-    class = paste0("lv-squares ", scale, " buzz-wait"),
+    class = paste0("lv-squares ", scale, " standby-wait"),
     lapply(1:4, function(i) div(
       style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
     ))
@@ -185,7 +185,7 @@ viz_circles <- function(size = "large", bg_color = NULL) {
                   "tiny"   = "tiny lvl-5")
 
   tags$div(
-    class = paste0("lv-circles ", scale, " buzz-wait"),
+    class = paste0("lv-circles ", scale, " standby-wait"),
     lapply(1:12, function(i) div())
   )
 }
@@ -199,7 +199,7 @@ viz_dots <- function(size = "large", bg_color = NULL) {
                   "tiny"   = "tiny lvl-5")
 
   tags$div(
-    class = paste0("lv-dots ", scale, " buzz-wait"),
+    class = paste0("lv-dots ", scale, " standby-wait"),
     lapply(1:4, function(i) div())
   )
 }
@@ -213,7 +213,7 @@ viz_spinner <- function(size = "large", bg_color = NULL) {
                   "tiny"   = "tiny lvl-5")
 
   tags$div(
-    class = paste0("lv-spinner ", scale, " buzz-wait"),
+    class = paste0("lv-spinner ", scale, " standby-wait"),
     div(
       style = c(if (!is.null(bg_color)) paste0('border-top: 10px solid ', bg_color, ';'))
     )
@@ -229,7 +229,7 @@ viz_dashed <- function(size = "large", bg_color = NULL) {
                   "tiny"   = "tiny lvl-5")
 
   tags$div(
-    class = paste0("lv-dashed ", scale, " buzz-wait"),
+    class = paste0("lv-dashed ", scale, " standby-wait"),
     div(
       style = c(if (!is.null(bg_color)) paste0('border: 12px dashed ', bg_color, ';'))
     )
@@ -245,7 +245,7 @@ viz_line <- function(size = "large", bg_color = NULL) {
                   "small"  = "sm lv-mid")
 
   tags$div(
-    class = paste0("lv-line ", scale, " buzz-wait"),
+    class = paste0("lv-line ", scale, " standby-wait"),
     style = c("height: 5px;"),
     div(
       style = c(if (!is.null(bg_color)) paste0('background-color: ', bg_color, ';'),
@@ -263,7 +263,7 @@ viz_bordered_line <- function(size = "large", bg_color = NULL) {
                   "small"  = "sm lv-mid")
 
   tags$div(
-    class = paste0("lv-bordered_line ", scale, " buzz-wait"),
+    class = paste0("lv-bordered_line ", scale, " standby-wait"),
     style = c("height: 21px;",
               if (!is.null(bg_color)) paste0('border: 5px solid ', bg_color, ';')),
     div(

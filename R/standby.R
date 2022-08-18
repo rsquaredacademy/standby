@@ -16,7 +16,7 @@ threeDots <- function(ui_element, type = "elastic", color = '#9880ff') {
     tags$div(
       class = "standby",
       tags$div(
-        class = paste0("buzz-wait dot-", type),
+        class = paste0("standby-wait dot-", type),
         id = id
       ),
       ui_element
@@ -77,7 +77,7 @@ spinners <- function(ui_element, type = "load1", color = "#0275d8") {
     tags$div(
       class = "standby",
       tags$div(
-        class = paste0(type, " buzz-wait"),
+        class = paste0(type, " standby-wait"),
         tags$div(class = "loader", id = id)
       ),
       ui_element
@@ -90,7 +90,7 @@ loaders <- function(ui_element, type = "default", style = NULL) {
   
   data_tag <- tags$div(
       id = "loader",
-      class = paste0("loader loader-", type, " is-active buzz-wait")
+      class = paste0("loader loader-", type, " is-active standby-wait")
     )
 
   data_tag$attribs[[paste0('data-', style)]] <- NA
