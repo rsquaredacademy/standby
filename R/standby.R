@@ -27,6 +27,7 @@
 #' }
 #' 
 #' @export
+#' 
 threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 
   id <- uuid::UUIDgenerate()
@@ -53,11 +54,56 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 
 }
 
+#' SpinKit
+#' 
+#' Simple CSS spinners.
+#' 
+#' @param uiOutput An output element to be wrapped within a spinner.
+#' @param type The type of spinner to use. The following are valid types:
+#' \itemize{
+#' \item plane
+#' \item chase
+#' \item bounce
+#' \item wave
+#' \item pulse
+#' \item flow
+#' \item swing
+#' \item circle
+#' \item circle_fade
+#' \item grid
+#' \item fold
+#' \item wander
+#' }
+#' @param color The color of the spinner.
+#' @param width The width of the spinner.
+#' @param height The height of the spinner.
+#' 
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   shinyApp(
+#'     ui = fluidPage(
+#'       useSpinkit(),
+#'       actionButton("render", "Render"),
+#'       spinkit(plotOutput("plot"))
+#'     ),
+#'     server = function(input, output) {
+#'       output$plot <- renderPlot({
+#'         input$render
+#'         Sys.sleep(3)
+#'         hist(mtcars$mpg)
+#'       })
+#'     }
+#'   )
+#' }
+#' 
 #' @export
-spinkit <- function(uiOutput, type = "plane", width = NULL, height = NULL, bg_color = NULL) {
+#' 
+spinkit <- function(uiOutput, type = "plane", color = NULL, width = NULL, height = NULL) {
   tags$div(
     class = "standby",
-    spinkit_plane(width, height, bg_color),
+    spinkit_plane(width, height, color),
     uiOutput
   )
 }
