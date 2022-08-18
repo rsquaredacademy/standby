@@ -157,6 +157,8 @@ spinkit <- function(uiOutput, type = "plane", color = NULL, width = NULL, height
 #'   )
 #' }
 #' 
+#' @export 
+#' 
 vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_label = FALSE, label = "Loading...") {
 
   base <- switch(type,
