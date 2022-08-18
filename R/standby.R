@@ -108,18 +108,66 @@ spinkit <- function(uiOutput, type = "plane", color = NULL, width = NULL, height
   )
 }
 
-#' @export 
-vizLoad <- function(uiOutput, type = "bars", size = "large", bg_color = NULL, add_label = FALSE, label = "Loading...") {
+#' Loading Visualization
+#' 
+#' Loading bars and spinners.
+#' 
+#' @param uiOutput An output element to be wrapped within a spinner.
+#' @param type The type of bar/spinner to use. The following are valid types:
+#' \itemize{
+#' \item bars
+#' \item squares
+#' \item circles
+#' \item dots
+#' \item spinner
+#' \item dashed
+#' \item line
+#' \item bordered-line
+#' }
+#' @param color The color of the bar/spinner.
+#' @param size The size of the bar/spinner. The following are valid:
+#' \itemize{
+#' \item Large
+#' \item Medium
+#' \item Small
+#' \item Tiny
+#' \item Fluid
+#' }
+#' @param add_label Logical; if \code{TRUE}, displays a label below the bar/spinner.
+#' @param label The label to be displayed below the bar/spinner. \code{add_label} must 
+#' be set to \code{TRUE} to display the label.
+#' 
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'
+#'   shinyApp(
+#'     ui = fluidPage(
+#'       useVizLoad(),
+#'       actionButton("render", "Render"),
+#'       vizLoad(plotOutput("plot"))
+#'     ),
+#'     server = function(input, output) {
+#'       output$plot <- renderPlot({
+#'         input$render
+#'         Sys.sleep(3)
+#'         hist(mtcars$mpg)
+#'       })
+#'     }
+#'   )
+#' }
+#' 
+vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_label = FALSE, label = "Loading...") {
 
   base <- switch(type,
-                "bars"          = viz_bars(size, bg_color),
-                "squares"       = viz_squares(size, bg_color),
+                "bars"          = viz_bars(size, color),
+                "squares"       = viz_squares(size, color),
                 "circles"       = viz_circles(size),
                 "dots"          = viz_dots(size),
-                "spinner"       = viz_spinner(size, bg_color),
-                "dashed"        = viz_dashed(size, bg_color),
-                "line"          = viz_line(size, bg_color),
-                "bordered-line" = viz_bordered_line(size, bg_color))
+                "spinner"       = viz_spinner(size, color),
+                "dashed"        = viz_dashed(size, color),
+                "line"          = viz_line(size, color),
+                "bordered-line" = viz_bordered_line(size, color))
 
   if (add_label) {
     base$attribs[["data-label"]] <- label
