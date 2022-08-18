@@ -9,14 +9,14 @@ glanceThreeDots <- function(type = "bouncing") {
 }
 
 #' @export
-glanceSpinkit <- function(type = "rotating-plane", width = NULL, height = NULL, bg_color = NULL) {
+glanceSpinkit <- function(type = "rotating-plane", color = NULL, width = NULL, height = NULL) {
   tags$div(
     class = "standby",
     tags$div(
       class = paste0("sk-plane", " standby-wait"),
       style = c(paste0('width:', width, ';'),
                 paste0('height:', height, ';'),
-                paste0('background-color:', bg_color, ';'))
+                paste0('background-color:', color, ';'))
     )
   )
 }

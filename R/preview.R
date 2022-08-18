@@ -1,128 +1,47 @@
-#' @export
+#' Preview Spinners
+#' 
+#' Preview different types of spinners/loaders.
+#' 
+#' @param spinner Type of spinner. The following spinners are available:
+#' \itemize{
+#' \item threeDots
+#' \item spinkit
+#' \item vizLoad
+#' \item spinners
+#' \item loaders
+#' }
 #' @import htmltools shiny
-previewThreeDots <- function(glance, bg_color = "black") {
+#' 
+#' @export
+previewSpinners <- function(spinner = "threeDots") {
 
-  if(missing(glance))
-    stop("Missing standby", call. = FALSE)
+  dep <- switch(spinner,
+                threeDots = useThreeDots(),
+                spinkit   = useSpinkit(),
+                vizLoad   = useVizLoad(),
+                spinners  = useSpinners(),
+                loaders   = useLoaders())
+
+  type <- switch(spinner,
+                threeDots = glanceThreeDots(),
+                spinkit   = glanceSpinkit(),
+                vizLoad   = glanceVizLoad(),
+                spinners  = glanceSpinners(),
+                loaders   = glanceLoaders())              
 
   htmltools::browsable(
     tagList(
       tags$head(
-        useThreeDots(),
+        dep,
         tags$style(
-          paste0("body{background: ", bg_color,";}")
+          "body{background: black;}"
         )
       ),
       div(
         style = "position: relative;height:90vh;",
         div(
           style = "position: absolute;top:50%;left:50%;",
-          glance
-        )
-      )
-    )
-  )
-
-}
-
-#' @export
-previewSpinkit <- function(glance, bg_color = "black") {
-
-  if(missing(glance))
-    stop("Missing glance", call. = FALSE)
-
-  htmltools::browsable(
-    tagList(
-      tags$head(
-        useSpinkit(),
-        tags$style(
-          paste0("body{background: ", bg_color,";}")
-        )
-      ),
-      div(
-        style = "position: relative;height:90vh;",
-        div(
-          style = "position: absolute;top:50%;left:50%;",
-          glance
-        )
-      )
-    )
-  )
-
-}
-
-#' @export
-previewVizLoad <- function(glance, bg_color = "black") {
-
-  if(missing(glance))
-    stop("Missing glance", call. = FALSE)
-
-  htmltools::browsable(
-    tagList(
-      tags$head(
-        useVizLoad(),
-        tags$style(
-          paste0("body{background: ", bg_color,";}")
-        )
-      ),
-      div(
-        style = "position: relative;height:90vh;",
-        div(
-          style = "position: absolute;top:50%;left:50%;transform:translate(-50%, -50%)",
-          glance
-        )
-      )
-    )
-  )
-
-}
-
-
-#' @export
-previewSpinners <- function(glance, bg_color = "black") {
-
-  if(missing(glance))
-    stop("Missing glance", call. = FALSE)
-
-  htmltools::browsable(
-    tagList(
-      tags$head(
-        useSpinners(),
-        tags$style(
-          paste0("body{background: ", bg_color,";}")
-        )
-      ),
-      div(
-        style = "position: relative;height:90vh;",
-        div(
-          style = "position: absolute;top:50%;left:50%;transform:translate(-50%, -50%)",
-          glance
-        )
-      )
-    )
-  )
-
-}
-
-#' @export
-previewLoaders <- function(glance, bg_color = "black") {
-
-  if(missing(glance))
-    stop("Missing glance", call. = FALSE)
-
-  htmltools::browsable(
-    tagList(
-      tags$head(
-        useLoaders(),
-        tags$style(
-          paste0("body{background: ", bg_color,";}")
-        )
-      ),
-      div(
-        style = "position: relative;height:90vh;",
-        div(
-          style = "position: absolute;top:50%;left:50%;transform:translate(-50%, -50%)",
-          glance
+          type
         )
       )
     )
