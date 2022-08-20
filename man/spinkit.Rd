@@ -4,12 +4,12 @@
 \alias{spinkit}
 \title{SpinKit}
 \usage{
-spinkit(uiOutput, type = "plane", color = NULL, width = NULL, height = NULL)
+spinkit(uiOutput, type = "plane", color = "#333", size = "40px")
 }
 \arguments{
 \item{uiOutput}{An output element to be wrapped within a spinner.}
 
-\item{type}{The type of spinner to use. The following are valid types:
+\item{type}{Type of spinner to use. Valid values are:
 \itemize{
 \item plane
 \item chase
@@ -25,11 +25,9 @@ spinkit(uiOutput, type = "plane", color = NULL, width = NULL, height = NULL)
 \item wander
 }}
 
-\item{color}{The color of the spinner.}
+\item{color}{Color of the spinner. Defaults to `"#333"`. Choose between hexadecimal, RGB or keyword values.}
 
-\item{width}{The width of the spinner.}
-
-\item{height}{The height of the spinner.}
+\item{size}{Size of the spinner. Defaults to `"40px"`.}
 }
 \description{
 Simple CSS spinners.

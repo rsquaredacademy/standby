@@ -59,7 +59,7 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 #' Simple CSS spinners.
 #' 
 #' @param uiOutput An output element to be wrapped within a spinner.
-#' @param type The type of spinner to use. The following are valid types:
+#' @param type Type of spinner to use. Valid values are:
 #' \itemize{
 #' \item plane
 #' \item chase
@@ -74,9 +74,8 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 #' \item fold
 #' \item wander
 #' }
-#' @param color The color of the spinner.
-#' @param width The width of the spinner.
-#' @param height The height of the spinner.
+#' @param color Color of the spinner. Defaults to `"#333"`. Choose between hexadecimal, RGB or keyword values.
+#' @param size Size of the spinner. Defaults to `"40px"`.
 #' 
 #' @examples
 #' if (interactive()) {
@@ -100,25 +99,44 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 #' 
 #' @export
 #' 
-spinkit <- function(uiOutput, type = "plane", color = NULL, width = NULL, height = NULL) {
+spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
 
   base <- switch(type,
-                "plane"       = spinkit_plane(color),
-                "chase"       = spinkit_chase(color),
-                "bounce"      = spinkit_bounce(color),
-                "wave"        = spinkit_wave(color),
-                "pulse"       = spinkit_pulse(color),
-                "flow"        = spinkit_flow(color),
-                "swing"       = spinkit_swing(color),
-                "circle"      = spinkit_circle(color),
-                "circle_fade" = spinkit_circle_fade(color),
-                "grid"        = spinkit_grid(color),
-                "fold"        = spinkit_fold(color),
-                "wander"      = spinkit_wander(color))
-  tags$div(
-    class = "standby",
-    base,
-    uiOutput
+                "plane"       = spinkit_plane(color, size),
+                "chase"       = spinkit_chase(size),
+                "bounce"      = spinkit_bounce(color, size),
+                "wave"        = spinkit_wave(color, size),
+                "pulse"       = spinkit_pulse(color, size),
+                "flow"        = spinkit_flow(color, size),
+                "swing"       = spinkit_swing(color, size),
+                "circle"      = spinkit_circle(size),
+                "circle-fade" = spinkit_circle_fade(size),
+                "grid"        = spinkit_grid(color, size),
+                "fold"        = spinkit_fold(size),
+                "wander"      = spinkit_wander(color, size))
+
+  spin_css <- switch(type, 
+                     "chase" = paste0(".sk-chase-dot:before {background-color: ", color, ";}"),
+                     "circle" = paste0(".sk-circle-dot:before {background-color: ", color, ";}"),
+                     "circle-fade" = paste0(".sk-circle-fade-dot:before {background-color: ", color, ";}"),
+                     "fold" = paste0(".sk-fold-cube:before {background-color: ", color, ";}"),
+                     NULL)
+  
+
+  shiny::tagList(
+    tags$head(
+      tags$style(
+        HTML(
+          spin_css
+        )
+      )
+    ),
+
+    tags$div(
+      class = "standby",
+      base,
+      uiOutput
+    )
   )
 }
 
