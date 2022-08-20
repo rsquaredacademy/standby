@@ -1,10 +1,10 @@
 #' Three Dots
 #' 
-#' CSS loading animation displayed when output is being recalculated.
+#' Single element CSS loading animation.
 #' 
 #' @param uiOutput An output element to be wrapped within a loader.
-#' @param type The type of animation to use. Check out \url{https://nzbin.github.io/three-dots/} to see the #' different options.
-#' @param color The color of the loader.
+#' @param type The type of animation to use. Visit <https://nzbin.github.io/three-dots/> for details.
+#' @param color The color of the loader. Choose between hexadecimal, RGB or keyword values.
 #' 
 #' @examples
 #' if (interactive()) {

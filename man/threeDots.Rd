@@ -9,12 +9,12 @@ threeDots(uiOutput, type = "elastic", color = "#9880ff")
 \arguments{
 \item{uiOutput}{An output element to be wrapped within a loader.}
 
-\item{type}{The type of animation to use. Check out \url{https://nzbin.github.io/three-dots/} to see the #' different options.}
+\item{type}{The type of animation to use. Visit <https://nzbin.github.io/three-dots/> for details.}
 
-\item{color}{The color of the loader.}
+\item{color}{The color of the loader. Choose between hexadecimal, RGB or keyword values.}
 }
 \description{
-CSS loading animation displayed when output is being recalculated.
+Single element CSS loading animation.
 }
 \examples{
 if (interactive()) {
