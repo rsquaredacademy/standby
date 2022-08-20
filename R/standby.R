@@ -272,6 +272,10 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
     spin_css <- paste0(ltype, " .loader, ", ltype, " .loader:before, ", ltype, " .loader:after { background: ", color, "; } ", ltype, " .loader { color: ", color, ";}")
   }
 
+  if (type == 7) {
+    spin_css <- paste0(ltype, " .loader { color: ", color, ";}")
+  }
+
   if (type == 8) {
     col_rgb <- col2rgb(color)
     rgb_color <- paste0("rgba(", paste0(col_rgb, collapse = ","), ",", 0.2, ")")
