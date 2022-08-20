@@ -4,21 +4,21 @@
 #' 
 #' @param spinner Type of spinner. The following spinners are available:
 #' \itemize{
-#' \item threeDots
+#' \item threedots
 #' \item spinkit
-#' \item vizLoad
+#' \item vizload
 #' \item spinners
 #' \item loaders
 #' }
 #' @import htmltools shiny
 #' 
 #' @export
-previewSpinners <- function(spinner = "threeDots") {
+previewStandby <- function(spinner = "threeDots") {
 
   dep <- switch(spinner,
-                threeDots = useThreeDots(),
+                threedots = useThreeDots(),
                 spinkit   = useSpinkit(),
-                vizLoad   = useVizLoad(),
+                vizload   = useVizLoad(),
                 spinners  = useSpinners(),
                 loaders   = useLoaders())
 
