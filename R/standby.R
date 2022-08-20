@@ -266,11 +266,19 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 
   ltype <- paste0(".load", type)
 
-  if (type == 2 || type == 4 || type == 5) {
-    spin_css <- paste0(ltype, " .loader { color: ", color, ";}")
-  } else {
+  # if (type == 2 || type == 4 || type == 5) {
+  #   spin_css <- paste0(ltype, " .loader { color: ", color, ";}")
+  # } else {
+  #   spin_css <- paste0(ltype, " .loader, ", ltype, " .loader:before, ", ltype, " .loader:after { background: ", color, "; } ", ltype, " .loader { color: ", color, ";}")
+  # }
+
+  if (type == 1) {
     spin_css <- paste0(ltype, " .loader, ", ltype, " .loader:before, ", ltype, " .loader:after { background: ", color, "; } ", ltype, " .loader { color: ", color, ";}")
   }
+
+  if (type == 2) {
+    spin_css <- paste0(ltype, " .loader { color: ", color, ";}")
+  }  
 
   if (type == 3) {
     spin_css <- paste0(ltype, " .loader:before { background: ", color, ";}")
