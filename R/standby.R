@@ -145,7 +145,7 @@ spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
 #' Loading bars and spinners.
 #' 
 #' @param uiOutput An output element to be wrapped within a spinner.
-#' @param type The type of bar/spinner to use. The following are valid types:
+#' @param type The type of bar/spinner to use. Valid values are: 
 #' \itemize{
 #' \item bars
 #' \item squares
@@ -154,20 +154,20 @@ spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
 #' \item spinner
 #' \item dashed
 #' \item line
-#' \item bordered-line
+#' \item bordered_line
 #' }
-#' @param color The color of the bar/spinner.
-#' @param size The size of the bar/spinner. The following are valid:
+#' @param color The color of the bar/spinner. Choose between hexadecimal, RGB or keyword values. 
+#' @param size The size of the bar/spinner. Valid values are: 
 #' \itemize{
-#' \item Large
-#' \item Medium
-#' \item Small
-#' \item Tiny
-#' \item Fluid
+#' \item large
+#' \item medium
+#' \item small
+#' \item tiny
+#' \item fluid
 #' }
-#' @param add_label Logical; if \code{TRUE}, displays a label below the bar/spinner.
-#' @param label The label to be displayed below the bar/spinner. \code{add_label} must 
-#' be set to \code{TRUE} to display the label.
+#' @param add_label Logical; if `TRUE`, displays a label below the bar/spinner. Defaults to `FALSE`.
+#' @param label The label to be displayed below the bar/spinner. `add_label` must 
+#' be set to `TRUE` to display the label.
 #' 
 #' @examples
 #' if (interactive()) {
@@ -201,16 +201,34 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
                 "spinner"       = viz_spinner(size, color),
                 "dashed"        = viz_dashed(size, color),
                 "line"          = viz_line(size, color),
-                "bordered-line" = viz_bordered_line(size, color))
+                "bordered_line" = viz_bordered_line(size, color))
 
   if (add_label) {
     base$attribs[["data-label"]] <- label
+    viz_css <- paste0(".lv-", type, "[data-label]:after { color: ", color, ";}")
   }
 
-  tags$div(
-    class = "standby",
-    base,
-    uiOutput
+  if (type == "circles") {
+    circle_css <- paste0(".lv-circles div:before { background-color: ", color, "; }")
+  } else {
+    circle_css <- NULL
+  }
+
+  shiny::tagList(
+    tags$head(
+      tags$style(
+        HTML(
+          viz_css,
+          circle_css
+        )
+      )
+    ),
+
+    tags$div(
+      class = "standby",
+      base,
+      uiOutput
+    )
   )
 }
 
