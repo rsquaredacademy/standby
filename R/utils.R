@@ -1,4 +1,4 @@
-glanceThreeDots <- function(type = "bouncing") {
+glanceThreeDots <- function(type = "elastic") {
   tags$div(
     class = "standby",
     tags$div(
