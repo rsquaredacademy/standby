@@ -41,7 +41,7 @@ library(standby)
 
 ui <- fluidPage(
 
-  stanby::useSpinkit(), # include dependencies
+  standby::useSpinkit(), # include dependencies
   fluidRow(
     standby::spinkit(plotOutput("plot1")), # wrap output inside loader
     actionButton("render", "Render")
