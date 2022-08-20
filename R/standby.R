@@ -266,12 +266,6 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 
   ltype <- paste0(".load", type)
 
-  # if (type == 2 || type == 4 || type == 5) {
-  #   spin_css <- paste0(ltype, " .loader { color: ", color, ";}")
-  # } else {
-  #   spin_css <- paste0(ltype, " .loader, ", ltype, " .loader:before, ", ltype, " .loader:after { background: ", color, "; } ", ltype, " .loader { color: ", color, ";}")
-  # }
-
   if (type == 1) {
     spin_css <- paste0(ltype, " .loader, ", ltype, " .loader:before, ", ltype, " .loader:after { background: ", color, "; } ", ltype, " .loader { color: ", color, ";}")
   }
@@ -281,7 +275,7 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
   }  
 
   if (type == 3) {
-    spin_css <- paste0(ltype, " .loader:before { background: ", color, ";}")
+    spin_css <- paste0(ltype, " .loader:before { background: ", color, "; } ", ltype, " .loader { background: linear-gradient(to right, ", color, " 10%, rgba(255, 255, 255, 0) 42%); }")
   }
 
   if (type == 4 || type == 6 || type == 7) {
