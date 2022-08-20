@@ -1,4 +1,3 @@
-#' @export
 glanceThreeDots <- function(type = "bouncing") {
   tags$div(
     class = "standby",
@@ -8,7 +7,6 @@ glanceThreeDots <- function(type = "bouncing") {
   )
 }
 
-#' @export
 glanceSpinkit <- function(type = "rotating-plane", color = NULL, width = NULL, height = NULL) {
   tags$div(
     class = "standby",
@@ -21,7 +19,6 @@ glanceSpinkit <- function(type = "rotating-plane", color = NULL, width = NULL, h
   )
 }
 
-#' @export
 glanceVizLoad <- function(type = "bars") {
   tags$div(
     class = "standby",
@@ -32,7 +29,6 @@ glanceVizLoad <- function(type = "bars") {
   )
 }
 
-#' @export
 glanceSpinners <- function(type = "load1") {
   tags$div(
     class = "standby",
@@ -43,7 +39,6 @@ glanceSpinners <- function(type = "load1") {
   )
 }
 
-#' @export
 glanceLoaders <- function(type = "default") {
   tags$div(
     class = "standby",
