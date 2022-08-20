@@ -4,14 +4,14 @@
 \alias{spinners}
 \title{Single Element CSS Spinners}
 \usage{
-spinners(uiOutput, type = "1", color = "#0275d8")
+spinners(uiOutput, type = 1, color = "#0275d8")
 }
 \arguments{
 \item{uiOutput}{An output element to be wrapped within a spinner.}
 
-\item{type}{The type of spinner to use. Any integer between 1 and 8 is valid.}
+\item{type}{Type of spinner to use. Any integer between 1 and 8 is valid.}
 
-\item{color}{The color of the spinner.}
+\item{color}{Color of the spinner. Choose between hexadecimal, RGB or keyword values.}
 }
 \description{
 A collection of loading spinners animated with CSS

@@ -237,8 +237,8 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
 #' A collection of loading spinners animated with CSS
 #' 
 #' @param uiOutput An output element to be wrapped within a spinner.
-#' @param type The type of spinner to use. Any integer between 1 and 8 is valid.
-#' @param color The color of the spinner.
+#' @param type Type of spinner to use. Any integer between 1 and 8 is valid.
+#' @param color Color of the spinner. Choose between hexadecimal or keyword values. 
 #' 
 #' @examples
 #' if (interactive()) {
@@ -262,12 +262,22 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
 #' 
 #' @export 
 #' 
-spinners <- function(uiOutput, type = "1", color = "#0275d8") {
+spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 
-  id <- uuid::UUIDgenerate()
-  spin_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { background: ', color, ';}', 
-                    ' #', id, '{ color: ', color, ';}')
+  ltype <- paste0(".load", type)
 
+  if (type == 2 || type == 4 || type == 5) {
+    spin_css <- paste0(ltype, " .loader { color: ", color, ";}")
+  } else {
+    spin_css <- paste0(ltype, " .loader, ", ltype, " .loader:before, ", ltype, " .loader:after { background: ", color, "; } ", ltype, " .loader { color: ", color, ";}")
+  }
+
+  if (type == 8) {
+    col_rgb <- col2rgb(color)
+    rgb_color <- paste0("rgba(", paste0(col_rgb, collapse = ","), ",", 0.2, ")")
+    spin_css <- paste0(ltype, " .loader { border-left-color: ", color, "; border-top-color: ", rgb_color, "; border-right-color: ", rgb_color, "; border-bottom-color: ", rgb_color, ";}")
+  }
+  
   shiny::tagList(
     tags$head(
       tags$style(
@@ -281,7 +291,7 @@ spinners <- function(uiOutput, type = "1", color = "#0275d8") {
       class = "standby",
       tags$div(
         class = paste0(paste0("load", type), " standby-wait"),
-        tags$div(class = "loader", id = id)
+        tags$div(class = "loader")
       ),
       uiOutput
     )
