@@ -272,7 +272,11 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
     spin_css <- paste0(ltype, " .loader, ", ltype, " .loader:before, ", ltype, " .loader:after { background: ", color, "; } ", ltype, " .loader { color: ", color, ";}")
   }
 
-  if (type == 7) {
+  if (type == 3) {
+    spin_css <- paste0(ltype, " .loader:before { background: ", color, ";}")
+  }
+
+  if (type == 4 || type == 6 || type == 7) {
     spin_css <- paste0(ltype, " .loader { color: ", color, ";}")
   }
 
