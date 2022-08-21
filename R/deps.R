@@ -1,5 +1,22 @@
-#' @export  
-standby <- function() {
+#' Include Dependencies
+#' 
+#' Dependencies for spinners/loaders. Include anywhere in the UI of the app.
+#' 
+#' @section Functions:
+#' \itemize{
+#' \item {useThreeDots}: Include dependencies for <https://github.com/nzbin/three-dots>
+#' \item {useSpinKit}: Include dependencies for <https://github.com/tobiasahlin/SpinKit>
+#' \item {useVizLoad}: Include dependencies for <https://github.com/RIDICS/Loading-Visualization>
+#' \item {useSpinners}: Include dependencies for <https://github.com/lukehaas/css-loaders> 
+#' \item {useLoaders}: Include dependencies for <https://github.com/raphaelfabeni/css-loader>
+#' }
+#' 
+#' @name standbyDeps
+#' @export 
+#' 
+NULL
+
+standbyDeps <- function() {
 
   htmltools::htmlDependency(
     name = "sby-css",
@@ -12,7 +29,9 @@ standby <- function() {
 
 }
 
+#' @rdname standbyDeps
 #' @export
+#' 
 useThreeDots <- function() {
 
   dots <- htmltools::htmlDependency(
@@ -23,13 +42,15 @@ useThreeDots <- function() {
     package = "standby"
   )
 
-  sby <- standby()
+  sby <- standbyDeps()
 
   htmltools::tagList(dots, sby)
 
 }
 
+#' @rdname standbyDeps
 #' @export
+#' 
 useSpinkit <- function() {
 
   spin <- htmltools::htmlDependency(
@@ -40,12 +61,14 @@ useSpinkit <- function() {
     package = "standby"
   )
 
-  sby <- standby()
+  sby <- standbyDeps()
 
   htmltools::tagList(spin, sby)
 }
 
+#' @rdname standbyDeps
 #' @export
+#' 
 useVizLoad <- function() {
 
   viz <- htmltools::htmlDependency(
@@ -57,12 +80,14 @@ useVizLoad <- function() {
     package = "standby"
   )
 
-  sby <- standby()
+  sby <- standbyDeps()
 
   htmltools::tagList(viz, sby)
 }
 
+#' @rdname standbyDeps
 #' @export
+#' 
 useSpinners <- function() {
 
   spinner <- htmltools::htmlDependency(
@@ -73,12 +98,14 @@ useSpinners <- function() {
     package = "standby"
   )
 
-  sby <- standby()
+  sby <- standbyDeps()
 
   htmltools::tagList(spinner, sby)
 }
 
+#' @rdname standbyDeps
 #' @export
+#' 
 useLoaders <- function() {
 
   loader <- htmltools::htmlDependency(
@@ -89,7 +116,7 @@ useLoaders <- function() {
     package = "standby"
   )
 
-  sby <- standby()
+  sby <- standbyDeps()
 
   htmltools::tagList(loader, sby)
 }

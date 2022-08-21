@@ -8,7 +8,7 @@ Authors@R: c(
     person("Tobias", "Ahlin", role = c("ctb", "cph"), comment = "Author of SpinKit"),
     person("https://github.com/RIDICS", role = c("ctb", "cph"), comment = "CSS loader code"),
     person("Raphael", "Fabini", role = c("ctb", "cph"), comment = "Author of included CSS loader code"),
-    person("Luke", "Hass", role = c("ctb", "cph"), comment = "Author of included CSS loader code"),
+    person("Luke", "Hass", role = c("ctb", "cph"), comment = "Author of included CSS loader code")
     )
 Description: Full screen loading animation screens for 'Shiny' with spinners and bars.
 License: MIT + file LICENSE

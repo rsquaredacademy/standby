@@ -283,7 +283,7 @@ viz_bordered_line <- function(size = "large", bg_color = NULL) {
 }
 
 spinner_css <- function(color) {
-  col_rgb <- col2rgb(color)
+  col_rgb <- grDevices::col2rgb(color)
     rgb_color <- paste0("rgba(", paste0(col_rgb, collapse = ", "), ", ")
     paste0(
             "-webkit-animation: load5 1.1s infinite ease;
