@@ -11,7 +11,7 @@ spinners(uiOutput, type = 1, color = "#0275d8")
 
 \item{type}{Type of spinner to use. Any integer between 1 and 8 is valid.}
 
-\item{color}{Color of the spinner. Choose between hexadecimal, RGB or keyword values.}
+\item{color}{Color of the spinner. Choose between hexadecimal or keyword values.}
 }
 \description{
 A collection of loading spinners animated with CSS
