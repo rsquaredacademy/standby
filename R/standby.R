@@ -206,6 +206,8 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
   if (add_label) {
     base$attribs[["data-label"]] <- label
     viz_css <- paste0(".lv-", type, "[data-label]:after { color: ", color, ";}")
+  } else {
+    viz_css <- NULL
   }
 
   if (type == "circles") {
