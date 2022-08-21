@@ -289,12 +289,15 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
     rgb_color <- paste0("rgba(", paste0(col_rgb, collapse = ","), ",", 0.2, ")")
     spin_css <- paste0(ltype, " .loader { border-left-color: ", color, "; border-top-color: ", rgb_color, "; border-right-color: ", rgb_color, "; border-bottom-color: ", rgb_color, ";}")
   }
+
+  custom_css <- paste0(ltype, " .loader { margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }")
   
   shiny::tagList(
     tags$head(
       tags$style(
         HTML(
-          spin_css
+          spin_css,
+          custom_css
         )
       )
     ),
