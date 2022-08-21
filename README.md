@@ -4,6 +4,11 @@
 # standby
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml)
+[![status](https://tinyverse.netlify.com/badge/standby)](https://CRAN.R-project.org/package=standby)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 Loading screens for Shiny.
@@ -15,7 +20,7 @@ You can install the development version of standby from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("aravindhebbali/standby")
+devtools::install_github("rsquaredacademy/standby")
 ```
 
 ## Usage
@@ -63,6 +68,27 @@ websites to learn more:
     Visualization](https://github.com/RIDICS/Loading-Visualization)
 -   [CSS Spinners](https://github.com/lukehaas/css-loaders)
 -   [CSS Loaders](https://github.com/raphaelfabeni/css-loader)
+
+## Inspiration
+
+The following packages served as an inspiration.
+
+-   [shinycssloaders](https://github.com/daattali/shinycssloaders) by
+    [Dean Attali](https://attalitech.com/)
+-   [waiter](https://github.com/JohnCoene/waiter) by [John
+    Coene](https://john-coene.com/)
+
+## Acknowledgements
+
+We referred to the following books extensively while developing standby
+and are grateful to the authors for sharing their knowledge with the
+R/Shiny community:
+
+-   [Outstanding User Interfaces with
+    Shiny](https://unleash-shiny.rinterface.com/index.html) by [David
+    Granjon](https://divadnojnarg.github.io/)
+-   [JavaScript for R](https://book.javascript-for-r.com/) by [John
+    Coene](https://john-coene.com/)
 
 ## Getting Help
 
