@@ -1,14 +1,18 @@
 Package: standby
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Loading Screen for 'Shiny'
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: c(
+    person("Aravind", "Hebbali", email = "hebbali.aravind@gmail.com", role = c("aut", "cre")),
+    person("Zong", "Bin", role = c("ctb", "cph"), comment = "Author of Three Dots"),
+    person("Tobias", "Ahlin", role = c("ctb", "cph"), comment = "Author of SpinKit"),
+    person("https://github.com/RIDICS", role = c("ctb", "cph"), comment = "CSS loader code"),
+    person("Raphael", "Fabini", role = c("ctb", "cph"), comment = "Author of included CSS loader code"),
+    person("Luke", "Hass", role = c("ctb", "cph"), comment = "Author of included CSS loader code"),
+    )
+Description: Full screen loading animation screens for 'Shiny' with spinners and bars.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Imports: 
     grDevices,
     htmltools,
