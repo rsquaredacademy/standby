@@ -1,0 +1,59 @@
+url: https://standby.rsquaredacademy.com
+template:
+  bootstrap: 5
+
+authors:
+  Aravind Hebbali:
+    href: https://www.aravindhebbali.com
+
+templates:
+  params:
+    bootswatch: cerulean
+    ganalytics: UA-57270671-33
+
+navbar:
+  title: 'standby'
+  type: inverse
+  left:
+    - text: 'Home'
+      href: index.html
+    - text: 'Reference'
+      menu:
+        - text: 'Functions'
+          href: reference/index.html
+        - text: 'News'
+          href: news/index.html
+  right:
+    - icon: fa-github
+      href: https://github.com/rsquaredacademy/standby
+
+home:
+  links:
+    - text: Learn more
+      href: https://www.rsquaredacademy.com
+    - text: Other packages
+      href: https://pkgs.rsquaredacademy.com
+    - text: Read our blog
+      href: https://blog.rsquaredacademy.com
+    - text: Our ebooks
+      href: https://ebooks.rsquaredacademy.com
+
+reference:
+  - title: Loaders/Spinners
+
+    contents:
+      - threeDots
+      - spinkit
+      - vizLoad
+      - spinners
+      - loaders
+
+  - title: Dependencies
+
+    contents:
+      - standbyDeps
+
+  - title: Preview Spinners/Loaders
+
+    contents:
+      - previewStandby
