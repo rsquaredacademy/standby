@@ -11,7 +11,7 @@ Authors@R: c(
     person("Luke", "Hass", role = c("ctb", "cph"), comment = "Author of included CSS loader code")
     )
 Description: Full screen loading animation screens for 'Shiny' with spinners and bars.
-License: MIT + file LICENSE
+License: GPL (>= 3)
 Encoding: UTF-8
 Imports: 
     grDevices,
