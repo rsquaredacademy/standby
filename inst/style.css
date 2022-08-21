@@ -11,3 +11,7 @@
 .standby {
   position: relative;
 }
+
+.full-screen {
+  height: 90vh;
+}
