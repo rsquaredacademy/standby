@@ -27,7 +27,14 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 
 \item{style}{Custom styling for the loaders.}
 
-\item{text}{Custom text.}
+\item{text}{Custom text. Available only for the following types: 
+\itemize{
+\item default
+\item bar
+\item border
+\item curtain
+\item smartphone
+}}
 }
 \description{
 Simple CSS loaders
