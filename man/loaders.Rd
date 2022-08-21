@@ -4,12 +4,12 @@
 \alias{loaders}
 \title{CSS Loaders}
 \usage{
-loaders(uiOutput, type = "default", style = NULL)
+loaders(uiOutput, type = "default", style = NULL, text = NULL)
 }
 \arguments{
 \item{uiOutput}{An output element to be wrapped within a loader.}
 
-\item{type}{The type of loader to use. heck out \url{https://css-loader.raphaelfabeni.com/} to see the   #' different options.
+\item{type}{The type of loader to use. Visit \url{https://css-loader.raphaelfabeni.com/} for details.
 \itemize{
 \item default
 \item bar
@@ -26,6 +26,8 @@ loaders(uiOutput, type = "default", style = NULL)
 }}
 
 \item{style}{Custom styling for the loaders.}
+
+\item{text}{Custom text.}
 }
 \description{
 Simple CSS loaders

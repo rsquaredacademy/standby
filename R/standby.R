@@ -313,7 +313,7 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 #' Simple CSS loaders
 #' 
 #' @param uiOutput An output element to be wrapped within a loader.
-#' @param type The type of loader to use. heck out \url{https://css-loader.raphaelfabeni.com/} to see the   #' different options.
+#' @param type The type of loader to use. Visit \url{https://css-loader.raphaelfabeni.com/} for details.
 #' \itemize{
 #' \item default
 #' \item bar
@@ -328,7 +328,15 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 #' \item bouncing
 #' \item music
 #' }
-#' @param style Custom styling for the loaders.
+#' @param style Custom styling for the loaders. 
+#' @param text Custom text. Available only for the following types: 
+#' \itemize{
+#' \item default
+#' \item bar
+#' \item border
+#' \item curtain
+#' \item smartphone
+#' }
 #' 
 #' @examples
 #' if (interactive()) {
@@ -352,19 +360,39 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 #' 
 #' @export 
 #' 
-loaders <- function(uiOutput, type = "default", style = NULL) {
+loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
+
+  if (!is.null(text)) {
+    style <- NULL
+  }
   
   data_tag <- tags$div(
       id = "loader",
       class = paste0("loader loader-", type, " is-active standby-wait")
     )
 
-  data_tag$attribs[[paste0('data-', style)]] <- NA
+  if (!is.null(style)) {
+    if (style == "blink") {
+      data_tag$attribs[['data-text data-blink']] <- NA  
+    } else {
+      data_tag$attribs[[paste0('data-', style)]] <- NA
+    }
+  }
   
-  tags$div(
-    class = "standby",
-    data_tag,
-    uiOutput
-  )
+  if (!is.null(text)) {
+    if (type == "curtain") {
+      data_tag$attribs[['data-curtain-text']] <- text
+    } else if (type == "smartphone") {
+      data_tag$attribs[['data-screen']] <- text
+    } else {
+      data_tag$attribs[['data-text']] <- text
+    }
+  }
+  
+    tags$div(
+      class = "standby",
+      data_tag,
+      uiOutput
+    )
 }
 
