@@ -21,7 +21,7 @@ devtools::install_github("aravindhebbali/standby")
 ## Usage
 
 Below is a simple example of the package, visit the
-[website](https://buzz.rsquaredacademy.com) for more.
+[website](https://standby.rsquaredacademy.com) for more.
 
 ## Example
 
