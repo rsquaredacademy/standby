@@ -6,6 +6,12 @@
 #' @param type The type of animation to use. Visit <https://nzbin.github.io/three-dots/> for details.
 #' @param color The color of the loader. Choose between hexadecimal, RGB or keyword values.
 #' 
+#' @section Functions:
+#' \itemize{
+#' \item \code{useThreeDots}: Dependencies to include in your UI.
+#' \item \code{threeDots}: Display loading animation.
+#' }
+#' 
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
@@ -76,6 +82,12 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 #' }
 #' @param color Color of the spinner. Defaults to `"#333"`. Choose between hexadecimal, RGB or keyword values.
 #' @param size Size of the spinner. Defaults to `"40px"`.
+#' 
+#' @section Functions:
+#' \itemize{
+#' \item \code{useSpinkit}: Dependencies to include in your UI.
+#' \item \code{spinkit}: Display loading animation.
+#' }
 #' 
 #' @examples
 #' if (interactive()) {
@@ -169,6 +181,12 @@ spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
 #' @param label The label to be displayed below the bar/spinner. `add_label` must 
 #' be set to `TRUE` to display the label.
 #' 
+#' @section Functions:
+#' \itemize{
+#' \item \code{useVizLoad}: Dependencies to include in your UI.
+#' \item \code{vizLoad}: Display loading animation.
+#' }
+#' 
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
@@ -241,6 +259,12 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
 #' @param uiOutput An output element to be wrapped within a spinner.
 #' @param type Type of spinner to use. Any integer between 1 and 8 is valid.
 #' @param color Color of the spinner. Choose between hexadecimal or keyword values. 
+#' 
+#' @section Functions:
+#' \itemize{
+#' \item \code{useSpinners}: Dependencies to include in your UI.
+#' \item \code{spinners}: Display loading animation.
+#' }
 #' 
 #' @examples
 #' if (interactive()) {
@@ -347,15 +371,21 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 #' \item smartphone
 #' }
 #' 
+#' @section Functions:
+#' \itemize{
+#' \item \code{useLoaders}: Dependencies to include in your UI.
+#' \item \code{loaders}: Display loading animation.
+#' }
+#' 
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
 #'
 #'   shinyApp(
 #'     ui = fluidPage(
-#'       useSpinners(),
+#'       useLoaders(),
 #'       actionButton("render", "Render"),
-#'       spinners(plotOutput("plot"))
+#'       loaders(plotOutput("plot"))
 #'     ),
 #'     server = function(input, output) {
 #'       output$plot <- renderPlot({

@@ -1,21 +1,3 @@
-#' Include Dependencies
-#' 
-#' Dependencies for spinners/loaders. Include anywhere in the UI of the app.
-#' 
-#' @section Functions:
-#' \itemize{
-#' \item {useThreeDots}: Include dependencies for <https://github.com/nzbin/three-dots>
-#' \item {useSpinKit}: Include dependencies for <https://github.com/tobiasahlin/SpinKit>
-#' \item {useVizLoad}: Include dependencies for <https://github.com/RIDICS/Loading-Visualization>
-#' \item {useSpinners}: Include dependencies for <https://github.com/lukehaas/css-loaders> 
-#' \item {useLoaders}: Include dependencies for <https://github.com/raphaelfabeni/css-loader>
-#' }
-#' 
-#' @name standbyDeps
-#' @export 
-#' 
-NULL
-
 standbyDeps <- function() {
 
   htmltools::htmlDependency(
@@ -29,7 +11,7 @@ standbyDeps <- function() {
 
 }
 
-#' @rdname standbyDeps
+#' @rdname threeDots
 #' @export
 #' 
 useThreeDots <- function() {
@@ -48,7 +30,7 @@ useThreeDots <- function() {
 
 }
 
-#' @rdname standbyDeps
+#' @rdname spinkit
 #' @export
 #' 
 useSpinkit <- function() {
@@ -66,7 +48,7 @@ useSpinkit <- function() {
   htmltools::tagList(spin, sby)
 }
 
-#' @rdname standbyDeps
+#' @rdname vizLoad
 #' @export
 #' 
 useVizLoad <- function() {
@@ -85,7 +67,7 @@ useVizLoad <- function() {
   htmltools::tagList(viz, sby)
 }
 
-#' @rdname standbyDeps
+#' @rdname spinners
 #' @export
 #' 
 useSpinners <- function() {
@@ -103,7 +85,7 @@ useSpinners <- function() {
   htmltools::tagList(spinner, sby)
 }
 
-#' @rdname standbyDeps
+#' @rdname loaders
 #' @export
 #' 
 useLoaders <- function() {

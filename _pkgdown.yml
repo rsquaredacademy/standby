@@ -48,11 +48,6 @@ reference:
       - spinners
       - loaders
 
-  - title: Dependencies
-
-    contents:
-      - standbyDeps
-
   - title: Preview Spinners/Loaders
 
     contents:
