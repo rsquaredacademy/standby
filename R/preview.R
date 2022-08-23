@@ -12,7 +12,7 @@
 #' }
 #' @import htmltools shiny
 #'
-#' @return \value{None}
+#' @return None
 #'
 #' @export
 previewStandby <- function(spinner = "threeDots") {

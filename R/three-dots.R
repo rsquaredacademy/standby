@@ -33,7 +33,7 @@
 #' }
 #'
 #' @name threeDots
-#' @return \value{None}
+#' @return None
 #'
 #' @export
 #'

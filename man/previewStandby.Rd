@@ -17,7 +17,7 @@ previewStandby(spinner = "threeDots")
 }}
 }
 \value{
-\value{None}
+None
 }
 \description{
 Preview different types of spinners/loaders.

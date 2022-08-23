@@ -33,7 +33,7 @@ spinkit(uiOutput, type = "plane", color = "#333", size = "40px")
 \item{size}{Size of the spinner. Defaults to \code{"40px"}.}
 }
 \value{
-\value{None}
+None
 }
 \description{
 Simple CSS spinners.

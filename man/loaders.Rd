@@ -40,7 +40,7 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 }}
 }
 \value{
-\value{None}
+None
 }
 \description{
 Simple CSS loaders

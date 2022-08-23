@@ -55,7 +55,7 @@
 #' }
 #'
 #' @name loaders
-#' @return \value{None}
+#' @return None
 #'
 #' @export
 #'

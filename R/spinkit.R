@@ -48,7 +48,7 @@
 #' }
 #'
 #' @name spinkit
-#' @return \value{None}
+#' @return None
 #'
 #' @export
 #'

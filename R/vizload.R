@@ -54,7 +54,7 @@
 #' }
 #'
 #' @name vizLoad
-#' @return \value{None}
+#' @return None
 #'
 #' @export
 #'

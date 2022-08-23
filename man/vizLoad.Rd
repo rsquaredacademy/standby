@@ -48,7 +48,7 @@ vizLoad(
 be set to \code{TRUE} to display the label.}
 }
 \value{
-\value{None}
+None
 }
 \description{
 Loading bars and spinners.
