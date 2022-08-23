@@ -4,7 +4,7 @@
 # standby
 
 <!-- badges: start -->
-<!-- [![R-CMD-check](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml) [![status](https://tinyverse.netlify.com/badge/standby)](https://CRAN.R-project.org/package=standby) -->
+<!-- [![R-CMD-check](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml)  -->
 <!-- [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) -->
 <!-- badges: end -->
 
@@ -22,9 +22,15 @@ devtools::install_github("rsquaredacademy/standby")
 
 ## Usage
 
-<!-- Below is a simple example of the package, visit the [website](https://standby.rsquaredacademy.com) for more. -->
+To use spinners/loaders from **standby** in your Shiny application,
+include the following in the **UI** part of the app:
 
-## Example
+-   Include the dependencies using the appropriate `use*` functions
+    (`useSpinkit()` in the below example).
+-   Wrap the target output using corresponding rendering function
+    (`spinkit()` in the below example).
+
+### Example
 
 ``` r
 library(shiny)
@@ -55,15 +61,16 @@ shinyApp(ui, server)
 
 ## Details
 
-**standby** offers several types of loaders/spinners. Visit the below
-websites to learn more:
+The below table displays the dependency and rendering functions along
+with references:
 
--   [Three Dots](https://github.com/nzbin/three-dots)
--   [SpinKit](https://github.com/tobiasahlin/SpinKit)
--   [Loading
-    Visualization](https://github.com/RIDICS/Loading-Visualization)
--   [CSS Spinners](https://github.com/lukehaas/css-loaders)
--   [CSS Loaders](https://github.com/raphaelfabeni/css-loader)
+| Index | Dependency       | Render        | Reference                                                                |
+|-------|------------------|---------------|--------------------------------------------------------------------------|
+| 1     | `useThreeDots()` | `threeDots()` | [Three Dots](https://github.com/nzbin/three-dots)                        |
+| 2     | `useSpinkit()`   | `spinkit()`   | [SpinKit](https://github.com/tobiasahlin/SpinKit)                        |
+| 3     | `useVizLoad()`   | `vizLoad()`   | [Loading Visualization](https://github.com/RIDICS/Loading-Visualization) |
+| 4     | `useSpinners()`  | `spinners()`  | [Spinners](https://github.com/lukehaas/css-loaders)                      |
+| 5     | `useLoaders()`   | `loaders()`   | [Loaders](https://github.com/raphaelfabeni/css-loader)                   |
 
 ## Inspiration
 
