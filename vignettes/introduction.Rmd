@@ -1,0 +1,74 @@
+---
+title: "Quick Introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+standby offers several types of loading screens for Shiny apps. This 
+document is a quickstart guide for using standby in your Shiny applications. 
+Let us look at a simple example below:
+
+```{r example, eval=FALSE}
+library(shiny)
+library(standby)
+
+ui <- fluidPage(
+
+  standby::useSpinkit(), # include dependencies
+  fluidRow(
+    standby::spinkit(plotOutput("plot1")), # wrap output inside loader
+    actionButton("render", "Render")
+  )
+
+)
+
+server <- function(input, output, session) {
+
+    output$plot1 <- renderPlot({
+      input$render
+      Sys.sleep(3)
+      plot(cars)
+    })
+
+}
+
+shinyApp(ui, server)
+```
+
+To use spinners/loaders from **standby** in your Shiny application, include the 
+following in the **UI** part of the app:
+
+- Include the dependencies using the appropriate `use*` functions 
+(`useSpinkit()` in the above example).
+- Wrap the target output using corresponding rendering function 
+(`spinkit()` in the above example).
+
+The below table displays the dependency and rendering functions along with references:
+
+```{r ref_table, echo=FALSE}
+index <- 1:5
+dependency <- c("`useThreeDots()`", "`useSpinkit()`", "`useVizLoad()`", "`useSpinners()`", 
+                "`useLoaders()`")
+renderer <- c("`threeDots()`", "`spinkit()`", "`vizLoad()`", "`spinners()`",
+              "`loaders()`")
+reference <- c("https://github.com/nzbin/three-dots",
+               "https://github.com/tobiasahlin/SpinKit",
+               "https://github.com/RIDICS/Loading-Visualization",
+               "https://github.com/lukehaas/css-loaders",
+               "https://github.com/raphaelfabeni/css-loader")
+ref <- data.frame(Index = index, Dependency = dependency, Render = renderer, Reference = reference)
+kableExtra::kable(ref)
+```
+
+Visit the [documentation](https://standby.rsquaredacademy.com) to learn how to 
+customize the alerts and notifications.

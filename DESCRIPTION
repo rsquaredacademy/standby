@@ -19,3 +19,8 @@ Imports:
     shiny,
     uuid
 RoxygenNote: 7.1.1
+Suggests: 
+    rmarkdown,
+    kableExtra,
+    knitr
+VignetteBuilder: knitr

@@ -4,14 +4,11 @@
 # standby
 
 <!-- badges: start -->
-
-[![R-CMD-check](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml)
-[![status](https://tinyverse.netlify.com/badge/standby)](https://CRAN.R-project.org/package=standby)
-[![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+<!-- [![R-CMD-check](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml) [![status](https://tinyverse.netlify.com/badge/standby)](https://CRAN.R-project.org/package=standby) -->
+<!-- [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) -->
 <!-- badges: end -->
 
-Loading screens for Shiny.
+Loading screens for Shiny
 
 ## Installation
 
@@ -25,8 +22,7 @@ devtools::install_github("rsquaredacademy/standby")
 
 ## Usage
 
-Below is a simple example of the package, visit the
-[website](https://standby.rsquaredacademy.com) for more.
+<!-- Below is a simple example of the package, visit the [website](https://standby.rsquaredacademy.com) for more. -->
 
 ## Example
 
