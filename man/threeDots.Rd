@@ -16,6 +16,9 @@ threeDots(uiOutput, type = "elastic", color = "#9880ff")
 
 \item{color}{The color of the loader. Choose between hexadecimal, RGB or keyword values.}
 }
+\value{
+\value{None}
+}
 \description{
 Single element CSS loading animation.
 }

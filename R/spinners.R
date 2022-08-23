@@ -1,17 +1,17 @@
 #' Single Element CSS Spinners
-#' 
+#'
 #' A collection of loading spinners animated with CSS
-#' 
+#'
 #' @param uiOutput An output element to be wrapped within a spinner.
 #' @param type Type of spinner to use. Any integer between \code{1} and \code{8} is valid.
-#' @param color Color of the spinner. Choose between hexadecimal or keyword values. 
-#' 
+#' @param color Color of the spinner. Choose between hexadecimal or keyword values.
+#'
 #' @section Functions:
 #' \itemize{
 #' \item \code{useSpinners}: Dependencies to include in your UI.
 #' \item \code{spinners}: Display loading animation.
 #' }
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
@@ -31,11 +31,12 @@
 #'     }
 #'   )
 #' }
-#' 
+#'
 #' @name spinners
-#' 
-#' @export 
-#' 
+#' @return \value{None}
+#'
+#' @export
+#'
 spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 
   ltype <- paste0(".load", type)
@@ -46,7 +47,7 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 
   if (type == 2) {
     spin_css <- paste0(ltype, " .loader { color: ", color, ";}")
-  }  
+  }
 
   if (type == 3) {
     spin_css <- paste0(ltype, " .loader:before { background: ", color, "; } ", ltype, " .loader { background: linear-gradient(to right, ", color, " 10%, rgba(255, 255, 255, 0) 42%); }")
@@ -67,7 +68,7 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
   }
 
   custom_css <- paste0(ltype, " .loader { margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }")
-  
+
   shiny::tagList(
     tags$head(
       tags$style(

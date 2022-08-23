@@ -1,7 +1,7 @@
 #' SpinKit
-#' 
+#'
 #' Simple CSS spinners.
-#' 
+#'
 #' @param uiOutput An output element to be wrapped within a spinner.
 #' @param type Type of spinner to use. Valid values are:
 #' \itemize{
@@ -20,13 +20,13 @@
 #' }
 #' @param color Color of the spinner. Defaults to \code{"#333"}. Choose between hexadecimal, RGB or keyword values.
 #' @param size Size of the spinner. Defaults to \code{"40px"}.
-#' 
+#'
 #' @section Functions:
 #' \itemize{
 #' \item \code{useSpinkit}: Dependencies to include in your UI.
 #' \item \code{spinkit}: Display loading animation.
 #' }
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
@@ -46,11 +46,12 @@
 #'     }
 #'   )
 #' }
-#' 
+#'
 #' @name spinkit
-#' 
+#' @return \value{None}
+#'
 #' @export
-#' 
+#'
 spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
 
   base <- switch(type,
@@ -67,13 +68,13 @@ spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
                 "fold"        = spinkit_fold(size),
                 "wander"      = spinkit_wander(color, size))
 
-  spin_css <- switch(type, 
+  spin_css <- switch(type,
                      "chase" = paste0(".sk-chase-dot:before {background-color: ", color, ";}"),
                      "circle" = paste0(".sk-circle-dot:before {background-color: ", color, ";}"),
                      "circle-fade" = paste0(".sk-circle-fade-dot:before {background-color: ", color, ";}"),
                      "fold" = paste0(".sk-fold-cube:before {background-color: ", color, ";}"),
                      NULL)
-  
+
 
   shiny::tagList(
     tags$head(

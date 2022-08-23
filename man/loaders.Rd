@@ -30,7 +30,7 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 
 \item{style}{Custom styling for the loaders.}
 
-\item{text}{Custom text. Available only for the following types: 
+\item{text}{Custom text. Available only for the following types:
 \itemize{
 \item default
 \item bar
@@ -38,6 +38,9 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 \item curtain
 \item smartphone
 }}
+}
+\value{
+\value{None}
 }
 \description{
 Simple CSS loaders

@@ -1,17 +1,17 @@
 #' Three Dots
-#' 
+#'
 #' Single element CSS loading animation.
-#' 
+#'
 #' @param uiOutput An output element to be wrapped within a loader.
 #' @param type The type of animation to use. Visit \url{https://nzbin.github.io/three-dots/} for details.
 #' @param color The color of the loader. Choose between hexadecimal, RGB or keyword values.
-#' 
+#'
 #' @section Functions:
 #' \itemize{
 #' \item \code{useThreeDots}: Dependencies to include in your UI.
 #' \item \code{threeDots}: Display loading animation.
 #' }
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
@@ -31,11 +31,12 @@
 #'     }
 #'   )
 #' }
-#' 
+#'
 #' @name threeDots
-#' 
+#' @return \value{None}
+#'
 #' @export
-#' 
+#'
 threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 
   id <- uuid::UUIDgenerate()
@@ -49,7 +50,7 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
         )
       )
     ),
-    
+
     tags$div(
       class = "standby",
       tags$div(
@@ -58,6 +59,6 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
       ),
       uiOutput
     )
-  ) 
+  )
 
 }

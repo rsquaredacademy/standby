@@ -1,7 +1,7 @@
 #' CSS Loaders
-#' 
+#'
 #' Simple CSS loaders
-#' 
+#'
 #' @param uiOutput An output element to be wrapped within a loader.
 #' @param type The type of loader to use. Visit \url{https://css-loader.raphaelfabeni.com/} for details.
 #' \itemize{
@@ -18,8 +18,8 @@
 #' \item bouncing
 #' \item music
 #' }
-#' @param style Custom styling for the loaders. 
-#' @param text Custom text. Available only for the following types: 
+#' @param style Custom styling for the loaders.
+#' @param text Custom text. Available only for the following types:
 #' \itemize{
 #' \item default
 #' \item bar
@@ -27,13 +27,13 @@
 #' \item curtain
 #' \item smartphone
 #' }
-#' 
+#'
 #' @section Functions:
 #' \itemize{
 #' \item \code{useLoaders}: Dependencies to include in your UI.
 #' \item \code{loaders}: Display loading animation.
 #' }
-#' 
+#'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
@@ -53,17 +53,18 @@
 #'     }
 #'   )
 #' }
-#' 
+#'
 #' @name loaders
-#' 
-#' @export 
-#' 
+#' @return \value{None}
+#'
+#' @export
+#'
 loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
 
   if (!is.null(text)) {
     style <- NULL
   }
-  
+
   data_tag <- tags$div(
       id = "loader",
       class = paste0("loader loader-", type, " is-active standby-wait")
@@ -71,12 +72,12 @@ loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
 
   if (!is.null(style)) {
     if (style == "blink") {
-      data_tag$attribs[['data-text data-blink']] <- NA  
+      data_tag$attribs[['data-text data-blink']] <- NA
     } else {
       data_tag$attribs[[paste0('data-', style)]] <- NA
     }
   }
-  
+
   if (!is.null(text)) {
     if (type == "curtain") {
       data_tag$attribs[['data-curtain-text']] <- text
@@ -86,7 +87,7 @@ loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
       data_tag$attribs[['data-text']] <- text
     }
   }
-  
+
     tags$div(
       class = "standby",
       data_tag,

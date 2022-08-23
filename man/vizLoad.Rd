@@ -19,7 +19,7 @@ vizLoad(
 \arguments{
 \item{uiOutput}{An output element to be wrapped within a spinner.}
 
-\item{type}{The type of bar/spinner to use. Valid values are: 
+\item{type}{The type of bar/spinner to use. Valid values are:
 \itemize{
 \item bars
 \item squares
@@ -31,7 +31,7 @@ vizLoad(
 \item bordered_line
 }}
 
-\item{size}{The size of the bar/spinner. Valid values are: 
+\item{size}{The size of the bar/spinner. Valid values are:
 \itemize{
 \item large
 \item medium
@@ -44,8 +44,11 @@ vizLoad(
 
 \item{add_label}{Logical; if \code{TRUE}, displays a label below the bar/spinner. Defaults to \code{FALSE}.}
 
-\item{label}{The label to be displayed below the bar/spinner. \code{add_label} must 
+\item{label}{The label to be displayed below the bar/spinner. \code{add_label} must
 be set to \code{TRUE} to display the label.}
+}
+\value{
+\value{None}
 }
 \description{
 Loading bars and spinners.

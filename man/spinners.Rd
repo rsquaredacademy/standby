@@ -16,6 +16,9 @@ spinners(uiOutput, type = 1, color = "#0275d8")
 
 \item{color}{Color of the spinner. Choose between hexadecimal or keyword values.}
 }
+\value{
+\value{None}
+}
 \description{
 A collection of loading spinners animated with CSS
 }
