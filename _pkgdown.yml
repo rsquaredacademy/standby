@@ -19,8 +19,10 @@ navbar:
       href: index.html
     - text: 'Guides'
       menu:
-        - text: 'Quick Introduction'
-          href: articles/introduction.html
+        - text: 'Alerts and Notifications'
+          href: articles/buzz.html
+        - text: 'Loading Screens'
+          href: articles/standby.html
     - text: 'Reference'
       menu:
         - text: 'Functions'
@@ -52,7 +54,22 @@ reference:
       - spinners
       - loaders
 
-  - title: Preview Spinners/Loaders
+  - title: Notifications
 
     contents:
-      - previewStandby
+      - alertify
+      - bootBox
+      - notice
+      - notify
+      - tingle
+      - toast
+
+  - title: Tooltip
+
+    contents:
+      - microTip
+
+  - title: Preview
+
+    contents:
+      - preview
