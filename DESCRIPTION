@@ -1,6 +1,6 @@
 Package: standby
 Type: Package
-Title: Loading Screen for 'Shiny'
+Title: Alerts, Notifications and Loading Screen in 'Shiny'
 Version: 0.1.0
 Authors@R: c(
     person("Aravind", "Hebbali", email = "hebbali.aravind@gmail.com", role = c("aut", "cre")),
@@ -8,19 +8,34 @@ Authors@R: c(
     person("Tobias", "Ahlin", role = c("ctb", "cph"), comment = "Author of SpinKit"),
     person("https://github.com/RIDICS", role = c("ctb", "cph"), comment = "CSS loader code"),
     person("Raphael", "Fabini", role = c("ctb", "cph"), comment = "Author of included CSS loader code"),
-    person("Luke", "Hass", role = c("ctb", "cph"), comment = "Author of included CSS loader code")
+    person("Luke", "Hass", role = c("ctb", "cph"), comment = "Author of included CSS loader code"),
+    person("Mohammad", "Younes", role = c("ctb", "cph"), comment = "Author of Alertify"),
+    person("Nick", "Payne", role = c("ctb", "cph"), comment = "Author of BootBox"),
+    person("Indrashish", "Ghosh", role = c("ctb", "cph"), comment = "Author of MicroTip"),
+    person("https://github.com/codrops", role = c("ctb", "cph"), comment = "Author of Notification Styles"),
+    person("Hunter", "Perrin", role = c("ctb", "cph"), comment = "Author of PNotify"),
+    person("Robin", "Parisi", role = c("ctb", "cph"), comment = "Author of Tingle"),
+    person("Marcelo", "Dolza", role = c("ctb", "cph"), comment = "Author of iziToast")
     )
-Description: Full screen loading animation screens for 'Shiny' with spinners and bars.
-License: GPL (>= 3)
-Encoding: UTF-8
+Description: Easily create alerts, notifications, modals, info tips and loading 
+    screens in 'Shiny'. Includes several options to customize alerts and 
+    notifications by including text, icons, images and buttons. When wrapped 
+    around a 'Shiny' output, loading screen is automatically displayed while 
+    the output is being recalculated.
+Depends:
+    R(>= 3.3)
 Imports: 
     grDevices,
     htmltools,
     shiny,
     uuid
-RoxygenNote: 7.1.1
 Suggests: 
     rmarkdown,
     kableExtra,
     knitr
+License: GPL (>= 3)
+URL: https://standby.rsquaredacademy.com/, https://github.com/rsquaredacademy/standby
+BugReports: https://github.com/rsquaredacademy/standby/issues
+Encoding: UTF-8
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
