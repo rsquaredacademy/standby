@@ -13,9 +13,10 @@
 #' }
 #'
 #' @return None
+#' @name preview
 #' @export
 #'
-previewBuzz <- function(type = "toast") {
+previewAlerts <- function(type = "toast") {
 
   dep <- switch(type,
                 "alertify" = useAlertify(),
@@ -65,12 +66,12 @@ previewBuzz <- function(type = "toast") {
 #' \item spinners
 #' \item loaders
 #' }
-#' @import htmltools shiny
 #'
 #' @return None
+#' @name preview
 #'
 #' @export
-previewStandby <- function(spinner = "threeDots") {
+previewSpinners <- function(spinner = "threeDots") {
 
   dep <- switch(spinner,
                 threedots = useThreeDots(),
