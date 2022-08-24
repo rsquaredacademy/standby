@@ -2,8 +2,9 @@ pandoc: '2.18'
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
-  introduction: introduction.html
-last_built: 2022-08-23T12:55Z
+  buzz: buzz.html
+  standby: standby.html
+last_built: 2022-08-24T11:33Z
 urls:
   reference: https://standby.rsquaredacademy.com/reference
   article: https://standby.rsquaredacademy.com/articles
