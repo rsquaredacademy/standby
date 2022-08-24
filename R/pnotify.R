@@ -42,7 +42,7 @@
 #' @examples
 #' if (interactive()) {
 #' library(shiny)
-#' library(buzz)
+#' library(standby)
 #'
 #' ui <- fluidPage(
 #'
@@ -56,7 +56,7 @@
 #'
 #'   observeEvent(input$btn, {
 #'     # display notification
-#'     notify("Hey there!", "Thank you for exploring buzz!")
+#'     notify("Hey there!", "Thank you for exploring standby!")
 #'   })
 #' }
 #'

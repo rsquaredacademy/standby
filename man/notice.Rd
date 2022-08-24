@@ -71,7 +71,7 @@ Simple website notifications with effects
 \examples{
 if (interactive()) {
 library(shiny)
-library(buzz)
+library(standby)
 
 ui <- fluidPage(
 
@@ -85,7 +85,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$btn, {
     # display notification
-    notice("Hey there! Thank you for exploring buzz!")
+    notice("Hey there! Thank you for exploring standby!")
   })
 }
 

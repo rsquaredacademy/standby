@@ -34,7 +34,7 @@
 #' @examples
 #' if (interactive()) {
 #' library(shiny)
-#' library(buzz)
+#' library(standby)
 #'
 #' ui <- fluidPage(
 #'

@@ -58,7 +58,7 @@
 #' # Example 1: Alert
 #' if (interactive()) {
 #' library(shiny)
-#' library(buzz)
+#' library(standby)
 #'
 #' ui <- fluidPage(
 #'
@@ -72,7 +72,7 @@
 #'
 #'   observeEvent(input$btn, {
 #'     # display alert
-#'     alertify_alert("Hey there!", "Thank you for exploring buzz!")
+#'     alertify_alert("Hey there!", "Thank you for exploring standby!")
 #'   })
 #' }
 #'
@@ -82,7 +82,7 @@
 #' # Example 2: Notification
 #' if (interactive()) {
 #' library(shiny)
-#' library(buzz)
+#' library(standby)
 #'
 #' ui <- fluidPage(
 #'
@@ -96,7 +96,7 @@
 #'
 #'   observeEvent(input$btn, {
 #'     # display notification
-#'     alertify_notify("Hey there! Thank you for exploring buzz!")
+#'     alertify_notify("Hey there! Thank you for exploring standby!")
 #'   })
 #' }
 #'

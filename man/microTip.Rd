@@ -60,7 +60,7 @@ Minimal CSS only tooltip.
 \examples{
 if (interactive()) {
 library(shiny)
-library(buzz)
+library(standby)
 
 ui <- fluidPage(
 

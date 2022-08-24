@@ -2,7 +2,7 @@
 title: "Alerts and Notifications"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ALerts and Notifications}
+  %\VignetteIndexEntry{Alerts and Notifications}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

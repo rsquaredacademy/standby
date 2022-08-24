@@ -124,7 +124,7 @@ Pretty browser alerts and notifications.
 # Example 1: Alert
 if (interactive()) {
 library(shiny)
-library(buzz)
+library(standby)
 
 ui <- fluidPage(
 
@@ -138,7 +138,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$btn, {
     # display alert
-    alertify_alert("Hey there!", "Thank you for exploring buzz!")
+    alertify_alert("Hey there!", "Thank you for exploring standby!")
   })
 }
 
@@ -148,7 +148,7 @@ shinyApp(ui, server)
 # Example 2: Notification
 if (interactive()) {
 library(shiny)
-library(buzz)
+library(standby)
 
 ui <- fluidPage(
 
@@ -162,7 +162,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$btn, {
     # display notification
-    alertify_notify("Hey there! Thank you for exploring buzz!")
+    alertify_notify("Hey there! Thank you for exploring standby!")
   })
 }
 

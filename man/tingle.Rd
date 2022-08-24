@@ -54,7 +54,7 @@ Minimalist and easy to use modals.
 \examples{
 if (interactive()) {
 library(shiny)
-library(buzz)
+library(standby)
 
 ui <- fluidPage(
 
@@ -68,7 +68,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$btn, {
     # display modal
-    tingle("Hey there!", "Thank you for exploring buzz!")
+    tingle("Hey there!", "Thank you for exploring standby!")
   })
 }
 

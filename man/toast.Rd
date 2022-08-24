@@ -175,7 +175,7 @@ Lightweight toast notifications
 \examples{
 if (interactive()) {
 library(shiny)
-library(buzz)
+library(standby)
 
 ui <- fluidPage(
 
@@ -189,7 +189,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$btn, {
     # display toast notification
-    toast("Hey there!", "Thank you for exploring buzz!")
+    toast("Hey there!", "Thank you for exploring standby!")
   })
 }
 

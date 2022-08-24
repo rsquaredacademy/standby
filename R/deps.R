@@ -108,13 +108,13 @@ useLoaders <- function() {
 useToast <- function() {
 
   htmltools::htmlDependency(
-    name = "buzz-toast",
+    name = "sby-toast",
     version = "0.1.0",
     src = "",
     script = list(list(src = "iziToast.min.js", defer = NA),
                   list(src = "buzz.js", defer = NA)),
     stylesheet = "iziToast.min.css",
-    package = "buzz"
+    package = "standby"
   )
 
 }
@@ -124,7 +124,7 @@ useToast <- function() {
 useNS <- function() {
 
   htmltools::htmlDependency(
-    name = "buzz-ns",
+    name = "sby-ns",
     version = "0.1.0",
     src = "",
     script = list(list(src = "modernizr.custom.js", defer = NA),
@@ -136,7 +136,7 @@ useNS <- function() {
                       "ns-style-growl.css",
                       "ns-style-attached.css",
                       "ns-style-bar.css"),
-    package = "buzz"
+    package = "standby"
   )
 }
 
@@ -145,7 +145,7 @@ useNS <- function() {
 useNotify <- function() {
 
   htmltools::htmlDependency(
-    name = "buzz-pnotify",
+    name = "sby-pnotify",
     version = "0.1.0",
     src = "",
     script = list(list(src = "PNotify.js", defer = NA), 
@@ -153,7 +153,7 @@ useNotify <- function() {
                   list(src = "buzz.js", defer = NA)),
     stylesheet = list("PNotify.css",
                       "BrightTheme.css"),
-    package = "buzz"
+    package = "standby"
   )
 }
 
@@ -161,13 +161,13 @@ useNotify <- function() {
 #' @export 
 useTingle <- function() {
   htmltools::htmlDependency(
-    name = "buzz-tingle",
+    name = "sby-tingle",
     version = "0.1.0",
     src = "",
     script = list(list(src = "tingle.min.js", defer = NA), 
                   list(src = "buzz.js", defer = NA)),
     stylesheet = "tingle.min.css",
-    package = "buzz"
+    package = "standby"
   ) 
 }
 
