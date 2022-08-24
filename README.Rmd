@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
-Loading screens for Shiny
+Easily create alerts, notifications, tooltips and loading screens in Shiny
 
 ## Installation
 
@@ -33,6 +33,8 @@ devtools::install_github("rsquaredacademy/standby")
 
 ## Usage
 
+### Loading Screens
+
 To use spinners/loaders from **standby** in your Shiny application, include the 
 following in the **UI** part of the app:
 
@@ -41,9 +43,9 @@ following in the **UI** part of the app:
 - Wrap the target output using corresponding rendering function 
 (`spinkit()` in the below example).
 
-### Example
+##### Example
 
-```{r example, eval=FALSE}
+```{r standby, eval=FALSE}
 library(shiny)
 library(standby)
 
@@ -70,7 +72,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-## Details
+#### Details
 
 The below table displays the dependency and rendering functions along with references:
 
@@ -81,6 +83,49 @@ The below table displays the dependency and rendering functions along with refer
 | 3     | `useVizLoad()`   | `vizLoad()`   | [Loading Visualization](https://github.com/RIDICS/Loading-Visualization) |
 | 4     | `useSpinners()`  | `spinners()`  | [Spinners](https://github.com/lukehaas/css-loaders)                      |
 | 5     | `useLoaders()`   | `loaders()`   | [Loaders](https://github.com/raphaelfabeni/css-loader)                   |
+
+
+### Alerts and Notifications
+
+To use alerts or notifications from **buzz** in your Shiny application, follow the below steps:
+
+- Include the dependencies in the **UI** part of the app using the appropriate
+`use*` functions (`useToast()` in the below example).
+- Include the corresponding rendering function in the **Server** part of the 
+app (`toast()` in the below example).
+
+##### Example
+
+```{r buzz, eval=FALSE}
+library(shiny)
+library(standby)
+ui <- fluidPage(
+  useBootBox(), # include dependencies
+  actionButton(inputId = "notify",
+               label   = "Show Notification")
+)
+server <- function(input, output, session) {
+  observeEvent(input$pnotify, {
+    bootBox(class = "rubberBand") # display the alert
+  })
+}
+shinyApp(ui, server)
+```
+
+#### Details
+
+The below table displays the dependency and rendering functions along with references:
+
+| Index | Dependency      | Render              | Reference                                                                   |
+| ------| -------------   | -------------       | -------------                                                               |
+| 1     | `useAlertify()` | `alertify_alert()`  | [Alertify](https://github.com/MohammadYounes/AlertifyJS)                    |
+| 2     | `useAlertify()` | `alertify_notify()` | [Alertify](https://github.com/MohammadYounes/AlertifyJS)                    |
+| 3     | `useBootBox()`  | `bootBox()`         | [BootBox](https://github.com/makeusabrew/bootbox)                           |
+| 4     | `useMicroTip()` | `microTip()`        | [MicroTip](https://github.com/ghosh/microtip)                               |
+| 5     | `useNS()`       | `notice()`          | [Notification Styles](https://tympanus.net/Development/NotificationStyles/) |
+| 6     | `useNotify()`   | `notify()`          | [PNotify](https://github.com/sciactive/pnotify)                             |
+| 7     | `useTingle()`   | `tingle()`          | [Tingle](https://github.com/robinparisi/tingle)                             |
+| 8     | `useToast()`    | `toast()`           | [iziToast](https://github.com/marcelodolza/iziToast)                        |
 
 ## Inspiration
 
