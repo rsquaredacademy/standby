@@ -1,0 +1,74 @@
+---
+title: "Quick Introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+buzz offers several types of alerts, notifications and tooltips. This 
+document is a quickstart guide for using buzz in your Shiny applications. 
+Let us look at a simple example below:
+
+```{r example, eval=FALSE}
+library(shiny)
+library(buzz)
+
+ui <- fluidPage(
+ 
+  useToast(), # include dependencies
+  actionButton(inputId = "btn",
+               label   = "iziToast Demo")
+ 
+)
+ 
+server <- function(input, output, session) {
+
+  observeEvent(input$btn, {
+    # display toast notification
+    toast("Hey there!", "Thank you for exploring buzz!")
+  })
+}
+
+shinyApp(ui, server)
+```
+
+To use alerts or notifications from **buzz** in your Shiny application, follow the below steps:
+
+- Include the dependencies in the **UI** part of the app using the appropriate
+`use*` functions (`useToast()` in the above example).
+- Include the corresponding rendering function in the **Server** part of the 
+app (`toast()` in the above example).
+
+## Details
+
+The below table displays the dependency and rendering functions along with references:
+
+```{r ref_table, echo=FALSE}
+index <- 1:8
+dependency <- c("`useAlertify()`", "`useAlertify()`", "`useBootBox()`", "`useMicroTip()`", 
+                "`useNS()`", "`useNotify()`", "`useTingle()`", "`useToast()`")
+renderer <- c("`alertify_alert()`", "`alertify_notify()`", "`bootBox()`", "`microTip()`",
+              "`notice()`", "`notify()`", "`tingle()`", "`toast()`")
+reference <- c("https://github.com/MohammadYounes/AlertifyJS",
+               "https://github.com/MohammadYounes/AlertifyJS",
+               "https://github.com/makeusabrew/bootbox",
+               "https://github.com/ghosh/microtip",
+               "https://tympanus.net/Development/NotificationStyles/",
+               "https://github.com/sciactive/pnotify",
+               "https://github.com/robinparisi/tingle",
+              "https://github.com/marcelodolza/iziToast")
+ref <- data.frame(Index = index, Dependency = dependency, Render = renderer, Reference = reference)
+kableExtra::kable(ref)
+```
+
+Visit the [documentation](https://buzz.rsquaredacademy.com) to learn how to 
+customize the alerts and notifications.
