@@ -1,8 +1,8 @@
 ---
-title: "Quick Introduction"
+title: "Alerts and Notifications"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Quick Introduction}
+  %\VignetteIndexEntry{ALerts and Notifications}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,13 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-buzz offers several types of alerts, notifications and tooltips. This 
-document is a quickstart guide for using buzz in your Shiny applications. 
+standby offers several types of alerts, notifications and tooltips. This 
+document is a quickstart guide for using standby in your Shiny applications. 
 Let us look at a simple example below:
 
 ```{r example, eval=FALSE}
 library(shiny)
-library(buzz)
+library(standby)
 
 ui <- fluidPage(
  
@@ -70,5 +70,5 @@ ref <- data.frame(Index = index, Dependency = dependency, Render = renderer, Ref
 kableExtra::kable(ref)
 ```
 
-Visit the [documentation](https://buzz.rsquaredacademy.com) to learn how to 
+Visit the [documentation](https://standby.rsquaredacademy.com) to learn how to 
 customize the alerts and notifications.

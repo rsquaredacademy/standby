@@ -1,8 +1,8 @@
 ---
-title: "Quick Introduction"
+title: "Loading Screens"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Quick Introduction}
+  %\VignetteIndexEntry{Loading Screens}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
