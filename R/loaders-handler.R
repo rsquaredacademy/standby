@@ -42,7 +42,10 @@
 #'     ui = fluidPage(
 #'       useLoaders(),
 #'       actionButton("render", "Render"),
-#'       loaders(plotOutput("plot"))
+#'       loaders(uiOutput = plotOutput("plot"),
+#'               type = "default",
+#'               style = "half",
+#'               text = "Loading...")
 #'     ),
 #'     server = function(input, output) {
 #'       output$plot <- renderPlot({
