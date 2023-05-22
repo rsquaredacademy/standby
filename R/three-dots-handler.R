@@ -39,7 +39,7 @@
 #'
 threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 
-  id <- uuid::UUIDgenerate()
+  id <- "threedots"
   dots_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { color: ', color, '; background-color: ', color, ';}')
 
   shiny::tagList(

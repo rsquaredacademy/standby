@@ -27,8 +27,7 @@ Depends:
 Imports: 
     grDevices,
     htmltools,
-    shiny,
-    uuid
+    shiny
 Suggests: 
     rmarkdown,
     kableExtra,
