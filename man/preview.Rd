@@ -8,7 +8,7 @@
 \usage{
 previewAlerts(type = "toast")
 
-previewSpinners(spinner = "threeDots")
+previewSpinners(spinner = "threedots")
 }
 \arguments{
 \item{type}{Type of alert/notification. Valid values are:
