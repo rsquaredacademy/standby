@@ -5,7 +5,7 @@
 #' See the README on 
 #' \href{https://github.com/rsquaredacademy/standby}{GitHub}
 #' 
-#' @import shiny htmltools grDevices uuid
+#' @import shiny htmltools grDevices
 #' @keywords internal
 #' @docType package
 #' @name standby
