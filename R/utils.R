@@ -185,7 +185,7 @@ viz_squares <- function(size = "large", bg_color = NULL) {
   )
 }
 
-viz_circles <- function(size = "large", bg_color = NULL) {
+viz_circles <- function(size = "large") {
 
   scale <- switch(size,
                   "large"  = "lv-mid lg",
@@ -199,7 +199,7 @@ viz_circles <- function(size = "large", bg_color = NULL) {
   )
 }
 
-viz_dots <- function(size = "large", bg_color = NULL) {
+viz_dots <- function(size = "large") {
 
   scale <- switch(size,
                   "large"  = "lv-mid lg",
