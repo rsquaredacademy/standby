@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml) 
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Codecov test coverage](https://codecov.io/gh/rsquaredacademy/standby/branch/master/graph/badge.svg)](https://app.codecov.io/gh/rsquaredacademy/standby?branch=master)
 <!-- badges: end -->
 
 Easily create alerts, notifications, tooltips and loading screens in Shiny

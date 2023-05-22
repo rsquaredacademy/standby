@@ -8,6 +8,8 @@
 [![R-CMD-check](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Codecov test
+coverage](https://codecov.io/gh/rsquaredacademy/standby/branch/master/graph/badge.svg)](https://app.codecov.io/gh/rsquaredacademy/standby?branch=master)
 <!-- badges: end -->
 
 Easily create alerts, notifications, tooltips and loading screens in
@@ -30,10 +32,10 @@ devtools::install_github("rsquaredacademy/standby")
 To use spinners/loaders from **standby** in your Shiny application,
 include the following in the **UI** part of the app:
 
--   Include the dependencies using the appropriate `use*` functions
-    (`useSpinkit()` in the below example).
--   Wrap the target output using corresponding rendering function
-    (`spinkit()` in the below example).
+- Include the dependencies using the appropriate `use*` functions
+  (`useSpinkit()` in the below example).
+- Wrap the target output using corresponding rendering function
+  (`spinkit()` in the below example).
 
 ##### Example
 
@@ -82,10 +84,10 @@ with references:
 To use alerts or notifications from **buzz** in your Shiny application,
 follow the below steps:
 
--   Include the dependencies in the **UI** part of the app using the
-    appropriate `use*` functions (`useToast()` in the below example).
--   Include the corresponding rendering function in the **Server** part
-    of the app (`toast()` in the below example).
+- Include the dependencies in the **UI** part of the app using the
+  appropriate `use*` functions (`useToast()` in the below example).
+- Include the corresponding rendering function in the **Server** part of
+  the app (`toast()` in the below example).
 
 ##### Example
 
@@ -125,10 +127,10 @@ with references:
 
 The following packages served as an inspiration.
 
--   [shinycssloaders](https://github.com/daattali/shinycssloaders) by
-    [Dean Attali](https://attalitech.com/)
--   [waiter](https://github.com/JohnCoene/waiter) by [John
-    Coene](https://john-coene.com/)
+- [shinycssloaders](https://github.com/daattali/shinycssloaders) by
+  [Dean Attali](https://attalitech.com/)
+- [waiter](https://github.com/JohnCoene/waiter) by [John
+  Coene](https://john-coene.com/)
 
 ## Acknowledgements
 
@@ -136,11 +138,11 @@ We referred to the following books extensively while developing standby
 and are grateful to the authors for sharing their knowledge with the
 R/Shiny community:
 
--   [Outstanding User Interfaces with
-    Shiny](https://unleash-shiny.rinterface.com/index.html) by [David
-    Granjon](https://divadnojnarg.github.io/)
--   [JavaScript for R](https://book.javascript-for-r.com/) by [John
-    Coene](https://john-coene.com/)
+- [Outstanding User Interfaces with
+  Shiny](https://unleash-shiny.rinterface.com/index.html) by [David
+  Granjon](https://divadnojnarg.github.io/)
+- [JavaScript for R](https://book.javascript-for-r.com/) by [John
+  Coene](https://john-coene.com/)
 
 ## Getting Help
 
