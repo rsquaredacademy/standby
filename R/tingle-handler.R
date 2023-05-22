@@ -40,7 +40,7 @@
 #'
 #'   observeEvent(input$btn, {
 #'     # display modal
-#'     tingle("Hey there!", "Thank you for exploring standby!")
+#'     tingle("Hey there!, Thank you for exploring standby!")
 #'   })
 #' }
 #'
