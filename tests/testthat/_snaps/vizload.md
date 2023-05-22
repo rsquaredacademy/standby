@@ -112,3 +112,23 @@
         <div style="height: 5px;"></div>
       </div>
 
+# vizLoad() generates the correct HTML
+
+    Code
+      vizLoad(uiOutput = plotOutput("plot"), type = "bars", size = "large", color = "red",
+      add_label = FALSE, label = "Loading...")
+    Output
+      <div class="standby">
+        <div class="lv-bars lv-mid lg standby-wait">
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+        </div>
+        <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
+      </div>
+

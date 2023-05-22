@@ -33,3 +33,18 @@ test_that("viz_line() generates the correct HTML", {
 test_that("viz_bordered_line() generates the correct HTML", {
   expect_snapshot(viz_bordered_line())
 })
+
+test_that("vizLoad() generates the correct HTML", {
+  expect_snapshot(
+    vizLoad(uiOutput = plotOutput("plot"),
+            type = "bars",
+            size = "large",
+            color = "red",
+            add_label = FALSE,
+            label = "Loading...")
+  )
+})
+
+
+
+

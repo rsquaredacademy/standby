@@ -49,3 +49,12 @@ test_that("spinkit_wander() generates the correct HTML", {
 test_that("spinkit_fold() generates the correct HTML", {
   expect_snapshot(spinkit_fold(size = "40px"))
 })
+
+test_that("spinkit() generates the correct HTML", {
+  expect_snapshot(
+    spinkit(uiOutput = plotOutput("plot"),
+            type = "plane",
+            color = "#333",
+            size = "40px")
+  )
+})

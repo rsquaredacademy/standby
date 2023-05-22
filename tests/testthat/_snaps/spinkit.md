@@ -161,3 +161,13 @@
         <div class="sk-fold-cube"></div>
       </div>
 
+# spinkit() generates the correct HTML
+
+    Code
+      spinkit(uiOutput = plotOutput("plot"), type = "plane", color = "#333", size = "40px")
+    Output
+      <div class="standby">
+        <div class="sk-plane standby-wait" style="width: 40px; height: 40px; background-color: #333;"></div>
+        <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
+      </div>
+
