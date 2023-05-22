@@ -45,6 +45,27 @@ test_that("vizLoad() generates the correct HTML", {
   )
 })
 
+test_that("vizLoad() generates the correct HTML when type is circles", {
+  expect_snapshot(
+    vizLoad(uiOutput = plotOutput("plot"),
+            type = "circles",
+            size = "large",
+            color = "red",
+            add_label = FALSE,
+            label = "Loading...")
+  )
+})
+
+test_that("vizLoad() generates the correct HTML when add_label is TRUE", {
+  expect_snapshot(
+    vizLoad(uiOutput = plotOutput("plot"),
+            type = "bars",
+            size = "large",
+            color = "red",
+            add_label = TRUE,
+            label = "Loading...")
+  )
+})
 
 
 

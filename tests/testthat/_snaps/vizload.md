@@ -132,3 +132,47 @@
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
 
+# vizLoad() generates the correct HTML when type is circles
+
+    Code
+      vizLoad(uiOutput = plotOutput("plot"), type = "circles", size = "large", color = "red",
+      add_label = FALSE, label = "Loading...")
+    Output
+      <div class="standby">
+        <div class="lv-circles lv-mid lg standby-wait">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
+      </div>
+
+# vizLoad() generates the correct HTML when add_label is TRUE
+
+    Code
+      vizLoad(uiOutput = plotOutput("plot"), type = "bars", size = "large", color = "red",
+      add_label = TRUE, label = "Loading...")
+    Output
+      <div class="standby">
+        <div class="lv-bars lv-mid lg standby-wait" data-label="Loading...">
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+          <div style="background-color:red;"></div>
+        </div>
+        <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
+      </div>
+
