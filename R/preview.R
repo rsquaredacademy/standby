@@ -71,7 +71,7 @@ previewAlerts <- function(type = "toast") {
 #' @name preview
 #'
 #' @export
-previewSpinners <- function(spinner = "threeDots") {
+previewSpinners <- function(spinner = "threedots") {
 
   dep <- switch(spinner,
                 threedots = useThreeDots(),
@@ -81,7 +81,7 @@ previewSpinners <- function(spinner = "threeDots") {
                 loaders   = useLoaders())
 
   type <- switch(spinner,
-                 threeDots = glanceThreeDots(),
+                 threedots = glanceThreeDots(),
                  spinkit   = glanceSpinkit(),
                  vizLoad   = glanceVizLoad(),
                  spinners  = glanceSpinners(),
