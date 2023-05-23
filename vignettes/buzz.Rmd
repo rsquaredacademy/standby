@@ -60,7 +60,7 @@ renderer <- c("`alertify_alert()`", "`alertify_notify()`", "`bootBox()`", "`micr
               "`notice()`", "`notify()`", "`tingle()`", "`toast()`")
 reference <- c("https://github.com/MohammadYounes/AlertifyJS",
                "https://github.com/MohammadYounes/AlertifyJS",
-               "https://github.com/makeusabrew/bootbox",
+               "https://github.com/bootboxjs/bootbox",
                "https://github.com/ghosh/microtip",
                "https://tympanus.net/Development/NotificationStyles/",
                "https://github.com/sciactive/pnotify",

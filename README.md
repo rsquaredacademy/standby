@@ -116,33 +116,12 @@ with references:
 |-------|-----------------|---------------------|-----------------------------------------------------------------------------|
 | 1     | `useAlertify()` | `alertify_alert()`  | [Alertify](https://github.com/MohammadYounes/AlertifyJS)                    |
 | 2     | `useAlertify()` | `alertify_notify()` | [Alertify](https://github.com/MohammadYounes/AlertifyJS)                    |
-| 3     | `useBootBox()`  | `bootBox()`         | [BootBox](https://github.com/makeusabrew/bootbox)                           |
+| 3     | `useBootBox()`  | `bootBox()`         | [BootBox](https://github.com/bootboxjs/bootbox)                             |
 | 4     | `useMicroTip()` | `microTip()`        | [MicroTip](https://github.com/ghosh/microtip)                               |
 | 5     | `useNS()`       | `notice()`          | [Notification Styles](https://tympanus.net/Development/NotificationStyles/) |
 | 6     | `useNotify()`   | `notify()`          | [PNotify](https://github.com/sciactive/pnotify)                             |
 | 7     | `useTingle()`   | `tingle()`          | [Tingle](https://github.com/robinparisi/tingle)                             |
 | 8     | `useToast()`    | `toast()`           | [iziToast](https://github.com/marcelodolza/iziToast)                        |
-
-## Inspiration
-
-The following packages served as an inspiration.
-
-- [shinycssloaders](https://github.com/daattali/shinycssloaders) by
-  [Dean Attali](https://attalitech.com/)
-- [waiter](https://github.com/JohnCoene/waiter) by [John
-  Coene](https://john-coene.com/)
-
-## Acknowledgements
-
-We referred to the following books extensively while developing standby
-and are grateful to the authors for sharing their knowledge with the
-R/Shiny community:
-
-- [Outstanding User Interfaces with
-  Shiny](https://unleash-shiny.rinterface.com/index.html) by [David
-  Granjon](https://divadnojnarg.github.io/)
-- [JavaScript for R](https://book.javascript-for-r.com/) by [John
-  Coene](https://john-coene.com/)
 
 ## Getting Help
 
