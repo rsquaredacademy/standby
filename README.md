@@ -5,11 +5,15 @@
 
 <!-- badges: start -->
 
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/standby)](https://cran.r-project.org/package=standby)
+[![cran
+checks](https://badges.cranchecks.info/summary/standby.svg)](https://cran.r-project.org/web/checks/check_results_standby.html)
 [![R-CMD-check](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rsquaredacademy/standby/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Codecov test
 coverage](https://codecov.io/gh/rsquaredacademy/standby/branch/master/graph/badge.svg)](https://app.codecov.io/gh/rsquaredacademy/standby?branch=master)
+[![status](https://tinyverse.netlify.com/badge/standby)](https://CRAN.R-project.org/package=standby)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 <!-- badges: end -->
 
 Easily create alerts, notifications, tooltips and loading screens in
@@ -17,10 +21,11 @@ Shiny
 
 ## Installation
 
-You can install the development version of standby from
-[GitHub](https://github.com/) with:
-
 ``` r
+# Install release version from CRAN
+install.packages("standby")
+
+# Install development version from GitHub
 # install.packages("devtools")
 devtools::install_github("rsquaredacademy/standby")
 ```
