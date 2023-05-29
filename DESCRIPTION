@@ -1,7 +1,7 @@
 Package: standby
 Type: Package
 Title: Alerts, Notifications and Loading Screen in 'Shiny'
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: c(
     person("Aravind", "Hebbali", email = "hebbali.aravind@gmail.com", role = c("aut", "cre")),
     person("Zong", "Bin", role = c("ctb", "cph"), comment = "Author of Three Dots"),
