@@ -63,7 +63,7 @@ server <- function(input, output, session) {
     output$plot1 <- renderPlot({
       input$render
       Sys.sleep(3)
-      plot(cars)
+      hist(mtcars$mpg)
     })
 
 }
