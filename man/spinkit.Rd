@@ -22,7 +22,7 @@ spinkit(uiOutput, type = "plane", color = "#333", size = "40px")
 \item flow
 \item swing
 \item circle
-\item circle_fade
+\item circle-fade
 \item grid
 \item fold
 \item wander
@@ -54,7 +54,7 @@ if (interactive()) {
     ui = fluidPage(
       useSpinkit(),
       actionButton("render", "Render"),
-      spinkit(plotOutput("plot"))
+      spinkit(plotOutput("plot"), type = "circle-fade")
     ),
     server = function(input, output) {
       output$plot <- renderPlot({

@@ -13,7 +13,7 @@
 #' \item flow
 #' \item swing
 #' \item circle
-#' \item circle_fade
+#' \item circle-fade
 #' \item grid
 #' \item fold
 #' \item wander
@@ -35,7 +35,7 @@
 #'     ui = fluidPage(
 #'       useSpinkit(),
 #'       actionButton("render", "Render"),
-#'       spinkit(plotOutput("plot"))
+#'       spinkit(plotOutput("plot"), type = "circle-fade")
 #'     ),
 #'     server = function(input, output) {
 #'       output$plot <- renderPlot({
