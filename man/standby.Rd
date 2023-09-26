@@ -3,12 +3,43 @@
 \docType{package}
 \name{standby}
 \alias{standby}
+\alias{_PACKAGE}
+\alias{standby-package}
 \title{\code{standby} package}
 \description{
 Loading screens for Shiny.
 }
 \details{
-See the README on 
+See the README on
 \href{https://github.com/rsquaredacademy/standby}{GitHub}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://standby.rsquaredacademy.com/}
+  \item \url{https://github.com/rsquaredacademy/standby}
+  \item Report bugs at \url{https://github.com/rsquaredacademy/standby/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Aravind Hebbali \email{hebbali.aravind@gmail.com}
+
+Other contributors:
+\itemize{
+  \item Zong Bin (Author of Three Dots) [contributor, copyright holder]
+  \item Tobias Ahlin (Author of SpinKit) [contributor, copyright holder]
+  \item https://github.com/RIDICS (CSS loader code) [contributor, copyright holder]
+  \item Raphael Fabini (Author of included CSS loader code) [contributor, copyright holder]
+  \item Luke Hass (Author of included CSS loader code) [contributor, copyright holder]
+  \item Mohammad Younes (Author of Alertify) [contributor, copyright holder]
+  \item Nick Payne (Author of BootBox) [contributor, copyright holder]
+  \item Indrashish Ghosh (Author of MicroTip) [contributor, copyright holder]
+  \item https://github.com/codrops (Author of Notification Styles) [contributor, copyright holder]
+  \item Hunter Perrin (Author of PNotify) [contributor, copyright holder]
+  \item Robin Parisi (Author of Tingle) [contributor, copyright holder]
+  \item Marcelo Dolza (Author of iziToast) [contributor, copyright holder]
+}
+
 }
 \keyword{internal}
