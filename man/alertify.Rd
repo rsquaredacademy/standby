@@ -66,7 +66,7 @@ alertify_notify(
 
 \item{transition_off}{Logical; if \code{TRUE}, transition effect is disabled. Defaults to \code{FALSE}.}
 
-\item{closable}{Logical; if \code{TRUE} (the default), a |code{Close} button is displayed in the header of the dialog.}
+\item{closable}{Logical; if \code{TRUE} (the default), a \code{Close} button is displayed in the header of the dialog.}
 
 \item{auto_reset}{Logical; if \code{TRUE} (the default), the dialog will reset size/position on window resize.}
 

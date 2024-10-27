@@ -3,7 +3,6 @@
 \docType{package}
 \name{standby}
 \alias{standby}
-\alias{_PACKAGE}
 \alias{standby-package}
 \title{\code{standby} package}
 \description{

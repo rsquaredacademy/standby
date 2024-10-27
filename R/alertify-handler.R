@@ -32,7 +32,7 @@
 #' \item \code{"top-center"}
 #' }
 #' @param transition_off Logical; if \code{TRUE}, transition effect is disabled. Defaults to \code{FALSE}.
-#' @param closable Logical; if \code{TRUE} (the default), a |code{Close} button is displayed in the header of the dialog.
+#' @param closable Logical; if \code{TRUE} (the default), a \code{Close} button is displayed in the header of the dialog.
 #' @param auto_reset Logical; if \code{TRUE} (the default), the dialog will reset size/position on window resize.
 #' @param frameless Logical; if \code{TRUE}, hides both header and footer of the dialog. Defaults to \code{FALSE}.
 #' @param maximizable Logical; if \code{TRUE} (the default), the \code{Maximize} button is displayed in the header of the dialog.
@@ -111,12 +111,14 @@ NULL
 #' @rdname alertify
 #' @export
 #'
-alertify_alert <- function(title = "Alert Title", message = "Alert Message", type = "success",
-                           btn_label = "OK", transition = "pulse", transition_off = FALSE,
-                           closable = TRUE, auto_reset = FALSE, frameless = FALSE,
-                           maximizable = FALSE, modal = FALSE, movable = FALSE, move_bounded = TRUE,
-                           overflow = FALSE, padding = TRUE, pinnable = FALSE, resizeable = FALSE,
-                           start_maximized = FALSE,
+alertify_alert <- function(title = "Alert Title", message = "Alert Message",
+                           type = "success", btn_label = "OK",
+                           transition = "pulse", transition_off = FALSE,
+                           closable = TRUE, auto_reset = FALSE,
+                           frameless = FALSE, maximizable = FALSE,
+                           modal = FALSE, movable = FALSE, move_bounded = TRUE,
+                           overflow = FALSE, padding = TRUE, pinnable = FALSE,
+                           resizeable = FALSE, start_maximized = FALSE,
                            session = getDefaultReactiveDomain()) {
 
   notice = list(
@@ -149,8 +151,8 @@ alertify_alert <- function(title = "Alert Title", message = "Alert Message", typ
 #' @rdname alertify
 #' @export
 #'
-alertify_notify <- function(message = "Alert Message", type = "success", delay = 5,
-                            position = "bottom-right",
+alertify_notify <- function(message = "Alert Message", type = "success",
+                            delay = 5, position = "bottom-right",
                             session = getDefaultReactiveDomain()) {
 
   notice = list(

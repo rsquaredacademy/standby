@@ -12,7 +12,7 @@
 #' }
 #' @param icon Logical; if \code{TRUE} (the default), default icon is displayed. No icon is displayed if set to \code{FALSE}.
 #' @param delay Delay in milliseconds before the notice is removed. If set to \code{"infinity"}, the notice will not close.
-#' @param hide Logical; if \code{TRUE} (the default), notice is closed after |code{delay} specified in milliseconds.
+#' @param hide Logical; if \code{TRUE} (the default), notice is closed after \code{delay} specified in milliseconds.
 #' @param sticker Logical; if \code{TRUE} (the default), provides a button for the user to manually stick the notice.
 #' @param closer Logical; if \code{TRUE} (the default), provides a button for the user to manually close the notice.
 #' @param shadow Logical; if \code{TRUE} (the default), displays a drop shadow.
@@ -68,10 +68,12 @@
 #'
 #' @export
 #'
-notify <- function(title = "Hey", text = NULL, type = "notice", icon = TRUE, delay = 8000,
-                   hide = TRUE, sticker = TRUE, closer = TRUE, shadow = TRUE, mouse_reset = TRUE,
-                   animation = 'fade', animate_speed = 'normal', width = "360px", min_height = "16px",
-                   max_text_height = "200px", translucent = FALSE, non_blocking = FALSE,
+notify <- function(title = "Hey", text = NULL, type = "notice", icon = TRUE,
+                   delay = 8000, hide = TRUE, sticker = TRUE, closer = TRUE,
+                   shadow = TRUE, mouse_reset = TRUE, animation = 'fade',
+                   animate_speed = 'normal', width = "360px",
+                   min_height = "16px", max_text_height = "200px",
+                   translucent = FALSE, non_blocking = FALSE,
                    session = getDefaultReactiveDomain()) {
 
   notice = list(

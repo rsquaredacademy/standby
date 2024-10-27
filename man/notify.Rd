@@ -44,7 +44,7 @@ notify(
 
 \item{delay}{Delay in milliseconds before the notice is removed. If set to \code{"infinity"}, the notice will not close.}
 
-\item{hide}{Logical; if \code{TRUE} (the default), notice is closed after |code{delay} specified in milliseconds.}
+\item{hide}{Logical; if \code{TRUE} (the default), notice is closed after \code{delay} specified in milliseconds.}
 
 \item{sticker}{Logical; if \code{TRUE} (the default), provides a button for the user to manually stick the notice.}
 
