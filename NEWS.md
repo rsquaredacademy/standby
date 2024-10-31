@@ -1,3 +1,5 @@
+# standby (development version)
+
 # standby 0.2.0
 
 This is a minor release to fix CRAN note.
