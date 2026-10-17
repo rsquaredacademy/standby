@@ -141,3 +141,5 @@ Please note that the standby project is released with a [Contributor
 Code of
 Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
+
+<div data-rsa-signup data-site="standby.rsquaredacademy.com" data-privacy-url="https://www.rsquaredacademy.com/privacy-policy.html"></div>
