@@ -1,11 +1,10 @@
-pandoc: 2.19.2
-pkgdown: 2.0.6
+pandoc: 3.10.2
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   buzz: buzz.html
   standby: standby.html
-last_built: 2023-05-29T08:10Z
+last_built: 2026-10-17T05:56Z
 urls:
   reference: https://standby.rsquaredacademy.com/reference
   article: https://standby.rsquaredacademy.com/articles
-
