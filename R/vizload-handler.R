@@ -60,6 +60,12 @@
 #'
 vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_label = FALSE, label = "Loading...") {
 
+  type <- match.arg(type, c("bars", "squares", "circles", "dots", "spinner", "dashed", "line", "bordered_line"))
+  if (!is.null(color)) {
+    validate_color(color, "color")
+  }
+  id <- generate_id("viz")
+
   base <- switch(type,
                 "bars"          = viz_bars(size, color),
                 "squares"       = viz_squares(size, color),
@@ -72,13 +78,13 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
 
   if (add_label) {
     base$attribs[["data-label"]] <- label
-    viz_css <- paste0(".lv-", type, "[data-label]:after { color: ", color, ";}")
+    viz_css <- if (!is.null(color)) paste0("#", id, " .lv-", type, "[data-label]:after { color: ", color, ";}") else NULL
   } else {
     viz_css <- NULL
   }
 
   if (type == "circles") {
-    circle_css <- paste0(".lv-circles div:before { background-color: ", color, "; }")
+    circle_css <- if (!is.null(color)) paste0("#", id, " .lv-circles div:before { background-color: ", color, "; }") else NULL
   } else {
     circle_css <- NULL
   }
@@ -94,6 +100,7 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
     ),
 
     tags$div(
+      id = id,
       class = "standby",
       base,
       uiOutput
