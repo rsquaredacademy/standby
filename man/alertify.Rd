@@ -68,23 +68,23 @@ alertify_notify(
 
 \item{closable}{Logical; if \code{TRUE} (the default), a \code{Close} button is displayed in the header of the dialog.}
 
-\item{auto_reset}{Logical; if \code{TRUE} (the default), the dialog will reset size/position on window resize.}
+\item{auto_reset}{Logical; if \code{TRUE}, the dialog will reset size/position on window resize. Defaults to \code{FALSE}.}
 
 \item{frameless}{Logical; if \code{TRUE}, hides both header and footer of the dialog. Defaults to \code{FALSE}.}
 
-\item{maximizable}{Logical; if \code{TRUE} (the default), the \code{Maximize} button is displayed in the header of the dialog.}
+\item{maximizable}{Logical; if \code{TRUE}, the \code{Maximize} button is displayed in the header of the dialog. Defaults to \code{FALSE}.}
 
-\item{modal}{Logical; if \code{TRUE} (the default), a screen dimmer will be used and access to the page contents will be prevented.}
+\item{modal}{Logical; if \code{TRUE}, a screen dimmer will be used and access to the page contents will be prevented. Defaults to \code{FALSE}.}
 
-\item{movable}{Logical; if \code{TRUE} (the default), the dialog is movable.}
+\item{movable}{Logical; if \code{TRUE}, the dialog is movable. Defaults to \code{FALSE}.}
 
-\item{move_bounded}{Logical; if \code{TRUE}, the dialog is not allowed to go off-screen. Defaults to \code{FALSE}.}
+\item{move_bounded}{Logical; if \code{TRUE} (the default), the dialog is not allowed to go off-screen.}
 
-\item{overflow}{Logical; if \code{TRUE} (the default), the content overflow is managed by the dialog}
+\item{overflow}{Logical; if \code{TRUE}, the content overflow is managed by the dialog. Defaults to \code{FALSE}.}
 
 \item{padding}{Logical; if \code{TRUE} (the default), the content padding is managed by the dialog.}
 
-\item{pinnable}{Logical; if \code{TRUE} (the default), the \code{Pin} button is displayed in the header of the dialog.}
+\item{pinnable}{Logical; if \code{TRUE}, the \code{Pin} button is displayed in the header of the dialog. Defaults to \code{FALSE}.}
 
 \item{resizeable}{Logical; if \code{TRUE}, the dialog is resizable. Defaults to \code{FALSE}.}
 

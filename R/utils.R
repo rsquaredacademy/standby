@@ -282,13 +282,13 @@ viz_bordered_line <- function(size = "large", bg_color = NULL) {
   )
 }
 
-spinner_css <- function(color) {
+spinner_css <- function(color, id) {
   col_rgb <- grDevices::col2rgb(color)
     rgb_color <- paste0("rgba(", paste0(col_rgb, collapse = ", "), ", ")
     paste0(
             "-webkit-animation: load5 1.1s infinite ease;
             animation: load5 1.1s infinite ease; 
-            @-webkit-keyframes load5 {
+            @-webkit-keyframes load5-", id, " {
               0%,
               100% {
                 box-shadow: 0em -2.6em 0em 0em ", color, ", 
@@ -371,7 +371,7 @@ spinner_css <- function(color) {
                   -1.8em -1.8em 0 0em ", color, ";
               }
             } ", 
-            "@keyframes load5 {
+            "@keyframes load5-", id, " {
               0%,
               100% {
                 box-shadow: 0em -2.6em 0em 0em ", color, ",
@@ -460,3 +460,56 @@ spinner_css <- function(color) {
 
 
 
+
+
+validate_color <- function(color, name = "color", allow_null = FALSE) {
+  if (is.null(color)) {
+    if (allow_null) return(invisible(NULL))
+    stop(sprintf("`%s` cannot be NULL.", name), call. = FALSE)
+  }
+  if (!is.character(color) || length(color) != 1 || is.na(color)) {
+    stop(sprintf("Invalid `%s`: must be a single string.", name), call. = FALSE)
+  }
+
+  trimmed <- trimws(color)
+
+  # Check named colors
+  if (tolower(trimmed) %in% tolower(grDevices::colors())) {
+    return(invisible(color))
+  }
+
+  # Check transparent or currentColor
+  if (tolower(trimmed) %in% c("transparent", "currentcolor")) {
+    return(invisible(color))
+  }
+
+  # Check hex: #RGB, #RGBA, #RRGGBB, #RRGGBBAA
+  if (grepl("^#([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$", trimmed)) {
+    return(invisible(color))
+  }
+
+  # Check rgb/rgba/hsl/hsla with numbers only
+  if (grepl("^(rgb|hsl)a?\\(\\s*((?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)%?\\s*,\\s*){2,3}(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)%?\\s*\\)$", trimmed, ignore.case = TRUE)) {
+    return(invisible(color))
+  }
+
+  stop(sprintf("Invalid `%s`: '%s'. Expected a valid color name, hex code, or rgb/rgba/hsl/hsla expression.", name, color), call. = FALSE)
+}
+
+.standby_id_env <- new.env(parent = emptyenv())
+
+generate_id <- function(prefix = "standby") {
+  cur <- .standby_id_env[[prefix]]
+  if (is.null(cur)) cur <- 0L
+  cur <- cur + 1L
+  .standby_id_env[[prefix]] <- cur
+  paste0(prefix, "-", cur)
+}
+
+reset_id <- function(prefix = NULL) {
+  if (is.null(prefix)) {
+    rm(list = ls(.standby_id_env), envir = .standby_id_env)
+  } else {
+    .standby_id_env[[prefix]] <- 0L
+  }
+}

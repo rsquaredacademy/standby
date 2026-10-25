@@ -118,7 +118,7 @@
       vizLoad(uiOutput = plotOutput("plot"), type = "bars", size = "large", color = "red",
       add_label = FALSE, label = "Loading...")
     Output
-      <div class="standby">
+      <div id="viz-1" class="standby">
         <div class="lv-bars lv-mid lg standby-wait">
           <div style="background-color:red;"></div>
           <div style="background-color:red;"></div>
@@ -138,7 +138,7 @@
       vizLoad(uiOutput = plotOutput("plot"), type = "circles", size = "large", color = "red",
       add_label = FALSE, label = "Loading...")
     Output
-      <div class="standby">
+      <div id="viz-2" class="standby">
         <div class="lv-circles lv-mid lg standby-wait">
           <div></div>
           <div></div>
@@ -162,7 +162,7 @@
       vizLoad(uiOutput = plotOutput("plot"), type = "bars", size = "large", color = "red",
       add_label = TRUE, label = "Loading...")
     Output
-      <div class="standby">
+      <div id="viz-3" class="standby">
         <div class="lv-bars lv-mid lg standby-wait" data-label="Loading...">
           <div style="background-color:red;"></div>
           <div style="background-color:red;"></div>

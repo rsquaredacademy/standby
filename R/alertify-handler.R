@@ -33,15 +33,15 @@
 #' }
 #' @param transition_off Logical; if \code{TRUE}, transition effect is disabled. Defaults to \code{FALSE}.
 #' @param closable Logical; if \code{TRUE} (the default), a \code{Close} button is displayed in the header of the dialog.
-#' @param auto_reset Logical; if \code{TRUE} (the default), the dialog will reset size/position on window resize.
+#' @param auto_reset Logical; if \code{TRUE}, the dialog will reset size/position on window resize. Defaults to \code{FALSE}.
 #' @param frameless Logical; if \code{TRUE}, hides both header and footer of the dialog. Defaults to \code{FALSE}.
-#' @param maximizable Logical; if \code{TRUE} (the default), the \code{Maximize} button is displayed in the header of the dialog.
-#' @param modal Logical; if \code{TRUE} (the default), a screen dimmer will be used and access to the page contents will be prevented.
-#' @param movable Logical; if \code{TRUE} (the default), the dialog is movable.
-#' @param move_bounded Logical; if \code{TRUE}, the dialog is not allowed to go off-screen. Defaults to \code{FALSE}.
-#' @param overflow Logical; if \code{TRUE} (the default), the content overflow is managed by the dialog
+#' @param maximizable Logical; if \code{TRUE}, the \code{Maximize} button is displayed in the header of the dialog. Defaults to \code{FALSE}.
+#' @param modal Logical; if \code{TRUE}, a screen dimmer will be used and access to the page contents will be prevented. Defaults to \code{FALSE}.
+#' @param movable Logical; if \code{TRUE}, the dialog is movable. Defaults to \code{FALSE}.
+#' @param move_bounded Logical; if \code{TRUE} (the default), the dialog is not allowed to go off-screen.
+#' @param overflow Logical; if \code{TRUE}, the content overflow is managed by the dialog. Defaults to \code{FALSE}.
 #' @param padding Logical; if \code{TRUE} (the default), the content padding is managed by the dialog.
-#' @param pinnable Logical; if \code{TRUE} (the default), the \code{Pin} button is displayed in the header of the dialog.
+#' @param pinnable Logical; if \code{TRUE}, the \code{Pin} button is displayed in the header of the dialog. Defaults to \code{FALSE}.
 #' @param resizeable Logical; if \code{TRUE}, the dialog is resizable. Defaults to \code{FALSE}.
 #' @param start_maximized Logical; if \code{TRUE}, the dialog will start in a maximized state. Defaults to \code{FALSE}.
 #' @param session Shiny session object.

@@ -86,13 +86,13 @@ with references:
 
 ### Alerts and Notifications
 
-To use alerts or notifications from **buzz** in your Shiny application,
+To use alerts or notifications from **standby** in your Shiny application,
 follow the below steps:
 
 - Include the dependencies in the **UI** part of the app using the
-  appropriate `use*` functions (`useToast()` in the below example).
+  appropriate `use*` functions (`useBootBox()` in the below example).
 - Include the corresponding rendering function in the **Server** part of
-  the app (`toast()` in the below example).
+  the app (`bootBox()` in the below example).
 
 ##### Example
 
@@ -105,7 +105,7 @@ ui <- fluidPage(
                label   = "Show Notification")
 )
 server <- function(input, output, session) {
-  observeEvent(input$pnotify, {
+  observeEvent(input$notify, {
     bootBox(class = "rubberBand") # display the alert
   })
 }

@@ -39,7 +39,10 @@
 #'
 spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 
-  ltype <- paste0(".load", type)
+  validate_color(color, "color")
+  id <- generate_id("spinner")
+
+  ltype <- paste0("#", id, " .load", type)
 
   if (type == 1) {
     spin_css <- paste0(ltype, " .loader, ", ltype, " .loader:before, ", ltype, " .loader:after { background: ", color, "; } ", ltype, " .loader { color: ", color, ";}")
@@ -58,7 +61,10 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
   }
 
   if (type == 5) {
-    spin_css <- spinner_css(color)
+    spin_css <- paste0(
+      spinner_css(color, id),
+      " #", id, " .load5 .loader { -webkit-animation: load5-", id, " 1.1s infinite ease; animation: load5-", id, " 1.1s infinite ease; }"
+    )
   }
 
   if (type == 8) {
@@ -80,6 +86,7 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
     ),
 
     tags$div(
+      id = id,
       class = "standby",
       tags$div(
         class = paste0(paste0("load", type), " standby-wait"),

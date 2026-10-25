@@ -54,6 +54,7 @@
 #'
 spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
 
+  validate_color(color, "color")
   base <- switch(type,
                 "plane"       = spinkit_plane(color, size),
                 "chase"       = spinkit_chase(size),

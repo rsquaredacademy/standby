@@ -14,7 +14,7 @@
     Code
       spinners(uiOutput = plotOutput("plot"), type = 1, color = "#0275d8")
     Output
-      <div class="standby">
+      <div id="spinner-1" class="standby">
         <div class="load1 standby-wait">
           <div class="loader"></div>
         </div>
@@ -26,7 +26,7 @@
     Code
       spinners(uiOutput = plotOutput("plot"), type = 2, color = "#0275d8")
     Output
-      <div class="standby">
+      <div id="spinner-2" class="standby">
         <div class="load2 standby-wait">
           <div class="loader"></div>
         </div>
@@ -38,7 +38,7 @@
     Code
       spinners(uiOutput = plotOutput("plot"), type = 3, color = "#0275d8")
     Output
-      <div class="standby">
+      <div id="spinner-3" class="standby">
         <div class="load3 standby-wait">
           <div class="loader"></div>
         </div>
@@ -50,7 +50,7 @@
     Code
       spinners(uiOutput = plotOutput("plot"), type = 4, color = "#0275d8")
     Output
-      <div class="standby">
+      <div id="spinner-4" class="standby">
         <div class="load4 standby-wait">
           <div class="loader"></div>
         </div>
@@ -62,7 +62,7 @@
     Code
       spinners(uiOutput = plotOutput("plot"), type = 5, color = "#0275d8")
     Output
-      <div class="standby">
+      <div id="spinner-5" class="standby">
         <div class="load5 standby-wait">
           <div class="loader"></div>
         </div>
@@ -74,7 +74,7 @@
     Code
       spinners(uiOutput = plotOutput("plot"), type = 8, color = "#0275d8")
     Output
-      <div class="standby">
+      <div id="spinner-6" class="standby">
         <div class="load8 standby-wait">
           <div class="loader"></div>
         </div>
