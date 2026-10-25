@@ -282,13 +282,13 @@ viz_bordered_line <- function(size = "large", bg_color = NULL) {
   )
 }
 
-spinner_css <- function(color) {
+spinner_css <- function(color, id) {
   col_rgb <- grDevices::col2rgb(color)
     rgb_color <- paste0("rgba(", paste0(col_rgb, collapse = ", "), ", ")
     paste0(
             "-webkit-animation: load5 1.1s infinite ease;
             animation: load5 1.1s infinite ease; 
-            @-webkit-keyframes load5 {
+            @-webkit-keyframes load5-", id, " {
               0%,
               100% {
                 box-shadow: 0em -2.6em 0em 0em ", color, ", 
@@ -371,7 +371,7 @@ spinner_css <- function(color) {
                   -1.8em -1.8em 0 0em ", color, ";
               }
             } ", 
-            "@keyframes load5 {
+            "@keyframes load5-", id, " {
               0%,
               100% {
                 box-shadow: 0em -2.6em 0em 0em ", color, ",
@@ -489,7 +489,7 @@ validate_color <- function(color, name = "color", allow_null = FALSE) {
   }
 
   # Check rgb/rgba/hsl/hsla with numbers only
-  if (grepl("^(rgb|hsl)a?\\(\\s*([0-9]+(\\.[0-9]+)?%?\\s*,\\s*){2,3}[0-9]+(\\.[0-9]+)?%?\\s*\\)$", trimmed, ignore.case = TRUE)) {
+  if (grepl("^(rgb|hsl)a?\\(\\s*((?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)%?\\s*,\\s*){2,3}(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)%?\\s*\\)$", trimmed, ignore.case = TRUE)) {
     return(invisible(color))
   }
 

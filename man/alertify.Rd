@@ -84,7 +84,7 @@ alertify_notify(
 
 \item{padding}{Logical; if \code{TRUE} (the default), the content padding is managed by the dialog.}
 
-\item{pinnable}{Logical; if \code{TRUE} (the default), the \code{Pin} button is displayed in the header of the dialog.}
+\item{pinnable}{Logical; if \code{TRUE}, the \code{Pin} button is displayed in the header of the dialog. Defaults to \code{FALSE}.}
 
 \item{resizeable}{Logical; if \code{TRUE}, the dialog is resizable. Defaults to \code{FALSE}.}
 

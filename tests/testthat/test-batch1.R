@@ -35,7 +35,9 @@ test_that("N1: valid colors render properly across formats", {
     "red", "blue", "aliceblue",
     "#fff", "#123456", "#12345678",
     "rgb(255, 0, 0)", "rgba(255, 0, 0, 0.5)",
+    "rgba(255, 0, 0, .5)", "rgba(0,0,0,.5)",
     "hsl(120, 100%, 50%)", "hsla(120, 100%, 50%, 0.8)",
+    "hsla(120,100%,50%,.8)",
     "transparent", "currentColor"
   )
 
@@ -88,6 +90,52 @@ test_that("N2: spinners generated CSS is scoped per instance", {
   expect_match(head2, paste0("#", id2, " \\.load1.*color: blue;"))
 
   # Check HTML container has matching id
+  expect_match(as.character(rt1$html), paste0('id="', id1, '"'))
+  expect_match(as.character(rt2$html), paste0('id="', id2, '"'))
+})
+
+test_that("N2: spinners type 5 keyframes are scoped per instance", {
+  s1 <- spinners(shiny::div("first"), type = 5, color = "red")
+  s2 <- spinners(shiny::div("second"), type = 5, color = "blue")
+
+  rt1 <- htmltools::renderTags(s1)
+  rt2 <- htmltools::renderTags(s2)
+
+  head1 <- as.character(rt1$head)
+  head2 <- as.character(rt2$head)
+
+  # Extract IDs from the scoped rule
+  id1 <- sub(".*#([a-zA-Z0-9_-]+) \\.load5.*", "\\1", head1)
+  id2 <- sub(".*#([a-zA-Z0-9_-]+) \\.load5.*", "\\1", head2)
+
+  expect_true(nchar(id1) > 0)
+  expect_true(nchar(id2) > 0)
+  expect_false(id1 == id2)
+
+  # Keyframe names are unique per instance
+  expect_match(head1, paste0("@-webkit-keyframes load5-", id1, " \\{"))
+  expect_match(head1, paste0("@keyframes load5-", id1, " \\{"))
+  expect_match(head2, paste0("@-webkit-keyframes load5-", id2, " \\{"))
+  expect_match(head2, paste0("@keyframes load5-", id2, " \\{"))
+
+  # Each instance binds its own keyframes under its scoped selector
+  expect_match(
+    head1,
+    paste0("#", id1, " \\.load5 \\.loader \\{ -webkit-animation: load5-", id1,
+           " 1\\.1s infinite ease; animation: load5-", id1, " 1\\.1s infinite ease; \\}")
+  )
+  expect_match(
+    head2,
+    paste0("#", id2, " \\.load5 \\.loader \\{ -webkit-animation: load5-", id2,
+           " 1\\.1s infinite ease; animation: load5-", id2, " 1\\.1s infinite ease; \\}")
+  )
+
+  # Each instance keeps its own colour
+  expect_match(head1, "box-shadow: 0em -2.6em 0em 0em red")
+  expect_match(head2, "box-shadow: 0em -2.6em 0em 0em blue")
+  expect_false(grepl("blue", head1, fixed = TRUE))
+  expect_false(grepl("red", head2, fixed = TRUE))
+
   expect_match(as.character(rt1$html), paste0('id="', id1, '"'))
   expect_match(as.character(rt2$html), paste0('id="', id2, '"'))
 })

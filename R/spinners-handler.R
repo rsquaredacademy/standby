@@ -61,7 +61,10 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
   }
 
   if (type == 5) {
-    spin_css <- spinner_css(color)
+    spin_css <- paste0(
+      spinner_css(color, id),
+      " #", id, " .load5 .loader { -webkit-animation: load5-", id, " 1.1s infinite ease; animation: load5-", id, " 1.1s infinite ease; }"
+    )
   }
 
   if (type == 8) {
