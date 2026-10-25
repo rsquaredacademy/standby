@@ -13,7 +13,7 @@
       threeDots(plotOutput("plot"))
     Output
       <div class="standby">
-        <div class="standby-wait dot-elastic" id="threedots"></div>
+        <div class="standby-wait dot-elastic" id="threedots-1"></div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
 

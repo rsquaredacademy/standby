@@ -29,9 +29,9 @@ notify(
 )
 }
 \arguments{
-\item{title}{Title of the notice. It can be a string, an element or \code{FALSE} (the default) for no title.}
+\item{title}{Title of the notice. Defaults to \code{"Hey"}. It can be a string, an element or \code{FALSE} for no title.}
 
-\item{text}{Text of the notice. It can be a string, an element or \code{FALSE} (the default) for no text.}
+\item{text}{Text of the notice. Defaults to \code{NULL}. It can be a string, an element or \code{FALSE} for no text.}
 
 \item{type}{Type of notice. Defaults to \code{"notice"}. Other valid values are:
 \itemize{

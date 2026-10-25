@@ -39,8 +39,12 @@
 #'
 threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
 
+  type <- match.arg(type, c("elastic", "pulse", "flashing", "collision", "revolution",
+                            "carousel", "typing", "windmill", "bricks", "floating",
+                            "fire", "spin", "falling", "stretching", "gathering",
+                            "hourglass", "overtaking", "shuttle", "bouncing", "rolling"))
   validate_color(color, "color")
-  id <- "threedots"
+  id <- generate_id("threedots")
   dots_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { color: ', color, '; background-color: ', color, ';}')
 
   shiny::tagList(

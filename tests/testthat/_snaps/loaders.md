@@ -13,7 +13,7 @@
       loaders(uiOutput = plotOutput("plot"), type = "default", style = "half", text = "Loading...")
     Output
       <div class="standby">
-        <div id="loader" class="loader loader-default is-active standby-wait" data-text="Loading..."></div>
+        <div id="loader-1" class="loader loader-default is-active standby-wait" data-text="Loading..."></div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
 
@@ -23,7 +23,7 @@
       loaders(uiOutput = plotOutput("plot"), type = "default", style = "blink")
     Output
       <div class="standby">
-        <div id="loader" class="loader loader-default is-active standby-wait" data-text data-blink></div>
+        <div id="loader-2" class="loader loader-default is-active standby-wait" data-text data-blink></div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
 
@@ -33,7 +33,7 @@
       loaders(uiOutput = plotOutput("plot"), type = "default", style = "inverse")
     Output
       <div class="standby">
-        <div id="loader" class="loader loader-default is-active standby-wait" data-inverse></div>
+        <div id="loader-3" class="loader loader-default is-active standby-wait" data-inverse></div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
 
@@ -43,7 +43,7 @@
       loaders(uiOutput = plotOutput("plot"), type = "curtain", text = "Loading...")
     Output
       <div class="standby">
-        <div id="loader" class="loader loader-curtain is-active standby-wait" data-curtain-text="Loading..."></div>
+        <div id="loader-4" class="loader loader-curtain is-active standby-wait" data-curtain-text="Loading..."></div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
 
@@ -53,7 +53,7 @@
       loaders(uiOutput = plotOutput("plot"), type = "smartphone", text = "Loading...")
     Output
       <div class="standby">
-        <div id="loader" class="loader loader-smartphone is-active standby-wait" data-screen="Loading..."></div>
+        <div id="loader-5" class="loader loader-smartphone is-active standby-wait" data-screen="Loading..."></div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
 

@@ -2,8 +2,8 @@
 #'
 #' Beautiful notifications and prompts.
 #'
-#' @param title Title of the notice. It can be a string, an element or \code{FALSE} (the default) for no title.
-#' @param text Text of the notice. It can be a string, an element or \code{FALSE} (the default) for no text.
+#' @param title Title of the notice. Defaults to \code{"Hey"}. It can be a string, an element or \code{FALSE} for no title.
+#' @param text Text of the notice. Defaults to \code{NULL}. It can be a string, an element or \code{FALSE} for no text.
 #' @param type Type of notice. Defaults to \code{"notice"}. Other valid values are:
 #' \itemize{
 #' \item \code{"info"}

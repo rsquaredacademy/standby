@@ -15,14 +15,10 @@
 #' \item bordered_line
 #' }
 #' @param color The color of the bar/spinner. Choose between hexadecimal, RGB or keyword values.
-#' @param size The size of the bar/spinner. Valid values are:
-#' \itemize{
-#' \item large
-#' \item medium
-#' \item small
-#' \item tiny
-#' \item fluid
-#' }
+#' @param size The size of the bar/spinner. For \code{"line"} and \code{"bordered_line"},
+#' valid values are \code{"large"}, \code{"medium"}, \code{"small"}, and \code{"fluid"}.
+#' For all other types, valid values are \code{"large"}, \code{"medium"}, \code{"small"},
+#' and \code{"tiny"}.
 #' @param add_label Logical; if \code{TRUE}, displays a label below the bar/spinner. Defaults to \code{FALSE}.
 #' @param label The label to be displayed below the bar/spinner. \code{add_label} must
 #' be set to \code{TRUE} to display the label.
@@ -61,6 +57,18 @@
 vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_label = FALSE, label = "Loading...") {
 
   type <- match.arg(type, c("bars", "squares", "circles", "dots", "spinner", "dashed", "line", "bordered_line"))
+
+  valid_sizes <- if (type %in% c("line", "bordered_line")) {
+    c("fluid", "large", "medium", "small")
+  } else {
+    c("large", "medium", "small", "tiny")
+  }
+
+  if (!is.character(size) || length(size) != 1 || !size %in% valid_sizes) {
+    stop(sprintf("Size '%s' is not supported for type '%s'. Supported sizes: %s.",
+                 size, type, paste(valid_sizes, collapse = ", ")),
+         call. = FALSE)
+  }
   if (!is.null(color)) {
     validate_color(color, "color")
   }
@@ -70,7 +78,7 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
                 "bars"          = viz_bars(size, color),
                 "squares"       = viz_squares(size, color),
                 "circles"       = viz_circles(size),
-                "dots"          = viz_dots(size),
+                "dots"          = viz_dots(size, color),
                 "spinner"       = viz_spinner(size, color),
                 "dashed"        = viz_dashed(size, color),
                 "line"          = viz_line(size, color),
