@@ -35,6 +35,7 @@ vizLoad(
 valid values are \code{"large"}, \code{"medium"}, \code{"small"}, and \code{"fluid"}.
 For all other types, valid values are \code{"large"}, \code{"medium"}, \code{"small"},
 and \code{"tiny"}.}
+
 \item{color}{The color of the bar/spinner. Choose between hexadecimal, RGB or keyword values.}
 
 \item{add_label}{Logical; if \code{TRUE}, displays a label below the bar/spinner. Defaults to \code{FALSE}.}
