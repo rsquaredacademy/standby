@@ -3,6 +3,8 @@
 ## Bug Fixes
 
 * Validate `color` in `threeDots()`, `spinkit()`, `spinners()`, and `vizLoad()` to prevent HTML/CSS injection.
+* Validate `type` in `spinners()` against supported types `1` to `8`, giving a clear error naming the allowed values.
+* Accept `rgb()`/`rgba()`/`hsl()`/`hsla()` colours for `spinners()` types `5` and `8`, including when generating shade colours.
 * Accept valid `rgb()`/`rgba()`/`hsl()`/`hsla()` colours with a leading-dot alpha value (for example `rgba(0,0,0,.5)`).
 * Validate `type` in `vizLoad()` against documented supported types.
 * Scope generated CSS to individual widget instances in `spinners()` and `vizLoad()` to prevent color bleeding across loaders of the same type.
