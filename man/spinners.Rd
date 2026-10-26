@@ -14,7 +14,8 @@ spinners(uiOutput, type = 1, color = "#0275d8")
 
 \item{type}{Type of spinner to use. Any integer between \code{1} and \code{8} is valid.}
 
-\item{color}{Color of the spinner. Choose between hexadecimal or keyword values.}
+\item{color}{Color of the spinner. Choose between hexadecimal, keyword, or
+\code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values.}
 }
 \value{
 None
