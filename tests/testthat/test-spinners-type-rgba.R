@@ -6,12 +6,29 @@ shade_colours <- function(css) {
   regmatches(css, gregexpr("rgba?\\([^)]*\\)", css))[[1]]
 }
 
+normalise_spinner_ids <- function(css) {
+  gsub("spinner-[0-9]+", "spinner-ID", css)
+}
+
 test_that("spinners() validates type against supported values", {
   allowed <- "must be one of 1, 2, 3, 4, 5, 6, 7, 8"
 
   expect_error(spinners("x", type = 9), allowed)
   expect_error(spinners("x", type = 0), allowed)
   expect_error(spinners("x", type = "load1"), allowed)
+  expect_error(spinners("x", type = "9"), allowed)
+  expect_error(spinners("x", type = "a"), allowed)
+  expect_error(spinners("x", type = ""), allowed)
+  expect_error(spinners("x", type = TRUE), allowed)
+})
+
+test_that("spinners() accepts type as a numeric string", {
+  for (type in c("4", " 8 ")) {
+    expect_equal(
+      normalise_spinner_ids(spinner_css_head(spinners("x", type = type))),
+      normalise_spinner_ids(spinner_css_head(spinners("x", type = as.integer(type))))
+    )
+  }
 })
 
 test_that("spinners() types 5 and 8 accept functional colour notation", {

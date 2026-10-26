@@ -12,7 +12,8 @@ spinners(uiOutput, type = 1, color = "#0275d8")
 \arguments{
 \item{uiOutput}{An output element to be wrapped within a spinner.}
 
-\item{type}{Type of spinner to use. Any integer between \code{1} and \code{8} is valid.}
+\item{type}{Type of spinner to use. Any number or string between \code{1}
+and \code{8} (or \code{"1"} and \code{"8"}) is valid.}
 
 \item{color}{Color of the spinner. Choose between hexadecimal, keyword, or
 \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values.}
