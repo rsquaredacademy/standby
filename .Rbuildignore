@@ -9,3 +9,7 @@
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+^roadmap$
+^AGENTS\.md$
+^daily_log\.md$
+^revdep$

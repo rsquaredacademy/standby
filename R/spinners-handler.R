@@ -3,8 +3,10 @@
 #' A collection of loading spinners animated with CSS
 #'
 #' @param uiOutput An output element to be wrapped within a spinner.
-#' @param type Type of spinner to use. Any integer between \code{1} and \code{8} is valid.
-#' @param color Color of the spinner. Choose between hexadecimal or keyword values.
+#' @param type Type of spinner to use. Any number or string between \code{1}
+#'   and \code{8} (or \code{"1"} and \code{"8"}) is valid.
+#' @param color Color of the spinner. Choose between hexadecimal, keyword, or
+#'   \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values.
 #'
 #' @section Functions:
 #' \itemize{
@@ -39,6 +41,17 @@
 #'
 spinners <- function(uiOutput, type = 1, color = "#0275d8") {
 
+  if (is.character(type)) {
+    if (length(type) != 1L || is.na(type) || !grepl("^[1-8]$", trimws(type))) {
+      stop("`type` must be one of 1, 2, 3, 4, 5, 6, 7, 8.", call. = FALSE)
+    }
+    type <- as.integer(trimws(type))
+  } else if (!is.numeric(type) || length(type) != 1L || is.na(type) ||
+             type != trunc(type) || type < 1 || type > 8) {
+    stop("`type` must be one of 1, 2, 3, 4, 5, 6, 7, 8.", call. = FALSE)
+  }
+  type <- as.integer(type)
+
   validate_color(color, "color")
   id <- generate_id("spinner")
 
@@ -68,8 +81,7 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
   }
 
   if (type == 8) {
-    col_rgb <- grDevices::col2rgb(color)
-    rgb_color <- paste0("rgba(", paste0(col_rgb, collapse = ","), ",", 0.2, ")")
+    rgb_color <- spinner_shade(color, 0.2, sep = ",")
     spin_css <- paste0(ltype, " .loader { border-left-color: ", color, "; border-top-color: ", rgb_color, "; border-right-color: ", rgb_color, "; border-bottom-color: ", rgb_color, ";}")
   }
 

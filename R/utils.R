@@ -284,92 +284,184 @@ viz_bordered_line <- function(size = "large", bg_color = NULL) {
   )
 }
 
-spinner_css <- function(color, id) {
-  col_rgb <- grDevices::col2rgb(color)
-    rgb_color <- paste0("rgba(", paste0(col_rgb, collapse = ", "), ", ")
+spinner_color_rgb <- function(color) {
+  trimmed <- trimws(color)
+  lower <- tolower(trimmed)
+
+  # These cannot be resolved to fixed RGB components.
+  if (lower %in% c("transparent", "currentcolor")) {
+    return(NULL)
+  }
+
+  if (grepl("^rgba?\\(", lower)) {
+    inner <- sub("^rgba?\\(", "", trimmed, ignore.case = TRUE)
+    inner <- sub("\\)$", "", inner)
+    parts <- trimws(strsplit(inner, ",")[[1]])
+    parts <- parts[seq_len(min(3L, length(parts)))]
+    vals <- vapply(parts, function(part) {
+      if (grepl("%$", part)) {
+        as.numeric(sub("%$", "", part)) * 255 / 100
+      } else {
+        as.numeric(part)
+      }
+    }, numeric(1))
+    return(as.integer(pmin(pmax(round(vals), 0), 255)))
+  }
+
+  if (grepl("^hsla?\\(", lower)) {
+    inner <- sub("^hsla?\\(", "", trimmed, ignore.case = TRUE)
+    inner <- sub("\\)$", "", inner)
+    parts <- trimws(strsplit(inner, ",")[[1]])
+    h <- as.numeric(sub("deg$", "", parts[1], ignore.case = TRUE)) %% 360
+    s <- as.numeric(sub("%$", "", parts[2])) / 100
+    l <- as.numeric(sub("%$", "", parts[3])) / 100
+    return(spinner_hsl_to_rgb(h, s, l))
+  }
+
+  # Hex colours with an alpha channel are not supported by col2rgb().
+  if (grepl("^#([0-9a-fA-F]{4}|[0-9a-fA-F]{8})$", trimmed)) {
+    hex <- sub("^#", "", trimmed)
+    if (nchar(hex) == 8) {
+      hex <- substr(hex, 1, 6)
+    } else {
+      rgb_part <- substr(hex, 1, 3)
+      hex <- paste0(
+        substr(rgb_part, 1, 1), substr(rgb_part, 1, 1),
+        substr(rgb_part, 2, 2), substr(rgb_part, 2, 2),
+        substr(rgb_part, 3, 3), substr(rgb_part, 3, 3)
+      )
+    }
+    return(strtoi(substring(hex, c(1, 3, 5), c(2, 4, 6)), 16L))
+  }
+
+  as.integer(grDevices::col2rgb(trimmed))
+}
+
+spinner_hsl_to_rgb <- function(h, s, l) {
+  s <- min(max(s, 0), 1)
+  l <- min(max(l, 0), 1)
+  chroma <- (1 - abs(2 * l - 1)) * s
+  x <- chroma * (1 - abs((h / 60) %% 2 - 1))
+  m <- l - chroma / 2
+  r <- g <- b <- 0
+
+  if (h < 60) {
+    r <- chroma; g <- x
+  } else if (h < 120) {
+    r <- x; g <- chroma
+  } else if (h < 180) {
+    g <- chroma; b <- x
+  } else if (h < 240) {
+    g <- x; b <- chroma
+  } else if (h < 300) {
+    r <- x; b <- chroma
+  } else {
+    r <- chroma; b <- x
+  }
+
+  as.integer(pmin(pmax(round((c(r, g, b) + m) * 255), 0), 255))
+}
+
+spinner_shade <- function(color, alpha, sep = ", ") {
+  rgb <- spinner_color_rgb(color)
+
+  if (is.null(rgb)) {
     paste0(
+      "color-mix(in srgb, ", color, " ",
+      sprintf("%g", alpha * 100), "%, transparent)"
+    )
+  } else {
+    paste0("rgba(", paste0(rgb, collapse = sep), sep, alpha, ")")
+  }
+}
+
+spinner_css <- function(color, id) {
+  s02 <- spinner_shade(color, 0.2)
+  s05 <- spinner_shade(color, 0.5)
+  s07 <- spinner_shade(color, 0.7)
+  paste0(
             "-webkit-animation: load5 1.1s infinite ease;
             animation: load5 1.1s infinite ease; 
             @-webkit-keyframes load5-", id, " {
               0%,
               100% {
                 box-shadow: 0em -2.6em 0em 0em ", color, ", 
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.5),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.7);
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s05, ",
+                  -1.8em -1.8em 0 0em ", s07, ";
               }
               12.5% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s07, ",
                   1.8em -1.8em 0 0em ", color, ", 
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.5);
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s05, ";
               }
               25% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.5),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s05, ",
+                  1.8em -1.8em 0 0em ", s07, ",
                   2.5em 0em 0 0em ", color, ", 
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               37.5% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.5),
-                  2.5em 0em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s05, ",
+                  2.5em 0em 0 0em ", s07, ",
                   1.75em 1.75em 0 0em ", color, ", 
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               50% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.5),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s05, ",
+                  1.75em 1.75em 0 0em ", s07, ",
                   0em 2.5em 0 0em ", color, ",  
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               62.5% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.5),
-                  0em 2.5em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s05, ",
+                  0em 2.5em 0 0em ", s07, ",
                   -1.8em 1.8em 0 0em ", color, ", 
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               75% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.5),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s05, ",
+                  -1.8em 1.8em 0 0em ", s07, ",
                   -2.6em 0em 0 0em ", color, ", 
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               87.5% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.5),
-                  -2.6em 0em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s05, ",
+                  -2.6em 0em 0 0em ", s07, ",
                   -1.8em -1.8em 0 0em ", color, ";
               }
             } ", 
@@ -377,82 +469,82 @@ spinner_css <- function(color, id) {
               0%,
               100% {
                 box-shadow: 0em -2.6em 0em 0em ", color, ",
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.5),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.7);
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s05, ",
+                  -1.8em -1.8em 0 0em ", s07, ";
               }
               12.5% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s07, ",
                   1.8em -1.8em 0 0em ", color, ", 
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.5);
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s05, ";
               }
               25% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.5),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s05, ",
+                  1.8em -1.8em 0 0em ", s07, ",
                   2.5em 0em 0 0em ", color, ", 
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               37.5% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.5),
-                  2.5em 0em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s05, ",
+                  2.5em 0em 0 0em ", s07, ",
                   1.75em 1.75em 0 0em ", color, ", 
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               50% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.5),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s05, ",
+                  1.75em 1.75em 0 0em ", s07, ",
                   0em 2.5em 0 0em ", color, ", 
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.2),
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  -1.8em 1.8em 0 0em ", s02, ",
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               62.5% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.5),
-                  0em 2.5em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s05, ",
+                  0em 2.5em 0 0em ", s07, ",
                   -1.8em 1.8em 0 0em ", color, ", 
-                  -2.6em 0em 0 0em ", rgb_color, "0.2),
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  -2.6em 0em 0 0em ", s02, ",
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               75% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.5),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s05, ",
+                  -1.8em 1.8em 0 0em ", s07, ",
                   -2.6em 0em 0 0em ", color, ", 
-                  -1.8em -1.8em 0 0em ", rgb_color, "0.2);
+                  -1.8em -1.8em 0 0em ", s02, ";
               }
               87.5% {
-                box-shadow: 0em -2.6em 0em 0em ", rgb_color, "0.2),
-                  1.8em -1.8em 0 0em ", rgb_color, "0.2),
-                  2.5em 0em 0 0em ", rgb_color, "0.2),
-                  1.75em 1.75em 0 0em ", rgb_color, "0.2),
-                  0em 2.5em 0 0em ", rgb_color, "0.2),
-                  -1.8em 1.8em 0 0em ", rgb_color, "0.5),
-                  -2.6em 0em 0 0em ", rgb_color, "0.7),
+                box-shadow: 0em -2.6em 0em 0em ", s02, ",
+                  1.8em -1.8em 0 0em ", s02, ",
+                  2.5em 0em 0 0em ", s02, ",
+                  1.75em 1.75em 0 0em ", s02, ",
+                  0em 2.5em 0 0em ", s02, ",
+                  -1.8em 1.8em 0 0em ", s05, ",
+                  -2.6em 0em 0 0em ", s07, ",
                   -1.8em -1.8em 0 0em ", color, ";
               }
             }")
