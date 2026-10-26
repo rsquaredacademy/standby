@@ -1,4 +1,4 @@
-# standby (development version)
+# standby 0.2.1
 
 ## Bug Fixes
 
