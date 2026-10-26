@@ -10,7 +10,7 @@ match the functions.
 
 * local Windows 11, R 4.6.1
 * TODO: win-builder (devel, release)
-* TODO: R-hub
+* TODO: R-hub (run after this PR merges)
 
 ## R CMD check results
 
@@ -18,4 +18,5 @@ match the functions.
 
 ## Reverse dependencies
 
-TODO: revdepcheck
+We checked 1 reverse dependency (xplorerr) with `R CMD check` against this
+version: 0 new problems.
