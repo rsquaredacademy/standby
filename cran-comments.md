@@ -10,7 +10,8 @@ match the functions.
 
 * local Windows 11, R 4.6.1
 * TODO: win-builder (devel, release)
-* TODO: R-hub (run after this PR merges)
+* R-hub: Ubuntu Linux (R-devel), Windows (R-devel), macOS x86_64 (R-devel),
+  macOS arm64 (R-devel)
 
 ## R CMD check results
 
