@@ -64,12 +64,17 @@
 #'
 loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
 
+  type <- match.arg(type, c("default", "bar", "bar-ping-pong", "border", "double",
+                            "clock", "curtain", "pokeball", "ball", "smartphone",
+                            "bouncing", "music"))
+  id <- generate_id("loader")
+
   if (!is.null(text)) {
     style <- NULL
   }
 
   data_tag <- tags$div(
-      id = "loader",
+      id = id,
       class = paste0("loader loader-", type, " is-active standby-wait")
     )
 

@@ -73,7 +73,7 @@ bootBox <- function(title = "Your title", message = "Your message here...", size
     backdrop    = backdrop,
     closeButton = close_button,
     animate     = animate,
-    className   = paste0("animate__animated animate__", class)
+    className   = if (!is.null(class)) paste0("animate__animated animate__", class) else NULL
   )
 
   session$sendCustomMessage(

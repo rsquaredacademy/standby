@@ -31,14 +31,10 @@ vizLoad(
 \item bordered_line
 }}
 
-\item{size}{The size of the bar/spinner. Valid values are:
-\itemize{
-\item large
-\item medium
-\item small
-\item tiny
-\item fluid
-}}
+\item{size}{The size of the bar/spinner. For \code{"line"} and \code{"bordered_line"},
+valid values are \code{"large"}, \code{"medium"}, \code{"small"}, and \code{"fluid"}.
+For all other types, valid values are \code{"large"}, \code{"medium"}, \code{"small"},
+and \code{"tiny"}.}
 
 \item{color}{The color of the bar/spinner. Choose between hexadecimal, RGB or keyword values.}
 

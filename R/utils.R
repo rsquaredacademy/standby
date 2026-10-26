@@ -158,8 +158,8 @@ viz_bars <- function(size = "large", bg_color = NULL) {
   scale <- switch(size,
                   "large"  = "lv-mid lg",
                   "medium" = "lv-mid md",
-                  "small"  = "sm lvl-5",
-                  "tiny"   = "tiny lvl-5")
+                  "small"  = "sm lv-mid",
+                  "tiny"   = "tiny lv-mid")
 
   tags$div(
     class = paste0("lv-bars ", scale, " standby-wait"),
@@ -174,8 +174,8 @@ viz_squares <- function(size = "large", bg_color = NULL) {
   scale <- switch(size,
                   "large"  = "lv-mid lg",
                   "medium" = "lv-mid md",
-                  "small"  = "sm lvl-5",
-                  "tiny"   = "tiny lvl-5")
+                  "small"  = "sm lv-mid",
+                  "tiny"   = "tiny lv-mid")
 
   tags$div(
     class = paste0("lv-squares ", scale, " standby-wait"),
@@ -190,8 +190,8 @@ viz_circles <- function(size = "large") {
   scale <- switch(size,
                   "large"  = "lv-mid lg",
                   "medium" = "lv-mid md",
-                  "small"  = "sm lvl-5",
-                  "tiny"   = "tiny lvl-5")
+                  "small"  = "sm lv-mid",
+                  "tiny"   = "tiny lv-mid")
 
   tags$div(
     class = paste0("lv-circles ", scale, " standby-wait"),
@@ -199,17 +199,19 @@ viz_circles <- function(size = "large") {
   )
 }
 
-viz_dots <- function(size = "large") {
+viz_dots <- function(size = "large", bg_color = NULL) {
 
   scale <- switch(size,
                   "large"  = "lv-mid lg",
                   "medium" = "lv-mid md",
-                  "small"  = "sm lvl-5",
-                  "tiny"   = "tiny lvl-5")
+                  "small"  = "sm lv-mid",
+                  "tiny"   = "tiny lv-mid")
 
   tags$div(
     class = paste0("lv-dots ", scale, " standby-wait"),
-    lapply(1:4, function(i) div())
+    lapply(1:4, function(i) div(
+      style = c(if (!is.null(bg_color)) paste0('background-color:', bg_color, ';'))
+    ))
   )
 }
 
@@ -218,8 +220,8 @@ viz_spinner <- function(size = "large", bg_color = NULL) {
   scale <- switch(size,
                   "large"  = "lv-mid lg",
                   "medium" = "lv-mid md",
-                  "small"  = "sm lvl-5",
-                  "tiny"   = "tiny lvl-5")
+                  "small"  = "sm lv-mid",
+                  "tiny"   = "tiny lv-mid")
 
   tags$div(
     class = paste0("lv-spinner ", scale, " standby-wait"),
@@ -234,8 +236,8 @@ viz_dashed <- function(size = "large", bg_color = NULL) {
   scale <- switch(size,
                   "large"  = "lv-mid lg",
                   "medium" = "lv-mid md",
-                  "small"  = "sm lvl-5",
-                  "tiny"   = "tiny lvl-5")
+                  "small"  = "sm lv-mid",
+                  "tiny"   = "tiny lv-mid")
 
   tags$div(
     class = paste0("lv-dashed ", scale, " standby-wait"),

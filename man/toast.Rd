@@ -61,7 +61,7 @@ toast(
 
 \item{theme}{Theme of toast. Choose between \code{"light"} or \code{"dark"}.}
 
-\item{position}{Where toast will be shown. Defaults to \code{"bottomRight"}. Valid values are:
+\item{position}{Where toast will be shown. Defaults to \code{"center"}. Valid values are:
 \itemize{
 \item \code{"bottomRight"}
 \item \code{"bottomLeft"}

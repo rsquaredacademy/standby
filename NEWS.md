@@ -9,6 +9,15 @@
 * Correct documentation for `alertify_alert()` defaults (`auto_reset`, `maximizable`, `modal`, `movable`, `move_bounded`, and `overflow`) to match function behavior.
 * Fix broken alerts and notifications example in `README`.
 * Remove stray `console.log()` statement in MicroTip JavaScript handler.
+* Generate unique IDs per call in `threeDots()` and `loaders()`, and scope `threeDots()` CSS to its own ID to avoid collisions across multiple instances and within Shiny modules.
+* Validate animation `type` in `threeDots()` and `loaders()` using `match.arg()`.
+* Validate `size` per type in `vizLoad()` against supported combinations and document supported sizes.
+* Replace the `lvl-5` offset class with `lv-mid` centering for `small` and `tiny` sizes in `vizLoad()`.
+* Apply `color` to `vizLoad(type = "dots")` loaders.
+* Fix AlertifyJS JavaScript bridge property names for `maximizable` and `resizable`, and wire the `label` setting.
+* Include `type` in the custom message payload sent by `toast()`.
+* Avoid adding animation classes in `bootBox()` when `class = NULL`.
+* Correct documented defaults for `toast()` `position` and `notify()` `title` and `text` to match function arguments.
 
 # standby 0.2.0
 

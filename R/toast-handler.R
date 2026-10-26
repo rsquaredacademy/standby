@@ -12,7 +12,7 @@
 #' \item \code{"error"}
 #' }
 #' @param theme Theme of toast. Choose between \code{"light"} or \code{"dark"}.
-#' @param position Where toast will be shown. Defaults to \code{"bottomRight"}. Valid values are:
+#' @param position Where toast will be shown. Defaults to \code{"center"}. Valid values are:
 #' \itemize{
 #' \item \code{"bottomRight"}
 #' \item \code{"bottomLeft"}
@@ -126,6 +126,7 @@ toast <- function(title = "Hey", message = NULL, type = NULL, theme = NULL, posi
                  session = getDefaultReactiveDomain()) {
 
   notice = list(
+    type              = type,
     theme             = theme,
     title             = title,
     titleColor        = title_color,
