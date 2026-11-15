@@ -22,8 +22,8 @@ test_that("C1: two threeDots() calls have different ids and scoped CSS", {
   head1 <- as.character(t1$head)
   head2 <- as.character(t2$head)
 
-  expect_match(head1, paste0("#", id1, ".*color: red"))
-  expect_match(head2, paste0("#", id2, ".*color: blue"))
+  expect_match(head1, paste0("#", id1, ".*color: #FF0000"))
+  expect_match(head2, paste0("#", id2, ".*color: #0000FF"))
   expect_false(grepl(paste0("#", id2), head1))
   expect_false(grepl(paste0("#", id1), head2))
 })
@@ -94,13 +94,23 @@ test_that("N7: vizLoad() small/tiny replaces lvl-5 offset with lv-mid", {
   expect_match(res_bline_sm, "sm lv-mid")
 })
 
-test_that("N4: vizLoad(type = 'dots', color = ...) applies color inline", {
+test_that("N4 + H02: vizLoad(type = 'dots', color = ...) uses animation variables", {
   res <- as.character(htmltools::renderTags(vizLoad(shiny::div("test"), type = "dots", color = "red"))$html)
-  expect_match(res, 'style="background-color:red;"')
-
-  # Check that each dot has the color
-  matches <- gregexpr('style="background-color:red;"', res)[[1]]
+  # The pulsating keyframes override background-color, so the colour must be
+  # carried in custom properties that the keyframes read.
+  expect_match(res, "--lv-dots-color:#FF0000", fixed = TRUE)
+  expect_match(res, "--lv-dots-color-dark:rgba(", fixed = TRUE)
+  matches <- gregexpr("--lv-dots-color:#FF0000", res, fixed = TRUE)[[1]]
   expect_equal(length(matches), 4)
+
+  css <- paste(readLines(system.file("vizload/css/ridics.css", package = "standby"),
+                         warn = FALSE), collapse = "\n")
+  start <- regexpr("@keyframes lv-dots_pulsate_animation", css, fixed = TRUE)
+  expect_gt(start, 0)
+  keyframes <- substr(css, start, start + 600)
+  expect_match(keyframes, "background-color: var\\(--lv-dots-color", perl = TRUE)
+  expect_match(keyframes, "background-color: var\\(--lv-dots-color-dark", perl = TRUE)
+  expect_no_match(keyframes, "background-color: #1ddab5")
 
   # Check validation works for dots
   expect_error(

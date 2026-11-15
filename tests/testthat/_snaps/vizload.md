@@ -120,14 +120,14 @@
     Output
       <div id="viz-1" class="standby">
         <div class="lv-bars lv-mid lg standby-wait">
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
         </div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
@@ -164,14 +164,14 @@
     Output
       <div id="viz-3" class="standby">
         <div class="lv-bars lv-mid lg standby-wait" data-label="Loading...">
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
-          <div style="background-color:red;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
+          <div style="background-color:#FF0000;"></div>
         </div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>

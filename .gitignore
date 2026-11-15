@@ -4,3 +4,4 @@
 .Ruserdata
 inst/doc
 .fx1-tmp/
+tests/testthat/testthat-problems.rds
