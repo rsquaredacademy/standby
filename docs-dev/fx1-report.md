@@ -149,6 +149,8 @@ test: regression tests for the pre-CRAN audit findings
 docs: NEWS for 0.2.2 and refreshed CRAN comments
 fix: keep transparent colours transparent when normalising names
 docs: regenerate pkgdown site for 0.2.2
+docs: fx1 audit-fix report
+refactor: remove redundant branch in colour number parsing
 ```
 
 ## Follow-ups (not done in this task, by design)
