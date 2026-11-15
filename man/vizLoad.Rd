@@ -36,7 +36,10 @@ valid values are \code{"large"}, \code{"medium"}, \code{"small"}, and \code{"flu
 For all other types, valid values are \code{"large"}, \code{"medium"}, \code{"small"},
 and \code{"tiny"}.}
 
-\item{color}{The color of the bar/spinner. Choose between hexadecimal, RGB or keyword values.}
+\item{color}{The color of the bar/spinner. Choose between a color name,
+hexadecimal, or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values.
+Names use R's \code{colors()} values; CSS colour names not in R are also
+accepted.}
 
 \item{add_label}{Logical; if \code{TRUE}, displays a label below the bar/spinner. Defaults to \code{FALSE}.}
 
@@ -44,7 +47,8 @@ and \code{"tiny"}.}
 be set to \code{TRUE} to display the label.}
 }
 \value{
-None
+\code{useVizLoad()} returns an HTML dependency to include in the UI;
+  \code{vizLoad()} returns a Shiny tag list wrapping \code{uiOutput}.
 }
 \description{
 Loading bars and spinners.

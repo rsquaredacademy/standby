@@ -15,10 +15,13 @@ threeDots(uiOutput, type = "elastic", color = "#9880ff")
 
 \item{type}{The type of animation to use. Visit \url{https://nzbin.github.io/three-dots/} for details.}
 
-\item{color}{The color of the loader. Choose between hexadecimal, RGB or keyword values.}
+\item{color}{The color of the loader. Choose between a color name, hexadecimal,
+or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values. Names use R's
+\code{colors()} values; CSS colour names not in R are also accepted.}
 }
 \value{
-None
+\code{useThreeDots()} returns an HTML dependency to include in the UI;
+  \code{threeDots()} returns a Shiny tag list wrapping \code{uiOutput}.
 }
 \description{
 Single element CSS loading animation.

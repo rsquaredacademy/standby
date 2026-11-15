@@ -12,11 +12,14 @@
 #' \item toast
 #' }
 #'
-#' @return None
+#' @return In an interactive session, a Shiny app object; otherwise
+#'   \code{NULL} invisibly.
 #' @name preview
 #' @export
 #'
 previewAlerts <- function(type = "toast") {
+
+  type <- match.arg(type, c("alertify", "bootbox", "notice", "notify", "tingle", "toast"))
 
   dep <- switch(type,
                 "alertify" = useAlertify(),
@@ -35,17 +38,17 @@ previewAlerts <- function(type = "toast") {
     server <- function(input, output, session) {
 
       if (type == "alertify") {
-        alertify_alert("Hey there!", "Thank you for exploring buzz!")
+        alertify_alert("Hey there!", "Thank you for exploring standby!")
       } else if (type == "bootbox") {
-        bootBox("Hey there!", "Thank you for exploring buzz!")
+        bootBox("Hey there!", "Thank you for exploring standby!")
       } else if (type == "notice") {
-        notice("Thank you for exploring buzz!")
+        notice("Thank you for exploring standby!")
       } else if (type == "notify") {
-        notify("Hey there!", "Thank you for exploring buzz!")
+        notify("Hey there!", "Thank you for exploring standby!")
       } else if (type == "tingle") {
-        tingle("Thank you for exploring buzz!")
+        tingle("Thank you for exploring standby!")
       } else if (type == "toast") {
-        toast("Hey there!", "Thank you for exploring buzz.")
+        toast("Hey there!", "Thank you for exploring standby.")
       }
 
     }
@@ -67,11 +70,14 @@ previewAlerts <- function(type = "toast") {
 #' \item loaders
 #' }
 #'
-#' @return None
+#' @return In an interactive session, browsable HTML; otherwise
+#'   \code{NULL} invisibly.
 #' @name preview
 #'
 #' @export
 previewSpinners <- function(spinner = "threedots") {
+
+  spinner <- match.arg(spinner, c("threedots", "spinkit", "vizload", "spinners", "loaders"))
 
   dep <- switch(spinner,
                 threedots = useThreeDots(),
@@ -83,7 +89,7 @@ previewSpinners <- function(spinner = "threedots") {
   type <- switch(spinner,
                  threedots = glanceThreeDots(),
                  spinkit   = glanceSpinkit(),
-                 vizLoad   = glanceVizLoad(),
+                 vizload   = vizLoad(tags$div(), type = "bars"),
                  spinners  = glanceSpinners(),
                  loaders   = glanceLoaders())
 

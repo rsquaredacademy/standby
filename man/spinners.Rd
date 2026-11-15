@@ -15,11 +15,14 @@ spinners(uiOutput, type = 1, color = "#0275d8")
 \item{type}{Type of spinner to use. Any number or string between \code{1}
 and \code{8} (or \code{"1"} and \code{"8"}) is valid.}
 
-\item{color}{Color of the spinner. Choose between hexadecimal, keyword, or
-\code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values.}
+\item{color}{Color of the spinner. Choose between a color name, hexadecimal,
+or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values. Names use R's
+\code{colors()} values (so \code{"green"} is \code{#00FF00}); CSS colour
+names not in R (such as \code{"rebeccapurple"}) are also accepted.}
 }
 \value{
-None
+\code{useSpinners()} returns an HTML dependency to include in the UI;
+  \code{spinners()} returns a Shiny tag list wrapping \code{uiOutput}.
 }
 \description{
 A collection of loading spinners animated with CSS
