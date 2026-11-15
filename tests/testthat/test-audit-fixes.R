@@ -150,6 +150,12 @@ test_that("H07: spinner shades preserve the requested alpha", {
 
   css <- fx_head(spinners(shiny::div(), type = 8, color = "hsla(0,100%,50%,0.5)"))
   expect_match(css, "rgba(255,0,0,0.1)", fixed = TRUE)
+
+  # "transparent" must remain transparent after name normalisation.
+  expect_identical(normalize_color("transparent"), "rgba(0, 0, 0, 0)")
+  css <- fx_head(spinners(shiny::div(), type = 1, color = "transparent"))
+  expect_no_match(css, "#000000")
+  expect_match(css, "rgba(0, 0, 0, 0)", fixed = TRUE)
 })
 
 # H08 -------------------------------------------------------------------------

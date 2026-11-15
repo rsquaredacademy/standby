@@ -26,11 +26,10 @@ Chrome is unavailable, so they do not affect the CRAN check.
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
-
-The only incoming-feasibility NOTE is the expected maintainer change (the
-maintainer address was updated from `hebbali.aravind@gmail.com` to
-`aravindhebbali@rsquaredacademy.com`).
+0 errors | 0 warnings | 0 notes apart from the CRAN incoming-feasibility
+maintainer-change NOTE, which is expected because the maintainer address was
+updated from `hebbali.aravind@gmail.com` to
+`aravindhebbali@rsquaredacademy.com`.
 
 ## Reverse dependencies
 

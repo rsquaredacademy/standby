@@ -481,6 +481,15 @@ normalize_color <- function(color) {
   if (is.null(color)) return(NULL)
   parsed <- parse_css_color(color)
   if (is.null(parsed) || !isTRUE(parsed$named)) return(trimws(color))
+  if (parsed$a < 1) {
+    # "transparent" must not become opaque when its channels are normalised.
+    return(paste0(
+      "rgba(",
+      paste0(c(round_channel(parsed$r), round_channel(parsed$g),
+               round_channel(parsed$b)), collapse = ", "),
+      ", ", format_css_alpha(parsed$a), ")"
+    ))
+  }
   color_to_hex(parsed)
 }
 
