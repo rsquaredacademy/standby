@@ -14,7 +14,10 @@
 #' \item line
 #' \item bordered_line
 #' }
-#' @param color The color of the bar/spinner. Choose between hexadecimal, RGB or keyword values.
+#' @param color The color of the bar/spinner. Choose between a color name,
+#'   hexadecimal, or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values.
+#'   Names use R's \code{colors()} values; CSS colour names not in R are also
+#'   accepted.
 #' @param size The size of the bar/spinner. For \code{"line"} and \code{"bordered_line"},
 #' valid values are \code{"large"}, \code{"medium"}, \code{"small"}, and \code{"fluid"}.
 #' For all other types, valid values are \code{"large"}, \code{"medium"}, \code{"small"},
@@ -50,7 +53,8 @@
 #' }
 #'
 #' @name vizLoad
-#' @return None
+#' @return \code{useVizLoad()} returns an HTML dependency to include in the UI;
+#'   \code{vizLoad()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export
 #'
@@ -71,6 +75,7 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
   }
   if (!is.null(color)) {
     validate_color(color, "color")
+    color <- normalize_color(color)
   }
   id <- generate_id("viz")
 

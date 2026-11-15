@@ -5,8 +5,10 @@
 #' @param uiOutput An output element to be wrapped within a spinner.
 #' @param type Type of spinner to use. Any number or string between \code{1}
 #'   and \code{8} (or \code{"1"} and \code{"8"}) is valid.
-#' @param color Color of the spinner. Choose between hexadecimal, keyword, or
-#'   \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values.
+#' @param color Color of the spinner. Choose between a color name, hexadecimal,
+#'   or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values. Names use R's
+#'   \code{colors()} values (so \code{"green"} is \code{#00FF00}); CSS colour
+#'   names not in R (such as \code{"rebeccapurple"}) are also accepted.
 #'
 #' @section Functions:
 #' \itemize{
@@ -35,7 +37,8 @@
 #' }
 #'
 #' @name spinners
-#' @return None
+#' @return \code{useSpinners()} returns an HTML dependency to include in the UI;
+#'   \code{spinners()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export
 #'
@@ -53,6 +56,9 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
   type <- as.integer(type)
 
   validate_color(color, "color")
+  # Resolve R colour names (for example "green", "gray50") to one hex value so
+  # the main colour and the generated shades share the same hue.
+  color <- normalize_color(color)
   id <- generate_id("spinner")
 
   ltype <- paste0("#", id, " .load", type)

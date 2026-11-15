@@ -58,7 +58,8 @@
 #' }
 #'
 #' @name loaders
-#' @return None
+#' @return \code{useLoaders()} returns an HTML dependency to include in the UI;
+#'   \code{loaders()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export
 #'
@@ -75,7 +76,7 @@ loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
 
   data_tag <- tags$div(
       id = id,
-      class = paste0("loader loader-", type, " is-active standby-wait")
+      class = paste0("loader sby-loader loader-", type, " is-active standby-wait")
     )
 
   if (!is.null(style)) {

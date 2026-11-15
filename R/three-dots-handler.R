@@ -4,7 +4,9 @@
 #'
 #' @param uiOutput An output element to be wrapped within a loader.
 #' @param type The type of animation to use. Visit \url{https://nzbin.github.io/three-dots/} for details.
-#' @param color The color of the loader. Choose between hexadecimal, RGB or keyword values.
+#' @param color The color of the loader. Choose between a color name, hexadecimal,
+#'   or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values. Names use R's
+#'   \code{colors()} values; CSS colour names not in R are also accepted.
 #'
 #' @section Functions:
 #' \itemize{
@@ -33,7 +35,8 @@
 #' }
 #'
 #' @name threeDots
-#' @return None
+#' @return \code{useThreeDots()} returns an HTML dependency to include in the UI;
+#'   \code{threeDots()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export
 #'
@@ -44,8 +47,12 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
                             "fire", "spin", "falling", "stretching", "gathering",
                             "hourglass", "overtaking", "shuttle", "bouncing", "rolling"))
   validate_color(color, "color")
+  color <- normalize_color(color)
   id <- generate_id("threedots")
-  dots_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { color: ', color, '; background-color: ', color, ';}')
+  # The bundled stylesheet draws some dots from box-shadow declarations that
+  # read --primary-color, so the variable must be set on each widget too.
+  dots_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { --primary-color: ',
+                     color, '; color: ', color, '; background-color: ', color, ';}')
 
   shiny::tagList(
     tags$head(

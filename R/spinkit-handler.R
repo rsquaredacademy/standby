@@ -18,7 +18,10 @@
 #' \item fold
 #' \item wander
 #' }
-#' @param color Color of the spinner. Defaults to \code{"#333"}. Choose between hexadecimal, RGB or keyword values.
+#' @param color Color of the spinner. Defaults to \code{"#333"}. Choose between a
+#'   color name, hexadecimal, or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()}
+#'   values. Names use R's \code{colors()} values; CSS colour names not in R are
+#'   also accepted.
 #' @param size Size of the spinner. Defaults to \code{"40px"}.
 #'
 #' @section Functions:
@@ -48,13 +51,16 @@
 #' }
 #'
 #' @name spinkit
-#' @return None
+#' @return \code{useSpinkit()} returns an HTML dependency to include in the UI;
+#'   \code{spinkit()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export
 #'
 spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
 
   validate_color(color, "color")
+  color <- normalize_color(color)
+  id <- generate_id("spinkit")
   base <- switch(type,
                 "plane"       = spinkit_plane(color, size),
                 "chase"       = spinkit_chase(size),
@@ -69,12 +75,20 @@ spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
                 "fold"        = spinkit_fold(size),
                 "wander"      = spinkit_wander(color, size))
 
-  spin_css <- switch(type,
-                     "chase" = paste0(".sk-chase-dot:before {background-color: ", color, ";}"),
-                     "circle" = paste0(".sk-circle-dot:before {background-color: ", color, ";}"),
-                     "circle-fade" = paste0(".sk-circle-fade-dot:before {background-color: ", color, ";}"),
-                     "fold" = paste0(".sk-fold-cube:before {background-color: ", color, ";}"),
-                     NULL)
+  # Some types colour a pseudo-element in the stylesheet, so the rule has to be
+  # scoped to this widget or the last widget wins for every instance.
+  pseudo_element <- switch(type,
+                           "chase"       = ".sk-chase-dot:before",
+                           "circle"      = ".sk-circle-dot:before",
+                           "circle-fade" = ".sk-circle-fade-dot:before",
+                           "fold"        = ".sk-fold-cube:before",
+                           NULL)
+  spin_css <- if (!is.null(pseudo_element)) {
+    base$attribs$id <- id
+    paste0("#", id, " ", pseudo_element, " {background-color: ", color, ";}")
+  } else {
+    NULL
+  }
 
 
   shiny::tagList(

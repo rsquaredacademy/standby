@@ -391,20 +391,24 @@
 }
 .lv-dots div:nth-child(1) {
   left: 10%;
+  --lv-dots-color: #1ddab5;
   background-color: #1ddab5;
 }
 .lv-dots div:nth-child(2) {
   left: 32.5%;
+  --lv-dots-color: #17ad90;
   background-color: #17ad90;
   animation-delay: 0.1s;
 }
 .lv-dots div:nth-child(3) {
   left: 55%;
+  --lv-dots-color: #11806a;
   background-color: #11806a;
   animation-delay: 0.2s;
 }
 .lv-dots div:nth-child(4) {
   left: 77.5%;
+  --lv-dots-color: #0B5345;
   background-color: #0B5345;
   animation-delay: 0.3s;
 }
@@ -780,15 +784,15 @@
 @keyframes lv-dots_pulsate_animation {
   0% {
     transform: scale(0.01);
-    background-color: #1ddab5;
+    background-color: var(--lv-dots-color, #1ddab5);
   }
   50% {
     transform: scale(1);
-    background-color: #0B5345;
+    background-color: var(--lv-dots-color-dark, #0B5345);
   }
   100% {
     transform: scale(0.01);
-    background-color: #1ddab5;
+    background-color: var(--lv-dots-color, #1ddab5);
   }
 }
 @keyframes lv-line_animation {
