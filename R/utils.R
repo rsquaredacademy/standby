@@ -324,7 +324,6 @@ parse_css_number <- function(x, percent_scale = FALSE) {
   value <- suppressWarnings(as.numeric(value))
   if (!is.finite(value)) return(NA_real_)
   if (percent_scale && is_percent) value <- value / 100
-  if (percent_scale && !is_percent) value <- value
   value
 }
 
