@@ -330,7 +330,7 @@ test_that("H19: CSS Loaders base rules do not target the spinner .loader", {
 # M01/M03/M04/L01 -------------------------------------------------------------
 
 test_that("M01 + M03: DESCRIPTION metadata", {
-  d <- read.dcf(test_path("..", "..", "DESCRIPTION"))
+  d <- read.dcf(system.file("DESCRIPTION", package = "standby"))
   expect_true(grepl("aravindhebbali@rsquaredacademy.com", d[, "Authors@R"],
                     fixed = TRUE))
   expect_true(grepl("testthat (>= 3.1.5)", d[, "Suggests"], fixed = TRUE))
@@ -349,8 +349,14 @@ test_that("M04: alertify alert types have a defined effect", {
 })
 
 test_that("L01: the unavailable tinyverse badge is gone", {
-  readme <- paste(readLines(test_path("..", "..", "README.md"), warn = FALSE), collapse = "\n")
-  readme_rmd <- paste(readLines(test_path("..", "..", "README.Rmd"), warn = FALSE), collapse = "\n")
+  readme <- paste(readLines(system.file("README.md", package = "standby"),
+                            warn = FALSE), collapse = "\n")
   expect_no_match(readme, "tinyverse")
-  expect_no_match(readme_rmd, "tinyverse")
+
+  # README.Rmd is excluded from the built package; check it when present.
+  rmd_path <- system.file("README.Rmd", package = "standby")
+  if (nzchar(rmd_path)) {
+    readme_rmd <- paste(readLines(rmd_path, warn = FALSE), collapse = "\n")
+    expect_no_match(readme_rmd, "tinyverse")
+  }
 })

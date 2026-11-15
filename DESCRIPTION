@@ -34,6 +34,7 @@ Suggests:
     knitr,
     testthat (>= 3.1.5),
     jsonlite,
+    chromote,
     covr
 License: GPL (>= 3)
 URL: https://standby.rsquaredacademy.com/, https://github.com/rsquaredacademy/standby
