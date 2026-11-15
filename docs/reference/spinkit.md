@@ -46,8 +46,12 @@ spinkit(uiOutput, type = "plane", color = "#333", size = "40px")
 
 - color:
 
-  Color of the spinner. Defaults to `"#333"`. Choose between
-  hexadecimal, RGB or keyword values.
+  Color of the spinner. Defaults to `"#333"`. Choose between a color
+  name, hexadecimal, or
+  [`rgb()`](https://rdrr.io/r/grDevices/rgb.html)/`rgba()`/`hsl()`/`hsla()`
+  values. Names use R's
+  [`colors()`](https://rdrr.io/r/grDevices/colors.html) values; CSS
+  colour names not in R are also accepted.
 
 - size:
 
@@ -55,7 +59,8 @@ spinkit(uiOutput, type = "plane", color = "#333", size = "40px")
 
 ## Value
 
-None
+`useSpinkit()` returns an HTML dependency to include in the UI;
+`spinkit()` returns a Shiny tag list wrapping `uiOutput`.
 
 ## Functions
 

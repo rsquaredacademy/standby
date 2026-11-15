@@ -4,7 +4,31 @@ standby offers several types of loading screens for Shiny apps. This
 document is a quickstart guide for using standby in your Shiny
 applications. Let us look at a simple example below:
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`standby`](https://standby.rsquaredacademy.com/)`)`` `` ``ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`` `` `` ``standby``::`[`useSpinkit`](https://standby.rsquaredacademy.com/reference/spinkit.md)`(``)``, ``# include dependencies`` `` `[`fluidRow`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`` `` ``standby``::`[`spinkit`](https://standby.rsquaredacademy.com/reference/spinkit.md)`(`[`plotOutput`](https://rdrr.io/pkg/shiny/man/plotOutput.html)`(``"plot1"``)``)``, ``# wrap output inside loader`` `` `[`actionButton`](https://rdrr.io/pkg/shiny/man/actionButton.html)`(``"render"``, ``"Render"``)`` `` ``)`` `` ``)`` `` ``server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`` `` `` ``output``$``plot1`` ``<-`` `[`renderPlot`](https://rdrr.io/pkg/shiny/man/renderPlot.html)`(``{`` `` ``input``$``render`` `` `[`Sys.sleep`](https://rdrr.io/r/base/Sys.sleep.html)`(``3``)`` `` `[`hist`](https://rdrr.io/r/graphics/hist.html)`(``mtcars``$``mpg``)`` `` ``}``)`` `` ``}`` `` `[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`standby`](https://standby.rsquaredacademy.com/)`)`\
+\
+`ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`\
+\
+`  ``standby``::`[`useSpinkit`](https://standby.rsquaredacademy.com/reference/spinkit.md)`(``)``, ``# include dependencies`\
+`  `[`fluidRow`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`\
+`    ``standby``::`[`spinkit`](https://standby.rsquaredacademy.com/reference/spinkit.md)`(`[`plotOutput`](https://rdrr.io/pkg/shiny/man/plotOutput.html)`(``"plot1"``)``)``, ``# wrap output inside loader`\
+`    `[`actionButton`](https://rdrr.io/pkg/shiny/man/actionButton.html)`(``"render"``, ``"Render"``)`\
+`  ``)`\
+\
+`)`\
+\
+`server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`\
+\
+`    ``output``$``plot1`` ``<-`` `[`renderPlot`](https://rdrr.io/pkg/shiny/man/renderPlot.html)`(``{`\
+`      ``input``$``render`\
+`      `[`Sys.sleep`](https://rdrr.io/r/base/Sys.sleep.html)`(``3``)`\
+`      `[`hist`](https://rdrr.io/r/graphics/hist.html)`(``mtcars``$``mpg``)`\
+`    ``}``)`\
+\
+`}`\
+\
+[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`
 
 To use spinners/loaders from **standby** in your Shiny application,
 include the following in the **UI** part of the app:

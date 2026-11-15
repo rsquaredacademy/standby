@@ -46,6 +46,7 @@ previewSpinners(spinner = "threedots")
 
 ## Value
 
-None
+In an interactive session, a Shiny app object; otherwise `NULL`
+invisibly.
 
-None
+In an interactive session, browsable HTML; otherwise `NULL` invisibly.

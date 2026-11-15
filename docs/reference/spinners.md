@@ -18,15 +18,22 @@ spinners(uiOutput, type = 1, color = "#0275d8")
 
 - type:
 
-  Type of spinner to use. Any integer between `1` and `8` is valid.
+  Type of spinner to use. Any number or string between `1` and `8` (or
+  `"1"` and `"8"`) is valid.
 
 - color:
 
-  Color of the spinner. Choose between hexadecimal or keyword values.
+  Color of the spinner. Choose between a color name, hexadecimal, or
+  [`rgb()`](https://rdrr.io/r/grDevices/rgb.html)/`rgba()`/`hsl()`/`hsla()`
+  values. Names use R's
+  [`colors()`](https://rdrr.io/r/grDevices/colors.html) values (so
+  `"green"` is `#00FF00`); CSS colour names not in R (such as
+  `"rebeccapurple"`) are also accepted.
 
 ## Value
 
-None
+`useSpinners()` returns an HTML dependency to include in the UI;
+`spinners()` returns a Shiny tag list wrapping `uiOutput`.
 
 ## Functions
 

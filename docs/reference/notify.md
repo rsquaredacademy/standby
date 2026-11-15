@@ -33,13 +33,15 @@ notify(
 
 - title:
 
-  Title of the notice. It can be a string, an element or `FALSE` (the
-  default) for no title.
+  Title of the notice. Defaults to `"Hey"`. It can be a string, an
+  element or `FALSE` for no title. Tag objects are rendered to HTML;
+  HTML dependencies attached to them are not installed.
 
 - text:
 
-  Text of the notice. It can be a string, an element or `FALSE` (the
-  default) for no text.
+  Text of the notice. Defaults to `NULL`. It can be a string, an element
+  or `FALSE` for no text. Tag objects are rendered to HTML; HTML
+  dependencies attached to them are not installed.
 
 - type:
 
@@ -59,7 +61,7 @@ notify(
 - delay:
 
   Delay in milliseconds before the notice is removed. If set to
-  `"infinity"`, the notice will not close.
+  `"infinity"` (or `Inf`), the notice will not close.
 
 - hide:
 

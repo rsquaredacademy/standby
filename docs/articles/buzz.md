@@ -4,10 +4,30 @@ standby offers several types of alerts, notifications and tooltips. This
 document is a quickstart guide for using standby in your Shiny
 applications. Let us look at a simple example below:
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`standby`](https://standby.rsquaredacademy.com/)`)`` `` ``ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`` `` `` `` `[`useToast`](https://standby.rsquaredacademy.com/reference/toast.md)`(``)``, ``# include dependencies`` `` `[`actionButton`](https://rdrr.io/pkg/shiny/man/actionButton.html)`(``inputId ``=`` ``"btn"``,`` `` label ``=`` ``"iziToast Demo"``)`` `` `` ``)`` `` `` ``server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`` `` `` `[`observeEvent`](https://rdrr.io/pkg/shiny/man/observeEvent.html)`(``input``$``btn``, ``{`` `` ``# display toast notification`` `` `[`toast`](https://standby.rsquaredacademy.com/reference/toast.md)`(``"Hey there!"``, ``"Thank you for exploring buzz!"``)`` `` ``}``)`` ``}`` `` `[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`standby`](https://standby.rsquaredacademy.com/)`)`\
+\
+`ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`\
+` `\
+`  `[`useToast`](https://standby.rsquaredacademy.com/reference/toast.md)`(``)``, ``# include dependencies`\
+`  `[`actionButton`](https://rdrr.io/pkg/shiny/man/actionButton.html)`(``inputId ``=`` ``"btn"``,`\
+`               label   ``=`` ``"iziToast Demo"``)`\
+` `\
+`)`\
+` `\
+`server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`\
+\
+`  `[`observeEvent`](https://rdrr.io/pkg/shiny/man/observeEvent.html)`(``input``$``btn``, ``{`\
+`    ``# display toast notification`\
+`    `[`toast`](https://standby.rsquaredacademy.com/reference/toast.md)`(``"Hey there!"``, ``"Thank you for exploring standby!"``)`\
+`  ``}``)`\
+`}`\
+\
+[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`
 
-To use alerts or notifications from **buzz** in your Shiny application,
-follow the below steps:
+To use alerts or notifications from **standby** in your Shiny
+application, follow the below steps:
 
 - Include the dependencies in the **UI** part of the app using the
   appropriate `use*` functions

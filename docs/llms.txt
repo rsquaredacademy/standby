@@ -5,7 +5,13 @@ Shiny
 
 ## Installation
 
-`# Install release version from CRAN`` `[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"standby"``)`` `` ``# Install development version from GitHub`` ``# install.packages("devtools")`` ``devtools``::`[`install_github`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"rsquaredacademy/standby"``)`
+\
+`# Install release version from CRAN`\
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"standby"``)`\
+\
+`# Install development version from GitHub`\
+`# install.packages("devtools")`\
+`devtools``::`[`install_github`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"rsquaredacademy/standby"``)`
 
 ## Usage
 
@@ -23,7 +29,31 @@ include the following in the **UI** part of the app:
 
 ##### Example
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`standby`](https://standby.rsquaredacademy.com/)`)`` `` ``ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`` `` `` ``standby``::`[`useSpinkit`](https://standby.rsquaredacademy.com/reference/spinkit.md)`(``)``, ``# include dependencies`` `` `[`fluidRow`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`` `` ``standby``::`[`spinkit`](https://standby.rsquaredacademy.com/reference/spinkit.md)`(`[`plotOutput`](https://rdrr.io/pkg/shiny/man/plotOutput.html)`(``"plot1"``)``)``, ``# wrap output inside loader`` `` `[`actionButton`](https://rdrr.io/pkg/shiny/man/actionButton.html)`(``"render"``, ``"Render"``)`` `` ``)`` `` ``)`` `` ``server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`` `` `` ``output``$``plot1`` ``<-`` `[`renderPlot`](https://rdrr.io/pkg/shiny/man/renderPlot.html)`(``{`` `` ``input``$``render`` `` `[`Sys.sleep`](https://rdrr.io/r/base/Sys.sleep.html)`(``3``)`` `` `[`hist`](https://rdrr.io/r/graphics/hist.html)`(``mtcars``$``mpg``)`` `` ``}``)`` `` ``}`` `` `[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`standby`](https://standby.rsquaredacademy.com/)`)`\
+\
+`ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`\
+\
+`  ``standby``::`[`useSpinkit`](https://standby.rsquaredacademy.com/reference/spinkit.md)`(``)``, ``# include dependencies`\
+`  `[`fluidRow`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`\
+`    ``standby``::`[`spinkit`](https://standby.rsquaredacademy.com/reference/spinkit.md)`(`[`plotOutput`](https://rdrr.io/pkg/shiny/man/plotOutput.html)`(``"plot1"``)``)``, ``# wrap output inside loader`\
+`    `[`actionButton`](https://rdrr.io/pkg/shiny/man/actionButton.html)`(``"render"``, ``"Render"``)`\
+`  ``)`\
+\
+`)`\
+\
+`server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`\
+\
+`    ``output``$``plot1`` ``<-`` `[`renderPlot`](https://rdrr.io/pkg/shiny/man/renderPlot.html)`(``{`\
+`      ``input``$``render`\
+`      `[`Sys.sleep`](https://rdrr.io/r/base/Sys.sleep.html)`(``3``)`\
+`      `[`hist`](https://rdrr.io/r/graphics/hist.html)`(``mtcars``$``mpg``)`\
+`    ``}``)`\
+\
+`}`\
+\
+[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`
 
 #### Details
 
@@ -40,21 +70,34 @@ with references:
 
 ### Alerts and Notifications
 
-To use alerts or notifications from **buzz** in your Shiny application,
-follow the below steps:
+To use alerts or notifications from **standby** in your Shiny
+application, follow the below steps:
 
 - Include the dependencies in the **UI** part of the app using the
   appropriate `use*` functions
-  ([`useToast()`](https://standby.rsquaredacademy.com/reference/toast.md)
+  ([`useBootBox()`](https://standby.rsquaredacademy.com/reference/bootBox.md)
   in the below example).
 - Include the corresponding rendering function in the **Server** part of
   the app
-  ([`toast()`](https://standby.rsquaredacademy.com/reference/toast.md)
+  ([`bootBox()`](https://standby.rsquaredacademy.com/reference/bootBox.md)
   in the below example).
 
 ##### Example
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`standby`](https://standby.rsquaredacademy.com/)`)`` ``ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`` `` `[`useBootBox`](https://standby.rsquaredacademy.com/reference/bootBox.md)`(``)``, ``# include dependencies`` `` `[`actionButton`](https://rdrr.io/pkg/shiny/man/actionButton.html)`(``inputId ``=`` ``"notify"``,`` `` label ``=`` ``"Show Notification"``)`` ``)`` ``server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`` `` `[`observeEvent`](https://rdrr.io/pkg/shiny/man/observeEvent.html)`(``input``$``pnotify``, ``{`` `` `[`bootBox`](https://standby.rsquaredacademy.com/reference/bootBox.md)`(``class ``=`` ``"rubberBand"``)`` ``# display the alert`` `` ``}``)`` ``}`` `[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`standby`](https://standby.rsquaredacademy.com/)`)`\
+`ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`\
+`  `[`useBootBox`](https://standby.rsquaredacademy.com/reference/bootBox.md)`(``)``, ``# include dependencies`\
+`  `[`actionButton`](https://rdrr.io/pkg/shiny/man/actionButton.html)`(``inputId ``=`` ``"notify"``,`\
+`               label   ``=`` ``"Show Notification"``)`\
+`)`\
+`server`` ``<-`` ``function``(``input``, ``output``, ``session``)`` ``{`\
+`  `[`observeEvent`](https://rdrr.io/pkg/shiny/man/observeEvent.html)`(``input``$``notify``, ``{`\
+`    `[`bootBox`](https://standby.rsquaredacademy.com/reference/bootBox.md)`(``class ``=`` ``"rubberBand"``)`` ``# display the alert`\
+`  ``}``)`\
+`}`\
+[`shinyApp`](https://rdrr.io/pkg/shiny/man/shinyApp.html)`(``ui``, ``server``)`
 
 #### Details
 

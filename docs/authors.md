@@ -47,9 +47,13 @@ Source:
 [`DESCRIPTION`](https://github.com/rsquaredacademy/standby/blob/HEAD/DESCRIPTION)
 
 Hebbali A (2026). *standby: Alerts, Notifications and Loading Screen in
-'Shiny'*. R package version 0.2.0.9000,
+'Shiny'*. R package version 0.2.2,
 <https://standby.rsquaredacademy.com/>.
 
-@Manual{, title = {standby: Alerts, Notifications and Loading Screen in
-'Shiny'}, author = {Aravind Hebbali}, year = {2026}, note = {R package
-version 0.2.0.9000}, url = {https://standby.rsquaredacademy.com/}, }
+@Manual{,\
+  title = {standby: Alerts, Notifications and Loading Screen in 'Shiny'},\
+  author = {Aravind Hebbali},\
+  year = {2026},\
+  note = {R package version 0.2.2},\
+  url = {https://standby.rsquaredacademy.com/},\
+}

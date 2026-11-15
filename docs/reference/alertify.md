@@ -50,7 +50,7 @@ alertify_notify(
 
 - type:
 
-  Dialog type. Defaults to `"success"`. Valid values are:
+  Alert/notification type. Defaults to `"success"`. Valid values are:
 
   - `"success"`
 
@@ -59,6 +59,10 @@ alertify_notify(
   - `"warning"`
 
   - `"message"`
+
+  For `alertify_alert()` the type sets a class on the dialog and a
+  type-specific accent border and header colour. For `alertify_notify()`
+  it sets the notification style.
 
 - btn_label:
 
@@ -93,8 +97,8 @@ alertify_notify(
 
 - auto_reset:
 
-  Logical; if `TRUE` (the default), the dialog will reset size/position
-  on window resize.
+  Logical; if `TRUE`, the dialog will reset size/position on window
+  resize. Defaults to `FALSE`.
 
 - frameless:
 
@@ -103,27 +107,27 @@ alertify_notify(
 
 - maximizable:
 
-  Logical; if `TRUE` (the default), the `Maximize` button is displayed
-  in the header of the dialog.
+  Logical; if `TRUE`, the `Maximize` button is displayed in the header
+  of the dialog. Defaults to `FALSE`.
 
 - modal:
 
-  Logical; if `TRUE` (the default), a screen dimmer will be used and
-  access to the page contents will be prevented.
+  Logical; if `TRUE`, a screen dimmer will be used and access to the
+  page contents will be prevented. Defaults to `FALSE`.
 
 - movable:
 
-  Logical; if `TRUE` (the default), the dialog is movable.
+  Logical; if `TRUE`, the dialog is movable. Defaults to `FALSE`.
 
 - move_bounded:
 
-  Logical; if `TRUE`, the dialog is not allowed to go off-screen.
-  Defaults to `FALSE`.
+  Logical; if `TRUE` (the default), the dialog is not allowed to go
+  off-screen.
 
 - overflow:
 
-  Logical; if `TRUE` (the default), the content overflow is managed by
-  the dialog
+  Logical; if `TRUE`, the content overflow is managed by the dialog.
+  Defaults to `FALSE`.
 
 - padding:
 
@@ -132,8 +136,8 @@ alertify_notify(
 
 - pinnable:
 
-  Logical; if `TRUE` (the default), the `Pin` button is displayed in the
-  header of the dialog.
+  Logical; if `TRUE`, the `Pin` button is displayed in the header of the
+  dialog. Defaults to `FALSE`.
 
 - resizeable:
 

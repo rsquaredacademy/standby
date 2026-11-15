@@ -45,22 +45,19 @@ vizLoad(
 
 - size:
 
-  The size of the bar/spinner. Valid values are:
-
-  - large
-
-  - medium
-
-  - small
-
-  - tiny
-
-  - fluid
+  The size of the bar/spinner. For `"line"` and `"bordered_line"`, valid
+  values are `"large"`, `"medium"`, `"small"`, and `"fluid"`. For all
+  other types, valid values are `"large"`, `"medium"`, `"small"`, and
+  `"tiny"`.
 
 - color:
 
-  The color of the bar/spinner. Choose between hexadecimal, RGB or
-  keyword values.
+  The color of the bar/spinner. Choose between a color name,
+  hexadecimal, or
+  [`rgb()`](https://rdrr.io/r/grDevices/rgb.html)/`rgba()`/`hsl()`/`hsla()`
+  values. Names use R's
+  [`colors()`](https://rdrr.io/r/grDevices/colors.html) values; CSS
+  colour names not in R are also accepted.
 
 - add_label:
 
@@ -74,7 +71,8 @@ vizLoad(
 
 ## Value
 
-None
+`useVizLoad()` returns an HTML dependency to include in the UI;
+`vizLoad()` returns a Shiny tag list wrapping `uiOutput`.
 
 ## Functions
 
