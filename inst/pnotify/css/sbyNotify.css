@@ -1,0 +1,9 @@
+/* standby additions to PNotify */
+
+/* notify(translucent = TRUE): the bundled themes do not style the class on
+   their own, so give it a defined see-through appearance once the notice has
+   finished animating in. */
+.pnotify.translucent.pnotify-in,
+.pnotify.translucent.pnotify-initial {
+  opacity: 0.7;
+}
