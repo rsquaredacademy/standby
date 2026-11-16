@@ -7,8 +7,29 @@ fxb_available <- function() {
   if (identical(tolower(Sys.getenv("STANDBY_BROWSER_TESTS")), "false")) {
     skip("STANDBY_BROWSER_TESTS=false")
   }
+  if (!fxb_chrome_ok()) {
+    skip("Chrome is not available or did not start")
+  }
   invisible(TRUE)
 }
+
+# Probe Chrome once per test run: a missing Chrome, or one whose debugging
+# port does not open in time (seen on CI runners), skips the browser tests
+# instead of failing them.
+fxb_chrome_ok <- local({
+  ok <- NULL
+  function() {
+    if (is.null(ok)) {
+      ok <<- tryCatch({
+        if (is.null(chromote::find_chrome())) stop("no Chrome")
+        s <- chromote::ChromoteSession$new()
+        s$close()
+        TRUE
+      }, error = function(e) FALSE)
+    }
+    ok
+  }
+})
 
 fxb_read <- function(path) {
   paste(readLines(path, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
