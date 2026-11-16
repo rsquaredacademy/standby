@@ -29,9 +29,11 @@ notify(
 )
 }
 \arguments{
-\item{title}{Title of the notice. Defaults to \code{"Hey"}. It can be a string, an element or \code{FALSE} for no title.}
+\item{title}{Title of the notice. Defaults to \code{"Hey"}. It can be a string, an element or \code{FALSE} for no title.
+Tag objects are rendered to HTML; HTML dependencies attached to them are not installed.}
 
-\item{text}{Text of the notice. Defaults to \code{NULL}. It can be a string, an element or \code{FALSE} for no text.}
+\item{text}{Text of the notice. Defaults to \code{NULL}. It can be a string, an element or \code{FALSE} for no text.
+Tag objects are rendered to HTML; HTML dependencies attached to them are not installed.}
 
 \item{type}{Type of notice. Defaults to \code{"notice"}. Other valid values are:
 \itemize{
@@ -42,7 +44,7 @@ notify(
 
 \item{icon}{Logical; if \code{TRUE} (the default), default icon is displayed. No icon is displayed if set to \code{FALSE}.}
 
-\item{delay}{Delay in milliseconds before the notice is removed. If set to \code{"infinity"}, the notice will not close.}
+\item{delay}{Delay in milliseconds before the notice is removed. If set to \code{"infinity"} (or \code{Inf}), the notice will not close.}
 
 \item{hide}{Logical; if \code{TRUE} (the default), notice is closed after \code{delay} specified in milliseconds.}
 

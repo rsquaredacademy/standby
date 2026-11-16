@@ -44,13 +44,16 @@ alertify_notify(
 
 \item{message}{Dialog contents.}
 
-\item{type}{Dialog type. Defaults to \code{"success"}. Valid values are:
+\item{type}{Alert/notification type. Defaults to \code{"success"}. Valid values are:
 \itemize{
 \item \code{"success"}
 \item \code{"error"}
 \item \code{"warning"}
 \item \code{"message"}
-}}
+}
+For \code{alertify_alert()} the type sets a class on the dialog and a
+type-specific accent border and header colour. For
+\code{alertify_notify()} it sets the notification style.}
 
 \item{btn_label}{The \code{OK} button label.}
 

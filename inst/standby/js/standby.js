@@ -1,25 +1,34 @@
-$(document).on('shiny:recalculating', function (event) {
-  let id = '#' + event.target.id;
-  let output = document.querySelector(id);
-  let parent = output.parentElement;
-  let isParent = parent.classList.contains('standby');
-  if (isParent) {
+/* Show/hide the standby loader for an output.
+   event.target is the output element itself, so no selector is built from its
+   id: valid HTML ids such as "a.b" or "a:b" need not be valid CSS selectors. */
+function standbyToggleLoader(event, showLoader) {
+  var output = event.target;
+  if (!output || !output.parentElement) {
+    return;
+  }
+  var parent = output.parentElement;
+  if (!parent.classList || !parent.classList.contains('standby')) {
+    return;
+  }
+  var loader = $(output).siblings('.standby-wait')[0];
+  if (!loader) {
+    return;
+  }
+  if (showLoader) {
     parent.classList.add('full-screen');
-    let loader = $(output).siblings('.standby-wait')[0];
     output.style.visibility = 'hidden';
     loader.style.visibility = 'visible';
-  }
-});
-
-$(document).on('shiny:value shiny:error', function (event) {
-  let id = '#' + event.target.id;
-  let output = document.querySelector(id);
-  let parent = output.parentElement;
-  let isParent = parent.classList.contains('standby');
-  if (isParent) {
+  } else {
     parent.classList.remove('full-screen');
-    let loader = $(output).siblings('.standby-wait')[0];
     output.style.visibility = 'visible';
     loader.style.visibility = 'hidden';
   }
+}
+
+$(document).on('shiny:recalculating', function (event) {
+  standbyToggleLoader(event, true);
+});
+
+$(document).on('shiny:value shiny:error', function (event) {
+  standbyToggleLoader(event, false);
 });

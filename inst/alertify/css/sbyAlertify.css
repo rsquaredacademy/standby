@@ -1,0 +1,34 @@
+/* alertify_alert(type = ...): the dialog has no type of its own, so the type
+   is expressed as a class and a coloured top border/title. */
+.ajs-dialog.sby-alert {
+  border-top-width: 4px;
+  border-top-style: solid;
+}
+
+.ajs-dialog.sby-alert-success {
+  border-top-color: #5cb85c;
+}
+.ajs-dialog.sby-alert-success .ajs-header {
+  color: #3c763d;
+}
+
+.ajs-dialog.sby-alert-warning {
+  border-top-color: #f0ad4e;
+}
+.ajs-dialog.sby-alert-warning .ajs-header {
+  color: #8a6d3b;
+}
+
+.ajs-dialog.sby-alert-error {
+  border-top-color: #d9534f;
+}
+.ajs-dialog.sby-alert-error .ajs-header {
+  color: #a94442;
+}
+
+.ajs-dialog.sby-alert-message {
+  border-top-color: #5bc0de;
+}
+.ajs-dialog.sby-alert-message .ajs-header {
+  color: #31708f;
+}

@@ -1,6 +1,6 @@
 /* Alertify */
 Shiny.addCustomMessageHandler((type = 'alertify.alert'), function (message) {
-  alertify
+  var dialog = alertify
     .alert()
     .setting({
       title: message.title,
@@ -23,6 +23,15 @@ Shiny.addCustomMessageHandler((type = 'alertify.alert'), function (message) {
       onok: function () {},
     })
     .show();
+
+  // Give the dialog a defined type: a class plus a type-specific border and
+  // header colour (see css/sbyAlertify.css).
+  if (dialog && dialog.elements && dialog.elements.dialog) {
+    var el = dialog.elements.dialog;
+    var known = ['success', 'warning', 'error', 'message'];
+    var dialogType = known.indexOf(message.type) === -1 ? 'message' : message.type;
+    el.classList.add('sby-alert', 'sby-alert-' + dialogType);
+  }
 });
 
 Shiny.addCustomMessageHandler((type = 'alertify.notify'), function (message) {

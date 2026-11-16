@@ -4,13 +4,16 @@
 #'
 #' @param title Dialog title.
 #' @param message Dialog contents.
-#' @param type Dialog type. Defaults to \code{"success"}. Valid values are:
+#' @param type Alert/notification type. Defaults to \code{"success"}. Valid values are:
 #' \itemize{
 #' \item \code{"success"}
 #' \item \code{"error"}
 #' \item \code{"warning"}
 #' \item \code{"message"}
 #' }
+#' For \code{alertify_alert()} the type sets a class on the dialog and a
+#' type-specific accent border and header colour. For
+#' \code{alertify_notify()} it sets the notification style.
 #' @param btn_label The \code{OK} button label.
 #' @param transition Transition effect to be used when showing/hiding the dialog. Defaults to \code{"pulse"}. Valid values are:
 #' \itemize{

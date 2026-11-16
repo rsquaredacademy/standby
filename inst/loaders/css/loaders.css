@@ -1,4 +1,7 @@
-.loader {
+/* Scoped to this package's CSS Loaders widget: the Single Element CSS
+   Spinners also use a plain .loader element, and these base rules must not
+   hide its bars/pseudo-elements. */
+.loader.sby-loader {
   color: #fff;
   position: fixed;
   box-sizing: border-box;
@@ -10,13 +13,13 @@
   z-index: 999999;
 }
 
-.loader:after,
-.loader:before {
+.loader.sby-loader:after,
+.loader.sby-loader:before {
   box-sizing: border-box;
   display: none;
 }
 
-.loader.is-active {
+.loader.sby-loader.is-active {
   background-color: rgba(0, 0, 0, 0.85);
   width: 100%;
   height: 100%;
@@ -24,8 +27,8 @@
   top: 0;
 }
 
-.loader.is-active:after,
-.loader.is-active:before {
+.loader.sby-loader.is-active:after,
+.loader.sby-loader.is-active:before {
   display: block;
 }
 

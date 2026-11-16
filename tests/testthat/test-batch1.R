@@ -86,8 +86,8 @@ test_that("N2: spinners generated CSS is scoped per instance", {
   expect_false(id1 == id2)
 
   # Check colours in each head style
-  expect_match(head1, paste0("#", id1, " \\.load1.*color: red;"))
-  expect_match(head2, paste0("#", id2, " \\.load1.*color: blue;"))
+  expect_match(head1, paste0("#", id1, " \\.load1.*color: #FF0000;"))
+  expect_match(head2, paste0("#", id2, " \\.load1.*color: #0000FF;"))
 
   # Check HTML container has matching id
   expect_match(as.character(rt1$html), paste0('id="', id1, '"'))
@@ -131,8 +131,8 @@ test_that("N2: spinners type 5 keyframes are scoped per instance", {
   )
 
   # Each instance keeps its own colour
-  expect_match(head1, "box-shadow: 0em -2.6em 0em 0em red")
-  expect_match(head2, "box-shadow: 0em -2.6em 0em 0em blue")
+  expect_match(head1, "box-shadow: 0em -2.6em 0em 0em #FF0000")
+  expect_match(head2, "box-shadow: 0em -2.6em 0em 0em #0000FF")
   expect_false(grepl("blue", head1, fixed = TRUE))
   expect_false(grepl("red", head2, fixed = TRUE))
 
@@ -157,8 +157,8 @@ test_that("N2: vizLoad circles CSS is scoped per instance", {
   expect_true(nchar(id2) > 0)
   expect_false(id1 == id2)
 
-  expect_match(head1, paste0("#", id1, " \\.lv-circles.*background-color: red;"))
-  expect_match(head2, paste0("#", id2, " \\.lv-circles.*background-color: blue;"))
+  expect_match(head1, paste0("#", id1, " \\.lv-circles.*background-color: #FF0000;"))
+  expect_match(head2, paste0("#", id2, " \\.lv-circles.*background-color: #0000FF;"))
 
   expect_match(as.character(rt1$html), paste0('id="', id1, '"'))
   expect_match(as.character(rt2$html), paste0('id="', id2, '"'))
@@ -181,8 +181,8 @@ test_that("N2: vizLoad label CSS is scoped per instance", {
   expect_true(nchar(id2) > 0)
   expect_false(id1 == id2)
 
-  expect_match(head1, paste0("#", id1, " \\.lv-bars\\[data-label\\]:after \\{ color: red;\\}"))
-  expect_match(head2, paste0("#", id2, " \\.lv-bars\\[data-label\\]:after \\{ color: blue;\\}"))
+  expect_match(head1, paste0("#", id1, " \\.lv-bars\\[data-label\\]:after \\{ color: #FF0000;\\}"))
+  expect_match(head2, paste0("#", id2, " \\.lv-bars\\[data-label\\]:after \\{ color: #0000FF;\\}"))
 
   expect_match(as.character(rt1$html), paste0('id="', id1, '"'))
   expect_match(as.character(rt2$html), paste0('id="', id2, '"'))

@@ -23,12 +23,16 @@ threeDots(uiOutput, type = "elastic", color = "#9880ff")
 
 - color:
 
-  The color of the loader. Choose between hexadecimal, RGB or keyword
-  values.
+  The color of the loader. Choose between a color name, hexadecimal, or
+  [`rgb()`](https://rdrr.io/r/grDevices/rgb.html)/`rgba()`/`hsl()`/`hsla()`
+  values. Names use R's
+  [`colors()`](https://rdrr.io/r/grDevices/colors.html) values; CSS
+  colour names not in R are also accepted.
 
 ## Value
 
-None
+`useThreeDots()` returns an HTML dependency to include in the UI;
+`threeDots()` returns a Shiny tag list wrapping `uiOutput`.
 
 ## Functions
 

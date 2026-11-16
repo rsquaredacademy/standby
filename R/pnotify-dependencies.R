@@ -9,7 +9,8 @@ useNotify <- function() {
     script = list(list(src = "js/PNotify.js", defer = NA), 
                   list(src = "js/notify.js", defer = NA)),
     stylesheet = list("css/PNotify.css",
-                      "css/BrightTheme.css"),
+                      "css/BrightTheme.css",
+                      "css/sbyNotify.css"),
     package = "standby"
   )
 }

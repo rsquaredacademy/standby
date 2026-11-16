@@ -31,9 +31,11 @@ previewSpinners(spinner = "threedots")
 }}
 }
 \value{
-None
+In an interactive session, a Shiny app object; otherwise
+  \code{NULL} invisibly.
 
-None
+In an interactive session, browsable HTML; otherwise
+  \code{NULL} invisibly.
 }
 \description{
 Preview different types of alerts/notifications.

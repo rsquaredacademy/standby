@@ -24,7 +24,7 @@ toast(
   message_size = NULL,
   message_line_height = NULL,
   image = NULL,
-  image_width = NULL,
+  image_width = "50px",
   zindex = 99999,
   layout = 1,
   balloon = FALSE,
@@ -75,8 +75,7 @@ toast(
 
 - position:
 
-  Where toast will be shown. Defaults to `"bottomRight"`. Valid values
-  are:
+  Where toast will be shown. Defaults to `"center"`. Valid values are:
 
   - `"bottomRight"`
 
@@ -116,11 +115,11 @@ toast(
 
 - title_size:
 
-  Title font size.
+  Title font size. A bare number is interpreted as pixels.
 
 - title_line_height:
 
-  Title line height.
+  Title line height. A bare number is interpreted as pixels.
 
 - message_color:
 
@@ -128,11 +127,11 @@ toast(
 
 - message_size:
 
-  Message font size.
+  Message font size. A bare number is interpreted as pixels.
 
 - message_line_height:
 
-  Message line height.
+  Message line height. A bare number is interpreted as pixels.
 
 - image:
 
@@ -140,7 +139,8 @@ toast(
 
 - image_width:
 
-  Width of cover image. Defaults to `"50px"`.
+  Width of cover image. Defaults to `"50px"`. A bare number is
+  interpreted as pixels.
 
 - zindex:
 
@@ -179,7 +179,10 @@ toast(
   - `0`: Waits until the current toast is closed before displaying a new
     one.
 
-  - `1`: Replaces the current toast with the new toast toast.
+  - `1`: Replaces the toast(s) currently displayed with the new toast.
+
+  - `2`: Replaces only a displayed toast with the same title, message
+    and text colour. The identity is derived by iziToast.
 
 - drag_to_close:
 

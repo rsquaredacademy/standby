@@ -34,14 +34,14 @@ server <- function(input, output, session) {
 
   observeEvent(input$btn, {
     # display toast notification
-    toast("Hey there!", "Thank you for exploring buzz!")
+    toast("Hey there!", "Thank you for exploring standby!")
   })
 }
 
 shinyApp(ui, server)
 ```
 
-To use alerts or notifications from **buzz** in your Shiny application, follow the below steps:
+To use alerts or notifications from **standby** in your Shiny application, follow the below steps:
 
 - Include the dependencies in the **UI** part of the app using the appropriate
 `use*` functions (`useToast()` in the above example).

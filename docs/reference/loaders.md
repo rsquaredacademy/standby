@@ -65,7 +65,8 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 
 ## Value
 
-None
+`useLoaders()` returns an HTML dependency to include in the UI;
+`loaders()` returns a Shiny tag list wrapping `uiOutput`.
 
 ## Functions
 

@@ -24,7 +24,7 @@ toast(
   message_size = NULL,
   message_line_height = NULL,
   image = NULL,
-  image_width = NULL,
+  image_width = "50px",
   zindex = 99999,
   layout = 1,
   balloon = FALSE,
@@ -82,19 +82,20 @@ toast(
 
 \item{title_color}{Title color. Choose between hexadecimal, RGB or keyword values.}
 
-\item{title_size}{Title font size.}
+\item{title_size}{Title font size. A bare number is interpreted as pixels.}
 
-\item{title_line_height}{Title line height.}
+\item{title_line_height}{Title line height. A bare number is interpreted as pixels.}
 
 \item{message_color}{Message color. Choose between hexadecimal, RGB or keyword values.}
 
-\item{message_size}{Message font size.}
+\item{message_size}{Message font size. A bare number is interpreted as pixels.}
 
-\item{message_line_height}{Message line height.}
+\item{message_line_height}{Message line height. A bare number is interpreted as pixels.}
 
 \item{image}{Cover image.}
 
-\item{image_width}{Width of cover image. Defaults to \code{"50px"}.}
+\item{image_width}{Width of cover image. Defaults to \code{"50px"}. A bare
+number is interpreted as pixels.}
 
 \item{zindex}{The z-index CSS attribute of the toast. Defaults to \code{99999}.}
 
@@ -113,7 +114,9 @@ toast(
 \item{display_mode}{Rules to show multiple toasts. Default is \code{0}. Valid values are:
 \itemize{
 \item \code{0}: Waits until the current toast is closed before displaying a new one.
-\item \code{1}: Replaces the current toast with the new toast toast.
+\item \code{1}: Replaces the toast(s) currently displayed with the new toast.
+\item \code{2}: Replaces only a displayed toast with the same title, message
+  and text colour. The identity is derived by iziToast.
 }}
 
 \item{drag_to_close}{Logical; if \code{TRUE} (the default), toast can be closed by dragging it.}

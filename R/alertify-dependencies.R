@@ -10,7 +10,8 @@ useAlertify <- function() {
     stylesheet = list("css/alertify.min.css",
                       "css/default.min.css",
                       "css/semantic.min.css",
-                      "css/bootstrap.min.css"),
+                      "css/bootstrap.min.css",
+                      "css/sbyAlertify.css"),
     package = "standby"
   )
 }
