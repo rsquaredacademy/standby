@@ -14,7 +14,8 @@ useNS <- function() {
                       "css/ns-default.css",
                       "css/ns-style-growl.css",
                       "css/ns-style-attached.css",
-                      "css/ns-style-bar.css"),
+                      "css/ns-style-bar.css",
+                      "css/sbyNS.css"),
     package = "standby"
   )
 }

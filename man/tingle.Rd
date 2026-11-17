@@ -38,7 +38,9 @@ tingle(
 \item{session}{Shiny session object.}
 }
 \value{
-None
+\code{useTingle()} returns an HTML dependency to include in the UI.
+  tingle() sends a custom message to the Shiny session for its side effect
+  and has no meaningful return value.
 }
 \description{
 Minimalist and easy to use modals.

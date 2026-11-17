@@ -40,8 +40,8 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 }}
 }
 \value{
-\code{useLoaders()} returns an HTML dependency to include in the UI;
-  \code{loaders()} returns a Shiny tag list wrapping \code{uiOutput}.
+\code{useLoaders()} returns a Shiny tag list of HTML dependencies to include in the UI;
+  \code{loaders()} returns a Shiny tag wrapping \code{uiOutput}.
 }
 \description{
 Simple CSS loaders

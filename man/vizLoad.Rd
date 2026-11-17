@@ -47,7 +47,7 @@ accepted.}
 be set to \code{TRUE} to display the label.}
 }
 \value{
-\code{useVizLoad()} returns an HTML dependency to include in the UI;
+\code{useVizLoad()} returns a Shiny tag list of HTML dependencies to include in the UI;
   \code{vizLoad()} returns a Shiny tag list wrapping \code{uiOutput}.
 }
 \description{

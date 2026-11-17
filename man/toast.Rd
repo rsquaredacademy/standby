@@ -162,7 +162,9 @@ number is interpreted as pixels.}
 \item{session}{Shiny session object.}
 }
 \value{
-None
+\code{useToast()} returns an HTML dependency to include in the UI.
+  toast() sends a custom message to the Shiny session for its side effect
+  and has no meaningful return value.
 }
 \description{
 Lightweight toast notifications

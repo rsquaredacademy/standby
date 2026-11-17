@@ -30,6 +30,7 @@ Shiny.addCustomMessageHandler((type = 'alertify.alert'), function (message) {
     var el = dialog.elements.dialog;
     var known = ['success', 'warning', 'error', 'message'];
     var dialogType = known.indexOf(message.type) === -1 ? 'message' : message.type;
+    known.forEach(function (type) { el.classList.remove('sby-alert-' + type); });
     el.classList.add('sby-alert', 'sby-alert-' + dialogType);
   }
 });

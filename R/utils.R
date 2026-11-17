@@ -306,7 +306,7 @@ css_only_colors <- c(
   teal          = "#008080"
 )
 
-css_number_regex <- "^[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?$"
+css_number_regex <- "^[+-]?(?:[0-9]+(?:\\.[0-9]+)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?$"
 
 # CSS quantises non-negative channels by rounding halves up (30% of 255 is
 # 76.5 and serialises as 77), unlike R's ties-to-even round().
@@ -424,6 +424,8 @@ parse_css_color <- function(color) {
 
   alpha_part <- NULL
   if (grepl(",", args, fixed = TRUE)) {
+    # strsplit drops trailing empty fields, so reject them before splitting.
+    if (grepl("(^|,)[[:space:]]*(,|$)", args) || grepl("/", args, fixed = TRUE)) return(NULL)
     parts <- trimws(strsplit(args, ",", fixed = TRUE)[[1]])
     if (length(parts) %in% c(4L)) {
       alpha_part <- parts[4]
@@ -432,6 +434,7 @@ parse_css_color <- function(color) {
       return(NULL)
     }
   } else {
+    if (grepl("/[[:space:]]*$", args)) return(NULL)
     slash <- strsplit(args, "/", fixed = TRUE)[[1]]
     if (length(slash) > 2L) return(NULL)
     if (length(slash) == 2L) alpha_part <- trimws(slash[2])
@@ -444,6 +447,8 @@ parse_css_color <- function(color) {
   if (is.na(alpha)) return(NULL)
 
   if (name %in% c("rgb", "rgba")) {
+    percent <- grepl("%$", parts)
+    if (grepl(",", args, fixed = TRUE) && any(percent) && !all(percent)) return(NULL)
     channels <- vapply(parts, function(part) {
       value <- parse_css_number(part, percent_scale = TRUE)
       if (is.na(value)) return(NA_real_)
@@ -560,9 +565,9 @@ color_darken <- function(color, factor = 0.45) {
   if (is.null(parsed)) return(color)
   paste0(
     "rgba(",
-    round_channel(parsed$r * factor), ", ",
-    round_channel(parsed$g * factor), ", ",
-    round_channel(parsed$b * factor), ", ",
+    round_channel(min(max(parsed$r, 0), 255) * factor), ", ",
+    round_channel(min(max(parsed$g, 0), 255) * factor), ", ",
+    round_channel(min(max(parsed$b, 0), 255) * factor), ", ",
     format_css_alpha(parsed$a), ")"
   )
 }
@@ -772,13 +777,30 @@ validate_color <- function(color, name = "color", allow_null = FALSE) {
 }
 
 # Normalise a CSS length supplied as a bare number or a string with units.
-normalize_css_length <- function(value) {
-  if (is.null(value) || length(value) != 1L || is.na(value)) return(value)
-  if (is.numeric(value)) return(paste0(format(value, scientific = FALSE), "px"))
-  if (!is.character(value)) return(value)
+normalize_css_length <- function(value, name = "length", strict = FALSE) {
+  if (is.null(value)) return(NULL)
+  invalid <- function() {
+    stop(sprintf("Invalid `%s`: expected a single finite CSS length (e.g. 40, '40px', '2.5em' or '50%%').", name), call. = FALSE)
+  }
+  if (length(value) != 1L || is.na(value)) invalid()
+  if (is.numeric(value) && !is.complex(value)) {
+    if (!is.finite(value)) invalid()
+    return(paste0(format(value, scientific = FALSE, decimal.mark = ".", trim = TRUE), "px"))
+  }
+  if (!is.character(value)) invalid()
   trimmed <- trimws(value)
-  if (grepl("^[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)$", trimmed)) {
+  if (grepl(css_number_regex, trimmed)) {
+    if (!is.finite(suppressWarnings(as.numeric(trimmed)))) invalid()
     return(paste0(trimmed, "px"))
+  }
+  # A trailing dot is not a CSS number, just as in colour expressions.
+  if (grepl("^[+-]?[0-9]+\\.(?:[eE][+-]?[0-9]+)?(?:[[:alpha:]]+|%)?$", trimmed)) invalid()
+  if (strict) {
+    number <- sub("\\$$", "", sub("^\\^", "", css_number_regex))
+    units <- "(?:px|em|rem|ex|rex|cap|rcap|ch|rch|ic|ric|lh|rlh|cm|mm|Q|in|pt|pc|(?:s|l|d)?v(?:w|h|i|b|min|max)|cq(?:w|h|i|b|min|max)|%)"
+    pattern <- paste0(number, units, "$")
+    if (!grepl(paste0("^", pattern), trimmed, ignore.case = TRUE) ||
+        !is.finite(suppressWarnings(as.numeric(sub(units, "", trimmed, ignore.case = TRUE))))) invalid()
   }
   trimmed
 }

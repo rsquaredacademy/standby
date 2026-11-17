@@ -1,10 +1,12 @@
 /* Tingle */
 Shiny.addCustomMessageHandler((type = 'tingle.send'), function (message) {
-  let tingleModal;
+  var tingleModal = new tingle.modal({
+    footer: message.footer,
+    onClose: function () { this.destroy(); }
+  });
 
   if (message.footer) {
-    tingleModal = new tingle.modal({ footer: message.footer });
-    btnClass =
+    var btnClass =
       'tingle-btn tingle-btn--' +
       message.btnType +
       ' tingle-btn--pull-' +
@@ -12,8 +14,6 @@ Shiny.addCustomMessageHandler((type = 'tingle.send'), function (message) {
     tingleModal.addFooterBtn(message.btnLabel, btnClass, function () {
       tingleModal.close();
     });
-  } else {
-    tingleModal = new tingle.modal();
   }
   tingleModal.setContent(message.content);
   tingleModal.open();

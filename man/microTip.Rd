@@ -44,7 +44,9 @@ Valid values are:
 \item{session}{Shiny session object.}
 }
 \value{
-None
+\code{useMicroTip()} returns a Shiny tag list of HTML dependencies to include in the UI.
+  microTip() sends a custom message to the Shiny session for its side effect
+  and has no meaningful return value.
 }
 \description{
 Minimal CSS only tooltip.

@@ -32,7 +32,9 @@
 #' @param max_text_height Maximum height of the text container. Default is \code{"200px"}. If the text goes beyond
 #' this height, scrollbars will appear. Use \code{NULL} to remove this restriction.
 #' @param translucent Logical; if \code{TRUE}, creates see through notice. Defaults to \code{FALSE}.
-#' @param non_blocking Logical; if \code{TRUE}, notice fades to show elements underneath. Defaults to \code{FALSE}.
+#' @param non_blocking Logical; if \code{TRUE}, the notice body passes pointer
+#'   events to elements underneath and fades while the pointer is over it.
+#'   Close and sticker controls remain interactive. Defaults to \code{FALSE}.
 #' @param session Shiny session object.
 #'
 #' @section Functions:
@@ -66,7 +68,9 @@
 #' }
 #'
 #' @name notify
-#' @return None
+#' @return \code{useNotify()} returns an HTML dependency to include in the UI.
+#'   notify() sends a custom message to the Shiny session for its side effect
+#'   and has no meaningful return value.
 #'
 #' @export
 #'
@@ -122,7 +126,7 @@ notify <- function(title = "Hey", text = NULL, type = "notice", icon = TRUE,
   }
 
   if (non_blocking) {
-    notice$addModelessClass = "nonblock"
+    notice$addModelessClass = "sby-nonblocking"
   }
 
   session$sendCustomMessage(

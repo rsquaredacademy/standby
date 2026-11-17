@@ -13,7 +13,7 @@ test_that("bootbox dependencies work as expected", {
   expect_equal(dep[[1]]$name, "bootbox")
   expect_equal(dep[[1]]$version, "0.1.0")
   expect_equal(dep[[1]]$src$file, "bootbox")
-  expect_equal(dep[[1]]$stylesheet, "css/animate.min.css")
+  expect_equal(dep[[1]]$stylesheet, c("css/animate.min.css", "css/sbyBootbox.css"))
   expect_equal(dep[[1]]$script[[1]]$src[[1]][[1]], "js/bootbox.all.min.js")
   expect_equal(dep[[1]]$script[[2]]$src[[1]][[1]], "js/sbyBootbox.js")
 })
