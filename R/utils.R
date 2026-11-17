@@ -777,13 +777,30 @@ validate_color <- function(color, name = "color", allow_null = FALSE) {
 }
 
 # Normalise a CSS length supplied as a bare number or a string with units.
-normalize_css_length <- function(value) {
-  if (is.null(value) || length(value) != 1L || is.na(value)) return(value)
-  if (is.numeric(value)) return(paste0(format(value, scientific = FALSE, decimal.mark = ".", trim = TRUE), "px"))
-  if (!is.character(value)) return(value)
+normalize_css_length <- function(value, name = "length", strict = FALSE) {
+  if (is.null(value)) return(NULL)
+  invalid <- function() {
+    stop(sprintf("Invalid `%s`: expected a single finite CSS length (e.g. 40, '40px', '2.5em' or '50%%').", name), call. = FALSE)
+  }
+  if (length(value) != 1L || is.na(value)) invalid()
+  if (is.numeric(value) && !is.complex(value)) {
+    if (!is.finite(value)) invalid()
+    return(paste0(format(value, scientific = FALSE, decimal.mark = ".", trim = TRUE), "px"))
+  }
+  if (!is.character(value)) invalid()
   trimmed <- trimws(value)
-  if (grepl("^[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)$", trimmed)) {
+  if (grepl(css_number_regex, trimmed)) {
+    if (!is.finite(suppressWarnings(as.numeric(trimmed)))) invalid()
     return(paste0(trimmed, "px"))
+  }
+  # A trailing dot is not a CSS number, just as in colour expressions.
+  if (grepl("^[+-]?[0-9]+\\.(?:[eE][+-]?[0-9]+)?(?:[[:alpha:]]+|%)?$", trimmed)) invalid()
+  if (strict) {
+    number <- sub("\\$$", "", sub("^\\^", "", css_number_regex))
+    units <- "(?:px|em|rem|ex|rex|cap|rcap|ch|rch|ic|ric|lh|rlh|cm|mm|Q|in|pt|pc|(?:s|l|d)?v(?:w|h|i|b|min|max)|cq(?:w|h|i|b|min|max)|%)"
+    pattern <- paste0(number, units, "$")
+    if (!grepl(paste0("^", pattern), trimmed, ignore.case = TRUE) ||
+        !is.finite(suppressWarnings(as.numeric(sub(units, "", trimmed, ignore.case = TRUE))))) invalid()
   }
   trimmed
 }

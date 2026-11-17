@@ -22,7 +22,8 @@
 #'   color name, hexadecimal, or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()}
 #'   values. Names use R's \code{colors()} values; CSS colour names not in R are
 #'   also accepted.
-#' @param size Size of the spinner. Defaults to \code{"40px"}.
+#' @param size Size of the spinner as a CSS length. Bare numbers and unitless
+#'   numeric strings are interpreted as pixels. Defaults to \code{"40px"}.
 #'
 #' @section Functions:
 #' \itemize{
@@ -64,6 +65,7 @@ spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
   }
   validate_color(color, "color")
   color <- normalize_color(color)
+  size <- normalize_css_length(size, name = "size", strict = TRUE)
   id <- generate_id("spinkit")
   base <- switch(type,
                 "plane"       = spinkit_plane(color, size),

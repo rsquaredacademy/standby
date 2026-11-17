@@ -109,8 +109,8 @@ type-specific accent border and header colour. For
 }
 \value{
 \code{useAlertify()} returns an HTML dependency to include in the UI.
-  alertify_alert() and alertify_notify() sends a custom message to the Shiny session for its side effect
-  and has no meaningful return value.
+  alertify_alert() and alertify_notify() send a custom message to the Shiny session for its side effect
+  and have no meaningful return value.
 }
 \description{
 Pretty browser alerts and notifications.

@@ -6,6 +6,8 @@ fresh audit of that fix round.
 
 ## Colours and loaders
 
+* SpinKit normalizes numeric and unitless sizes to pixels for every type, including wander travel, and rejects invalid lengths (rx2 N01).
+* CSS length normalization rejects trailing decimal dots such as `"12."` instead of emitting invalid CSS (rx2 N02 / rx2h L01).
 * All four colour-taking constructors validate complete CSS colour expressions
   in R. Malformed separators, mixed legacy RGB units and trailing decimal
   points now give a clear error; named colours, hex 3/4/6/8, RGB/RGBA and
