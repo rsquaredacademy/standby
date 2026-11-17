@@ -26,7 +26,7 @@ See `NEWS.md` for the complete list.
 * no win-builder, R-hub or GitHub Actions run was performed for this source
 
 Browser-level regression tests use chromote with a local Chrome installation.
-The full local suite passed 1511 assertions, with 0 failures, 0 errors and
+The full local suite passed 1519 assertions, with 0 failures, 0 errors and
 0 skips; all 27 browser test blocks ran with Chrome available.
 They are skipped on CRAN (`skip_on_cran()`), and also skipped when chromote or
 Chrome is unavailable, so they do not affect the CRAN check.

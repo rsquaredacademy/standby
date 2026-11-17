@@ -16,7 +16,9 @@ test_that("fx2 M02: malformed CSS colours are rejected completely", {
 test_that("fx2 M05: SpinKit rejects invalid scalar types", {
   for (type in list("bogus", NA_character_, factor("wander"), NULL, character(),
                    c("plane", "wander"), 1, TRUE)) {
-    expect_error(spinkit(shiny::div(), type = type), "`type`")
+    value <- tryCatch(suppressWarnings(spinkit(shiny::div(), type = type)), error = identity)
+    expect_s3_class(value, "error")
+    if (inherits(value, "error")) expect_match(conditionMessage(value), "`type`")
   }
   for (type in c("plane", "chase", "bounce", "wave", "pulse", "flow", "swing",
                  "circle", "circle-fade", "grid", "fold", "wander")) {
@@ -40,7 +42,8 @@ test_that("fx2 M08: CSS numbers ignore OutDec", {
 
 test_that("fx2 L02: toast display modes require exact integers", {
   for (mode in c("0.9", "1.9", "2.9", "-0.9", "1.0", "1e0", "", "NA")) {
-    expect_error(toast(display_mode = mode, session = list()), "display_mode")
+    expect_error(toast(display_mode = mode,
+      session = list(sendCustomMessage = function(...) NULL)), "display_mode")
   }
   for (mode in list(0, 1, 2, "0", "1", "2", " 1 ")) {
     expect_no_error(fxb_payload(toast, display_mode = mode))

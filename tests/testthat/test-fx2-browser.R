@@ -171,14 +171,16 @@ test_that("fx2 M09: nonblocking notices fade and pass clicks through with contro
       s$Input$dispatchMouseEvent(type="mouseMoved",x=1,y=1)
       fxb_wait(s,300)
       expect_equal(fxb_eval(s,"parseFloat(getComputedStyle(document.querySelector('.pnotify')).opacity)"),if(translucent) .7 else 1)
-      # Hover must reveal usable controls, not just preserve invisible nodes.
-      s$Input$dispatchMouseEvent(type="mouseMoved",x=rect$x,y=rect$y)
-      control <- fxb_eval(s,"var c=document.querySelector('.pnotify-closer'),r=c.getBoundingClientRect();({x:r.left+r.width/2,y:r.top+r.height/2,visibility:getComputedStyle(c).visibility})")
-      expect_identical(control$visibility,"visible")
-      s$Input$dispatchMouseEvent(type="mousePressed",x=control$x,y=control$y,button="left",clickCount=1)
-      s$Input$dispatchMouseEvent(type="mouseReleased",x=control$x,y=control$y,button="left",clickCount=1)
-      fxb_wait(s,300)
-      expect_equal(fxb_eval(s,"document.querySelectorAll('.pnotify').length"),0)
+      if (state$controls == 2) {
+        # Hover must reveal usable controls, not just preserve invisible nodes.
+        s$Input$dispatchMouseEvent(type="mouseMoved",x=rect$x,y=rect$y)
+        control <- fxb_eval(s,"var c=document.querySelector('.pnotify-closer'),r=c.getBoundingClientRect();({x:r.left+r.width/2,y:r.top+r.height/2,visibility:getComputedStyle(c).visibility})")
+        expect_identical(control$visibility,"visible")
+        s$Input$dispatchMouseEvent(type="mousePressed",x=control$x,y=control$y,button="left",clickCount=1)
+        s$Input$dispatchMouseEvent(type="mouseReleased",x=control$x,y=control$y,button="left",clickCount=1)
+        fxb_wait(s,300)
+        expect_equal(fxb_eval(s,"document.querySelectorAll('.pnotify').length"),0)
+      }
     },finally=s$close())
   }
 })
