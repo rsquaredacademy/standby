@@ -33,10 +33,15 @@ Chrome is unavailable, so they do not affect the CRAN check.
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes apart from the CRAN incoming-feasibility
-maintainer-change NOTE, which is expected because the maintainer address was
+0 errors | 0 warnings | 1 NOTE: CRAN incoming-feasibility
+maintainer change, which is expected because the maintainer address was
 updated from `hebbali.aravind@gmail.com` to
 `aravindhebbali@rsquaredacademy.com`.
+
+The final clean-archive check included both manuals and vignette rebuilding.
+Check-mode tests: PASS 1142, FAIL 0, WARN 0, SKIP 68 (all On CRAN: 27 browser
+tests and 41 snapshots). Those browser tests all ran in the full local suite.
+Tarball MD5: aa62805cf774bfec91a9519a77ee6d98.
 
 ## Reverse dependencies
 
