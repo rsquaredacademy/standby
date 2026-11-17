@@ -112,7 +112,9 @@
 #' }
 #'
 #' @name toast
-#' @return None
+#' @return \code{useToast()} returns an HTML dependency to include in the UI.
+#'   toast() sends a custom message to the Shiny session for its side effect
+#'   and has no meaningful return value.
 #'
 #' @export
 #'
@@ -130,7 +132,7 @@ toast <- function(title = "Hey", message = NULL, type = NULL, theme = NULL, posi
 
   # display_mode: 0 queues, 1 replaces, 2 replaces an identical toast.
   if (is.character(display_mode) && length(display_mode) == 1L &&
-      !is.na(display_mode)) {
+      !is.na(display_mode) && grepl("^[012]$", trimws(display_mode))) {
     display_mode <- suppressWarnings(as.integer(trimws(display_mode)))
   }
   if (!is.numeric(display_mode) || length(display_mode) != 1L ||

@@ -37,7 +37,7 @@
 #' }
 #'
 #' @name spinners
-#' @return \code{useSpinners()} returns an HTML dependency to include in the UI;
+#' @return \code{useSpinners()} returns a Shiny tag list of HTML dependencies to include in the UI;
 #'   \code{spinners()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export

@@ -21,7 +21,7 @@ or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values. Names use R's
 names not in R (such as \code{"rebeccapurple"}) are also accepted.}
 }
 \value{
-\code{useSpinners()} returns an HTML dependency to include in the UI;
+\code{useSpinners()} returns a Shiny tag list of HTML dependencies to include in the UI;
   \code{spinners()} returns a Shiny tag list wrapping \code{uiOutput}.
 }
 \description{

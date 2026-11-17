@@ -75,12 +75,16 @@ this height, scrollbars will appear. Use \code{NULL} to remove this restriction.
 
 \item{translucent}{Logical; if \code{TRUE}, creates see through notice. Defaults to \code{FALSE}.}
 
-\item{non_blocking}{Logical; if \code{TRUE}, notice fades to show elements underneath. Defaults to \code{FALSE}.}
+\item{non_blocking}{Logical; if \code{TRUE}, the notice body passes pointer
+events to elements underneath and fades while the pointer is over it.
+Close and sticker controls remain interactive. Defaults to \code{FALSE}.}
 
 \item{session}{Shiny session object.}
 }
 \value{
-None
+\code{useNotify()} returns an HTML dependency to include in the UI.
+  notify() sends a custom message to the Shiny session for its side effect
+  and has no meaningful return value.
 }
 \description{
 Beautiful notifications and prompts.

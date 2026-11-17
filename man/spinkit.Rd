@@ -36,7 +36,7 @@ also accepted.}
 \item{size}{Size of the spinner. Defaults to \code{"40px"}.}
 }
 \value{
-\code{useSpinkit()} returns an HTML dependency to include in the UI;
+\code{useSpinkit()} returns a Shiny tag list of HTML dependencies to include in the UI;
   \code{spinkit()} returns a Shiny tag list wrapping \code{uiOutput}.
 }
 \description{

@@ -30,7 +30,9 @@ bootBox(
 \item \code{"small"}
 \item \code{"large"}
 \item \code{"extra-large"}
-}}
+}
+  With Shiny's default Bootstrap 3, extra-large uses a responsive width up to
+  1140 pixels on viewports at least 992 pixels wide.}
 
 \item{close_on_escape}{Logical; if \code{TRUE} (the default), allows the user to dismiss the dialog by hitting \code{ESC} key.}
 
@@ -53,7 +55,9 @@ Valid values are:
 \item{session}{Shiny session object.}
 }
 \value{
-None
+\code{useBootBox()} returns a Shiny tag list of HTML dependencies to include in the UI.
+  bootBox() sends a custom message to the Shiny session for its side effect
+  and has no meaningful return value.
 }
 \description{
 Bootstrap modals made easy.

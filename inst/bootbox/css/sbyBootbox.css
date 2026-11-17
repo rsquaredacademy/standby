@@ -1,0 +1,7 @@
+/* Only applied by the bridge when Bootstrap 3 lacks modal-xl. */
+@media (min-width: 992px) {
+  .bootbox .modal-dialog.sby-modal-xl {
+    width: calc(100% - 60px);
+    max-width: 1140px;
+  }
+}

@@ -20,7 +20,7 @@ or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values. Names use R's
 \code{colors()} values; CSS colour names not in R are also accepted.}
 }
 \value{
-\code{useThreeDots()} returns an HTML dependency to include in the UI;
+\code{useThreeDots()} returns a Shiny tag list of HTML dependencies to include in the UI;
   \code{threeDots()} returns a Shiny tag list wrapping \code{uiOutput}.
 }
 \description{

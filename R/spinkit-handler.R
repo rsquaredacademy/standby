@@ -51,13 +51,17 @@
 #' }
 #'
 #' @name spinkit
-#' @return \code{useSpinkit()} returns an HTML dependency to include in the UI;
+#' @return \code{useSpinkit()} returns a Shiny tag list of HTML dependencies to include in the UI;
 #'   \code{spinkit()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export
 #'
 spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
-
+  types <- c("plane", "chase", "bounce", "wave", "pulse", "flow", "swing",
+             "circle", "circle-fade", "grid", "fold", "wander")
+  if (!is.character(type) || length(type) != 1L || is.na(type) || !type %in% types) {
+    stop("`type` must be one of: ", paste(types, collapse = ", "), ".", call. = FALSE)
+  }
   validate_color(color, "color")
   color <- normalize_color(color)
   id <- generate_id("spinkit")
@@ -74,6 +78,9 @@ spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
                 "grid"        = spinkit_grid(color, size),
                 "fold"        = spinkit_fold(size),
                 "wander"      = spinkit_wander(color, size))
+  if (type == "wander" && !is.null(size)) {
+    base$attribs$style <- paste0(base$attribs$style, " --sk-size: ", size, ";")
+  }
 
   # Some types colour a pseudo-element in the stylesheet, so the rule has to be
   # scoped to this widget or the last widget wins for every instance.

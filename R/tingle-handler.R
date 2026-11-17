@@ -48,7 +48,9 @@
 #' }
 #'
 #' @name tingle
-#' @return None
+#' @return \code{useTingle()} returns an HTML dependency to include in the UI.
+#'   tingle() sends a custom message to the Shiny session for its side effect
+#'   and has no meaningful return value.
 #'
 #' @export
 #'

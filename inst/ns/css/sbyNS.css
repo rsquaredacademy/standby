@@ -1,0 +1,13 @@
+/* Semantic colours follow the effect styles and apply to every layout. */
+.ns-box.ns-type-notice { background: #97d2f1; color: #173b50; }
+.ns-box.ns-type-success { background: #dff0d8; color: #3c763d; }
+.ns-box.ns-type-warning { background: #fcf8e3; color: #8a6d3b; }
+.ns-box.ns-type-error { background: #f2dede; color: #a94442; }
+.ns-box.ns-type-notice .ns-close::before,
+.ns-box.ns-type-notice .ns-close::after,
+.ns-box.ns-type-success .ns-close::before,
+.ns-box.ns-type-success .ns-close::after,
+.ns-box.ns-type-warning .ns-close::before,
+.ns-box.ns-type-warning .ns-close::after,
+.ns-box.ns-type-error .ns-close::before,
+.ns-box.ns-type-error .ns-close::after { background: currentColor; }

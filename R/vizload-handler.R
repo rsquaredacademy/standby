@@ -53,7 +53,7 @@
 #' }
 #'
 #' @name vizLoad
-#' @return \code{useVizLoad()} returns an HTML dependency to include in the UI;
+#' @return \code{useVizLoad()} returns a Shiny tag list of HTML dependencies to include in the UI;
 #'   \code{vizLoad()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export

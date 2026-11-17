@@ -1,14 +1,21 @@
 /* iziToast */
 (function () {
   var queue = [];
-  var active = 0;
+  var active = new Set();
   var replacing = false;
 
   function showNow(message, method) {
     var options = Object.assign({}, message);
+    var userOnOpening = options.onOpening;
     var userOnClosed = options.onClosed;
+    options.onOpening = function (instance, element) {
+      active.add(element);
+      if (typeof userOnOpening === 'function') userOnOpening(instance, element);
+    };
     options.onClosed = function (instance, element, closedBy) {
-      active = Math.max(0, active - 1);
+      // iziToast can call a replacement's callback for the outgoing element.
+      // Account for actual live identities, once each, rather than callbacks.
+      if (!active.delete(element)) return;
       if (typeof userOnClosed === 'function') {
         userOnClosed(instance, element, closedBy);
       }
@@ -22,7 +29,6 @@
         options.displayMode === 1 || options.displayMode === '1') {
       delete options.displayMode;
     }
-    active += 1;
     if (typeof method === 'string' && typeof iziToast[method] === 'function') {
       iziToast[method](options);
     } else {
@@ -31,7 +37,7 @@
   }
 
   function drain() {
-    while (active === 0 && queue.length > 0) {
+    while (active.size === 0 && queue.length > 0) {
       var next = queue.shift();
       showNow(next.message, next.method);
     }
@@ -62,7 +68,7 @@
     //   2 - library behaviour: replace an identical toast only
     var mode = message.displayMode;
     if (mode === 0 || mode === '0' || mode === null || mode === undefined) {
-      if (active > 0) {
+      if (active.size > 0) {
         queue.push({ message: message, method: method });
       } else {
         showNow(message, method);

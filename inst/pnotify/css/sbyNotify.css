@@ -7,3 +7,11 @@
 .pnotify.translucent.pnotify-initial {
   opacity: 0.7;
 }
+
+/* Keep the body transparent to input while preserving explicit controls. */
+.pnotify.sby-nonblocking { pointer-events: none; }
+.pnotify.sby-nonblocking .pnotify-closer,
+.pnotify.sby-nonblocking .pnotify-sticker { pointer-events: auto; }
+.pnotify.sby-nonblocking.sby-nonblock-hover { opacity: 0.2; }
+.pnotify.sby-nonblocking.sby-nonblock-hover .pnotify-closer,
+.pnotify.sby-nonblocking.sby-nonblock-hover .pnotify-sticker { visibility: visible; }

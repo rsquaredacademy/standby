@@ -9,6 +9,8 @@
 #' \item \code{"warning"}
 #' \item \code{"error"}
 #' }
+#'   The notice, success, warning and error types have distinct background and
+#'   foreground colours in every layout.
 #' @param layout Notification layout. Defaults to \code{"growl"}. Other valid values are:
 #' \itemize{
 #' \item \code{"attached"}
@@ -67,7 +69,9 @@
 #' }
 #'
 #' @name notice
-#' @return None
+#' @return \code{useNS()} returns an HTML dependency to include in the UI.
+#'   notice() sends a custom message to the Shiny session for its side effect
+#'   and has no meaningful return value.
 #'
 #' @export
 #'

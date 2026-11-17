@@ -10,6 +10,8 @@
 #' \item \code{"large"}
 #' \item \code{"extra-large"}
 #' }
+#'   With Shiny's default Bootstrap 3, extra-large uses a responsive width up to
+#'   1140 pixels on viewports at least 992 pixels wide.
 #' @param close_on_escape Logical; if \code{TRUE} (the default), allows the user to dismiss the dialog by hitting \code{ESC} key.
 #' @param show Logical; if \code{TRUE} (the default), the dialog is shown immediately.
 #' @param backdrop Logical; if \code{TRUE}, the backdrop is displayed and clicking on it dismisses the dialog. Defaults to \code{NULL}.
@@ -55,7 +57,9 @@
 #' }
 #'
 #' @name bootBox
-#' @return None
+#' @return \code{useBootBox()} returns a Shiny tag list of HTML dependencies to include in the UI.
+#'   bootBox() sends a custom message to the Shiny session for its side effect
+#'   and has no meaningful return value.
 #'
 #' @export
 #'

@@ -35,7 +35,7 @@
 #' }
 #'
 #' @name threeDots
-#' @return \code{useThreeDots()} returns an HTML dependency to include in the UI;
+#' @return \code{useThreeDots()} returns a Shiny tag list of HTML dependencies to include in the UI;
 #'   \code{threeDots()} returns a Shiny tag list wrapping \code{uiOutput}.
 #'
 #' @export
@@ -52,7 +52,8 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
   # The bundled stylesheet draws some dots from box-shadow declarations that
   # read --primary-color, so the variable must be set on each widget too.
   dots_css <- paste0('#', id, ', #', id, ':before, #', id, ':after { --primary-color: ',
-                     color, '; color: ', color, '; background-color: ', color, ';}')
+                     color, '; --primary-color-faded: ', spinner_shade(color, 0.2),
+                     '; color: ', color, '; background-color: ', color, ';}')
 
   shiny::tagList(
     tags$head(
