@@ -1,96 +1,96 @@
 # standby 0.2.2
 
-## Bug Fixes
+Version 0.2.1 was not released; its changes are included in 0.2.2.
+Finding ids prefixed with `fx1` refer to the first audit; `aud2` refers to the
+fresh audit of that fix round.
 
-* Loaders now handle valid HTML output ids such as `a.b`, `a:b` and `1plot`.
-  The Shiny handlers use the event target instead of building a CSS selector
-  from the id, and MicroTip uses `document.getElementById()` (H01).
-* `vizLoad(type = "dots")` now honours `color`: the pulsating keyframes read
-  per-widget custom properties instead of hard-coded colours (H02).
-* `spinkit()` colours no longer bleed between widgets of the same type. The
-  pseudo-element rules are scoped to the widget id (H03).
-* `threeDots()` now sets `--primary-color` on each widget, so animations drawn
-  with `box-shadow` use the requested colour (H04).
-* Colour names are normalised to their R colour values before being emitted
-  (`"green"` is `#00FF00`, `"gray50"` is `#7F7F7F`), so the main colour and the
-  derived shades share one hue and R-only names are no longer silently
-  ignored by the browser (H05).
-* The `color` validator accepts the documented CSS colour grammar again:
-  CSS-only keywords (`rebeccapurple`), signed/negative hues, hue units and
-  modern space/slash `rgb()`/`hsl()` syntax are accepted, while stylesheet and
-  HTML delimiters are still rejected (H06).
-* Spinner shades preserve the requested alpha, so a fully transparent colour
-  stays transparent and `rgba(..., 0.5)` produces shades at half strength
-  (H07).
-* Spinner shade channels are rounded half-up like CSS, so `rgb(30%,0%,0%)`
-  derives shades from `77` rather than `76` (H08).
-* `notify()` no longer renders the literal text `null` for its documented
-  default `text = NULL`, or for `title = NULL` (H09).
-* `notify()` renders Shiny tags supplied as `title`/`text` to HTML and marks
-  only those as trusted, instead of displaying `[object Object]` (H10).
-* `notify(delay = "infinity")` (and `delay = Inf`) keeps the notice open until
-  it is closed manually, as documented (H11).
-* `notify(translucent = TRUE)` now has a defined see-through appearance (H12).
-* `microTip()` removes `data-microtip-size` when `size` is `NULL`/`"fit"`, so
-  updating a tooltip back to the default size no longer keeps the old size
-  (H13).
-* `bootBox(close_on_escape = FALSE)` keeps the dialog open when Escape is
-  pressed. The bridge uses `bootbox.dialog()` with an explicit OK button
-  instead of `bootbox.alert()`, which overwrote the Escape policy (H14).
-* `toast()` cover images are visible by default: `image_width` defaults to the
-  documented `"50px"` and numeric or unit-bearing widths are handled
-  consistently (H15).
-* Toast title/message font sizes and line heights honour their own values,
-  including unit-bearing input and an unset `title_size` (H16).
-* `toast(display_mode = ...)` implements the documented behaviour: `0` waits
-  for the current toast to close, `1` replaces the displayed toast(s), and the
-  library's replace-an-identical-toast mode is now documented as `2` (H17).
-* `previewSpinners("vizload")` renders the documented vizload preview instead
-  of an empty container; both preview helpers validate their argument (H18).
-* Loading the CSS Loaders dependency no longer hides Single Element CSS
-  Spinners: CSS Loaders' base `.loader` rules are scoped to its own widget
-  (H19).
-* `alertify_alert(type = ...)` now has a defined effect: the dialog gets a
-  type class and a type-specific accent border and header colour (M04).
+## Colours and loaders
 
-## Documentation
+* All four colour-taking constructors validate complete CSS colour expressions
+  in R. Malformed separators, mixed legacy RGB units and trailing decimal
+  points now give a clear error; named colours, hex 3/4/6/8, RGB/RGBA and
+  HSL/HSLA, including modern syntax, remain supported (aud2 M02; fx1 H06, H20).
+* Colour names follow R's `colors()` values, with CSS-only names also accepted.
+  Main colours and shades agree; shade alpha is multiplied by the input alpha,
+  and channels round half-up like CSS (fx1 H05, H07, H08).
+* `threeDots(type = "flashing")` uses an instance-specific faded colour in both
+  keyframe definitions, preserving hue and alpha throughout the animation,
+  including fully transparent inputs (aud2 H01). Its other shadow animations
+  also use the requested colour (fx1 H04).
+* `vizLoad(type = "dots")` animates in the requested colour (fx1 H02). Its dark
+  phase now clamps valid out-of-range CSS channels before darkening them and
+  preserves alpha (aud2 M03).
+* `spinkit(type = "wander")` scales cube travel with the widget size, including
+  relative CSS units (aud2 M04). Unsupported, missing and factor types now give
+  a clear error instead of silently selecting or omitting an animation (aud2 M05).
+  Pseudo-element colours remain scoped per widget (fx1 H03).
+* `spinners()` and `vizLoad()` validate supported types and scope generated CSS
+  per instance. `vizLoad()` validates supported type/size combinations and
+  centres small and tiny sizes using `lv-mid`.
+* `threeDots()` and `loaders()` validate animation types and generate unique
+  widget ids. Output handlers work with literal ids such as `a.b`, `a:b` and
+  `1plot` (fx1 H01). CSS Loaders' base rules no longer hide Single Element CSS
+  Spinners (fx1 H19).
+* `previewSpinners("vizload")` displays eight bars; preview helpers validate
+  choices and refer to standby rather than buzz (fx1 H18, L02).
 
-* Colour arguments document that names follow R's `colors()`, and that CSS
-  colour names are also accepted.
-* `use*()` helpers and loader constructors document their return values
-  instead of `None` (L03).
-* Preview messages and the vignette refer to standby rather than buzz (L02).
-* Removed the unavailable tinyverse status badge from the README (L01).
+## Alerts, modals and tooltips
 
-## Internal
+* Reused `alertify_alert()` dialogs replace previous semantic type classes, so
+  error followed by success or warning has the correct accent (aud2 M01;
+  fx1 M04). The bridge forwards maximizable, resizable and label settings;
+  documented defaults match the arguments.
+* `bootBox(close_on_escape = FALSE)` keeps the dialog open on Escape (fx1 H14).
+  Extra-large dialogs have a responsive Bootstrap 3 fallback up to 1140 pixels,
+  so the default Shiny framework no longer makes them smaller than large
+  dialogs (aud2 L01). NULL animation classes are omitted.
+* `tingle()` destroys each closed modal and removes its document/window
+  listeners, including footer-button dialogs (aud2 M10).
+* `microTip()` handles literal ids, ignores missing elements and removes the
+  size attribute on reset to NULL or fit (fx1 H01, H13). A stray console log
+  was removed.
+* `notice()` defines distinct foreground/background colours for notice,
+  success, warning and error across every effect/layout (aud2 M11).
 
-* Maintainer email updated to `aravindhebbali@rsquaredacademy.com` (M01).
-* `testthat` minimum raised to 3.1.5, matching the expectations used by the
-  tests (M03).
-* `cran-comments.md` describes this release and its check results (M02).
+## PNotify notifications
 
-# standby 0.2.1
+* `notify(non_blocking = TRUE)` now passes pointer events through its body and
+  fades while the pointer is over it, with close/sticker controls still usable
+  according to their arguments (aud2 M09).
+* `notify()` handles NULL title/text without displaying null and renders Shiny
+  tags as trusted HTML while escaping ordinary strings (fx1 H09, H10).
+  HTML dependencies attached to those tags are not installed.
+* Infinite delays keep notices open, and translucent notices have a defined
+  opacity of 0.7 (fx1 H11, H12). Documented title/text defaults match arguments.
 
-## Bug Fixes
+## Toasts
 
-* Validate `color` in `threeDots()`, `spinkit()`, `spinners()`, and `vizLoad()` to prevent HTML/CSS injection.
-* Validate `type` in `spinners()` against supported types `1` to `8`, giving a clear error naming the allowed values.
-* Accept `rgb()`/`rgba()`/`hsl()`/`hsla()` colours for `spinners()` types `5` and `8`, including when generating shade colours.
-* Accept valid `rgb()`/`rgba()`/`hsl()`/`hsla()` colours with a leading-dot alpha value (for example `rgba(0,0,0,.5)`).
-* Validate `type` in `vizLoad()` against documented supported types.
-* Scope generated CSS to individual widget instances in `spinners()` and `vizLoad()` to prevent color bleeding across loaders of the same type.
-* Correct documentation for `alertify_alert()` defaults (`auto_reset`, `maximizable`, `modal`, `movable`, `move_bounded`, and `overflow`) to match function behavior.
-* Fix broken alerts and notifications example in `README`.
-* Remove stray `console.log()` statement in MicroTip JavaScript handler.
-* Generate unique IDs per call in `threeDots()` and `loaders()`, and scope `threeDots()` CSS to its own ID to avoid collisions across multiple instances and within Shiny modules.
-* Validate animation `type` in `threeDots()` and `loaders()` using `match.arg()`.
-* Validate `size` per type in `vizLoad()` against supported combinations and document supported sizes.
-* Replace the `lvl-5` offset class with `lv-mid` centering for `small` and `tiny` sizes in `vizLoad()`.
-* Apply `color` to `vizLoad(type = "dots")` loaders.
-* Fix AlertifyJS JavaScript bridge property names for `maximizable` and `resizable`, and wire the `label` setting.
-* Include `type` in the custom message payload sent by `toast()`.
-* Avoid adding animation classes in `bootBox()` when `class = NULL`.
-* Correct documented defaults for `toast()` `position` and `notify()` `title` and `text` to match function arguments.
+* Relative image widths reserve the actual used cover width plus 10 pixels in
+  either direction and update when the viewport or cover size changes
+  (aud2 M06). Default, numeric and pixel widths remain supported (fx1 H15).
+* Repeated closing, stale Escape listeners and mixed display modes cannot
+  decrement active state twice or display queued toasts early. The bridge
+  tracks live element identities; closing removes listeners/observers
+  (aud2 M07).
+* Numeric CSS sizes always use a dot decimal separator regardless of R's
+  `OutDec` option, including fractional image widths (aud2 M08). Title/message
+  font sizes and line heights honour their own values (fx1 H16).
+* Display mode strings must be exact 0, 1 or 2; fractional strings are rejected
+  before coercion (aud2 L02). Mode 0 queues, mode 1 replaces displayed toasts,
+  and mode 2 replaces an identical toast (fx1 H17). The type is forwarded and
+  the documented position default matches the argument.
+
+## Documentation and release preparation
+
+* All shared help topics distinguish dependency/tag-list returns from message
+  sender side effects; `loaders()` correctly documents its tag return
+  (aud2 L03; completes fx1 L03).
+* README alert examples are corrected and the broken tinyverse badge removed
+  (fx1 L01). Colour-name semantics are documented.
+* The maintainer email is `aravindhebbali@rsquaredacademy.com`, testthat requires
+  at least 3.1.5, and jsonlite/chromote are suggested for browser regressions
+  (fx1 M01, M03). CRAN comments describe the 0.2.2 release and local checks
+  (fx1 M02).
 
 # standby 0.2.0
 
