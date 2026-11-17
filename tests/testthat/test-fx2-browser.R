@@ -90,8 +90,13 @@ test_that("fx2 M06: relative cover widths reserve used space and resize", {
     fxb_wait(s, 100)
     for (viewport in c(992, 1200)) {
       s$Emulation$setDeviceMetricsOverride(width=viewport,height=800,deviceScaleFactor=1,mobile=FALSE)
-      fxb_wait(s, 80)
-      state <- fxb_eval(s, "var t=Array.from(document.querySelectorAll('.iziToast')).pop(),b=t.querySelector('.iziToast-body'),c=t.querySelector('.iziToast-cover');({width:c.getBoundingClientRect().width,margin:parseFloat(getComputedStyle(b)[t.dir==='rtl'?'marginRight':'marginLeft'])})")
+      # The margin follows a ResizeObserver, which can lag on slow runners
+      # (macOS CI): poll for up to 2 s instead of reading once after 80 ms.
+      for (i in seq_len(25)) {
+        fxb_wait(s, 80)
+        state <- fxb_eval(s, "var t=Array.from(document.querySelectorAll('.iziToast')).pop(),b=t.querySelector('.iziToast-body'),c=t.querySelector('.iziToast-cover');({width:c.getBoundingClientRect().width,margin:parseFloat(getComputedStyle(b)[t.dir==='rtl'?'marginRight':'marginLeft'])})")
+        if (abs(state$margin - (state$width + 10)) < .05) break
+      }
       expect_equal(state$margin, state$width+10, tolerance=.05)
     }
   }
