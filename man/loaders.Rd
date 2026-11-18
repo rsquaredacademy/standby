@@ -28,7 +28,8 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 \item music
 }}
 
-\item{style}{Custom styling for the loaders.}
+\item{style}{Custom styling for the loaders: \code{"half"}, \code{"inverse"},
+\code{"rounded"}, or \code{"blink"}. Use \code{NULL} for no custom style.}
 
 \item{text}{Custom text. Available only for the following types:
 \itemize{

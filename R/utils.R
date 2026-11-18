@@ -805,6 +805,17 @@ normalize_css_length <- function(value, name = "length", strict = FALSE) {
   trimmed
 }
 
+# Validate exact choices without partial matching or vector condition errors.
+validate_choice <- function(value, choices, name, null = FALSE) {
+  if (null && is.null(value)) return(invisible(value))
+  if (length(value) != 1L || is.na(value) ||
+      !is.atomic(value) || !value %in% choices) {
+    stop("`", name, "` must be one of: ", paste(choices, collapse = ", "),
+         if (null) ", NULL" else "", ".", call. = FALSE)
+  }
+  invisible(value)
+}
+
 # The documented "never close" delay sentinel. PNotify compares against the
 # JavaScript numeric Infinity, so it can never be forwarded as a string.
 is_infinite_delay <- function(delay) {
