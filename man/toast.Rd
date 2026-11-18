@@ -57,6 +57,7 @@ toast(
 \item \code{"success"}
 \item \code{"warning"}
 \item \code{"error"}
+\item \code{"question"}
 }}
 
 \item{theme}{Theme of toast. Choose between \code{"light"} or \code{"dark"}.}

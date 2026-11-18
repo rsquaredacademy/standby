@@ -10,6 +10,7 @@
 #' \item \code{"success"}
 #' \item \code{"warning"}
 #' \item \code{"error"}
+#' \item \code{"question"}
 #' }
 #' @param theme Theme of toast. Choose between \code{"light"} or \code{"dark"}.
 #' @param position Where toast will be shown. Defaults to \code{"center"}. Valid values are:
@@ -133,6 +134,23 @@ toast <- function(title = "Hey", message = NULL, type = NULL, theme = NULL, posi
   # iziToast reads .length on both fields, including in a title-only toast.
   if (is.null(title)) title <- ""
   if (is.null(message)) message <- ""
+
+  validate_choice(type, c("info", "success", "warning", "error", "question"), "type", null = TRUE)
+  validate_choice(theme, c("light", "dark", ""), "theme", null = TRUE)
+  validate_choice(position, c("bottomRight", "bottomLeft", "topRight", "topLeft",
+    "topCenter", "bottomCenter", "center"), "position")
+  validate_choice(layout, c(1, 2), "layout")
+  layout <- as.integer(layout)
+  duration <- normalize_delay(duration, "duration", false = TRUE, null = TRUE)
+  validate_choice(transition_in, c("bounceInLeft", "bounceInRight", "bounceInUp",
+    "bounceInDown", "fadeIn", "fadeInDown", "fadeInUp", "fadeInLeft",
+    "fadeInRight", "flipInX", ""), "transition_in", null = TRUE)
+  validate_choice(transition_out, c("fadeOut", "fadeOutDown", "fadeOutUp",
+    "fadeOutLeft", "fadeOutRight", "flipOutX", ""), "transition_out", null = TRUE)
+  validate_flags(list(balloon = balloon, close = close, close_on_escape = close_on_escape,
+    close_on_click = close_on_click, rtl = rtl, drag_to_close = drag_to_close,
+    pause_on_hover = pause_on_hover, reset_on_hover = reset_on_hover,
+    overlay = overlay, overlay_close = overlay_close, animate_inside = animate_inside))
 
   # display_mode: 0 queues, 1 replaces, 2 replaces an identical toast.
   if (is.character(display_mode) && length(display_mode) == 1L &&

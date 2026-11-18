@@ -58,6 +58,11 @@ tingle <- function(content = "Hello", close_button = FALSE, button_label = "Clos
                    button_type = "default", button_position = "right",
                    session = getDefaultReactiveDomain()) {
 
+  validate_flag(close_button, "close_button")
+  validate_choice(button_type, c("default", "primary", "danger"), "button_type")
+  validate_choice(button_position, c("right", "left"), "button_position")
+  if (is.null(content)) content <- ""
+
   notice = list(
     content = content
   )

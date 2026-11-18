@@ -78,6 +78,11 @@
 notice <- function(message = "Hello", type = "notice", layout = "growl",
                    effect = "jelly", session = getDefaultReactiveDomain()) {
 
+  validate_choice(type, c("notice", "success", "warning", "error"), "type")
+  validate_choice(layout, c("growl", "attached", "bar"), "layout")
+  validate_choice(effect, c("scale", "jelly", "slide", "genie", "flip",
+    "bouncyflip", "slidetop", "exploader"), "effect")
+
   notice = list(
     message = message,
     layout  = layout,

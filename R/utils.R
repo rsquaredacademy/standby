@@ -808,12 +808,41 @@ normalize_css_length <- function(value, name = "length", strict = FALSE) {
 # Validate exact choices without partial matching or vector condition errors.
 validate_choice <- function(value, choices, name, null = FALSE) {
   if (null && is.null(value)) return(invisible(value))
-  if (length(value) != 1L || is.na(value) ||
-      !is.atomic(value) || !value %in% choices) {
-    stop("`", name, "` must be one of: ", paste(choices, collapse = ", "),
+  if (!(is.character(value) || is.numeric(value)) || is.factor(value) || is.complex(value) ||
+      length(value) != 1L || is.na(value) || !value %in% choices) {
+    labels <- as.character(choices)
+    labels[!nzchar(labels)] <- '""'
+    stop("`", name, "` must be one of: ", paste(labels, collapse = ", "),
          if (null) ", NULL" else "", ".", call. = FALSE)
   }
   invisible(value)
+}
+
+validate_flag <- function(value, name, null = FALSE) {
+  if (null && is.null(value)) return(invisible(value))
+  if (!is.logical(value) || length(value) != 1L || is.na(value)) {
+    stop("`", name, "` must be TRUE or FALSE", if (null) ", or NULL" else "",
+         ".", call. = FALSE)
+  }
+  invisible(value)
+}
+
+validate_flags <- function(values) {
+  for (name in names(values)) validate_flag(values[[name]], name)
+}
+
+normalize_delay <- function(value, name, false = FALSE, null = FALSE,
+                            negative = FALSE) {
+  if ((false && identical(value, FALSE)) || (null && is.null(value))) return(value)
+  valid <- (is.numeric(value) && !is.complex(value)) || is.character(value)
+  number <- if (valid && length(value) == 1L) suppressWarnings(as.numeric(value)) else NA_real_
+  if (length(number) != 1L || !is.finite(number) || (!negative && number < 0)) {
+    stop("`", name, "` must be a single finite ",
+         if (!negative) "non-negative " else "", "number",
+         if (false) ", or FALSE" else "", if (null) ", or NULL" else "",
+         ".", call. = FALSE)
+  }
+  number
 }
 
 # The documented "never close" delay sentinel. PNotify compares against the

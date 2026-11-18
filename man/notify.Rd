@@ -42,7 +42,8 @@ Tag objects are rendered to HTML; HTML dependencies attached to them are not ins
 \item \code{"error"}
 }}
 
-\item{icon}{Logical; if \code{TRUE} (the default), default icon is displayed. No icon is displayed if set to \code{FALSE}.}
+\item{icon}{Logical; if \code{TRUE} (the default), default icon is displayed. No icon is displayed if set to \code{FALSE}.
+A string specifying custom icon classes is also accepted.}
 
 \item{delay}{Delay in milliseconds before the notice is removed. If set to \code{"infinity"} (or \code{Inf}), the notice will not close.}
 
@@ -66,12 +67,12 @@ are supported out of the box.}
 \item \code{"fast"}: 100ms
 }}
 
-\item{width}{Width of the notice. Default is \code{"360px"}.}
+\item{width}{Width of the notice. Default is \code{"360px"}. Bare numbers are interpreted as pixels.}
 
-\item{min_height}{Minimum height of the notice. Default is \code{"16px"}. It will expand to fit the content.}
+\item{min_height}{Minimum height of the notice. Default is \code{"16px"}. It will expand to fit the content. Bare numbers are interpreted as pixels.}
 
 \item{max_text_height}{Maximum height of the text container. Default is \code{"200px"}. If the text goes beyond
-this height, scrollbars will appear. Use \code{NULL} to remove this restriction.}
+this height, scrollbars will appear. Use \code{NULL} to remove this restriction. Bare numbers are interpreted as pixels.}
 
 \item{translucent}{Logical; if \code{TRUE}, creates see through notice. Defaults to \code{FALSE}.}
 

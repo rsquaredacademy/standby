@@ -12,6 +12,8 @@
 #' }
 #'   With Shiny's default Bootstrap 3, extra-large uses a responsive width up to
 #'   1140 pixels on viewports at least 992 pixels wide.
+#'   The aliases \code{"sm"}, \code{"lg"}, and \code{"xl"} are also accepted;
+#'   \code{NULL} or \code{""} uses the standard modal size.
 #' @param close_on_escape Logical; if \code{TRUE} (the default), allows the user to dismiss the dialog by hitting \code{ESC} key.
 #' @param show Logical; if \code{TRUE} (the default), the dialog is shown immediately.
 #' @param backdrop Logical; if \code{TRUE}, the backdrop is displayed and clicking on it dismisses the dialog. Defaults to \code{NULL}.
@@ -21,6 +23,7 @@
 #' \item \code{TRUE}: The backdrop is displayed, and clicking on it dismisses the dialog.
 #' \item \code{FALSE}: The backdrop is not displayed.
 #' }
+#'   The Bootbox value \code{"static"} is also accepted and behaves like \code{NULL}.
 #' @param close_button Logical; if \code{TRUE} (the default), a close button is displayed.
 #' @param animate Logical; if \code{TRUE} (the default), animates the dialog in and out.
 #' @param class Custom CSS class (using Animate.css).
@@ -67,6 +70,27 @@ bootBox <- function(title = "Your title", message = "Your message here...", size
                     close_on_escape = TRUE, show = TRUE, backdrop = NULL, close_button = TRUE,
                     animate = TRUE, class = NULL,
                     session = getDefaultReactiveDomain()) {
+
+  validate_choice(size, c("small", "sm", "large", "lg", "extra-large", "xl", ""), "size", null = TRUE)
+  if (!is.null(size) && size %in% c("sm", "lg", "xl")) {
+    size <- c(sm = "small", lg = "large", xl = "extra-large")[[size]]
+  }
+  validate_flags(list(close_on_escape = close_on_escape, show = show,
+    close_button = close_button, animate = animate))
+  if (is.character(backdrop) && length(backdrop) == 1L &&
+      !is.na(backdrop) && tolower(backdrop) == "static") {
+    backdrop <- NULL
+  } else {
+    if (!is.null(backdrop) && (!is.logical(backdrop) ||
+        length(backdrop) != 1L || is.na(backdrop))) {
+      stop('`backdrop` must be TRUE or FALSE, NULL, or "static".', call. = FALSE)
+    }
+  }
+  if (is.null(message) || length(message) == 0L ||
+      (is.atomic(message) && (length(message) != 1L || is.na(message) ||
+        identical(message, FALSE) || identical(message, 0) || identical(as.character(message), "")))) {
+    stop("`message` must be non-empty text or HTML.", call. = FALSE)
+  }
 
   notice = list(
     title       = title,

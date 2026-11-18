@@ -126,6 +126,14 @@ alertify_alert <- function(title = "Alert Title", message = "Alert Message",
                            resizeable = FALSE, start_maximized = FALSE,
                            session = getDefaultReactiveDomain()) {
 
+  validate_choice(type, c("success", "error", "warning", "message"), "type")
+  validate_choice(transition, c("pulse", "slide", "zoom", "fade", "flipx", "flipy"), "transition")
+  validate_flags(list(transition_off = transition_off, closable = closable,
+    auto_reset = auto_reset, frameless = frameless, maximizable = maximizable,
+    modal = modal, movable = movable, move_bounded = move_bounded,
+    overflow = overflow, padding = padding, pinnable = pinnable,
+    resizeable = resizeable, start_maximized = start_maximized))
+
   notice = list(
     title          = title,
     message        = message,
@@ -159,6 +167,12 @@ alertify_alert <- function(title = "Alert Title", message = "Alert Message",
 alertify_notify <- function(message = "Alert Message", type = "success",
                             delay = 5, position = "bottom-right",
                             session = getDefaultReactiveDomain()) {
+
+  validate_choice(type, c("success", "error", "warning", "message"), "type")
+  validate_choice(position, c("bottom-right", "bottom-left", "bottom-center",
+    "top-right", "top-left", "top-center"), "position")
+  # Alertify deliberately keeps notifications open for non-positive delays.
+  delay <- normalize_delay(delay, "delay", negative = TRUE)
 
   notice = list(
     message  = message,

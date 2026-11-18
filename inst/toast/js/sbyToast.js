@@ -94,6 +94,9 @@
       case 'error':
         display(message, 'error');
         break;
+      case 'question':
+        display(message, 'question');
+        break;
       default:
         display(message, 'show');
     }
