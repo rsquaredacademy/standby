@@ -280,3 +280,202 @@ branch switch, other worktree access, or subagent delegation was used.
 HTML escaping remains the caller's responsibility for the six documented H2
 senders, as explicitly requested for this patch release. Applications that
 intentionally pass HTML retain that behavior.
+
+
+## Fix round 5
+
+Date: 2026-11-18. Baseline: **166da1819f8a6c675379498fe131bb8b8f73486b**.
+Fix commit: **0545568998e83ad01830bc9e33900dbaa228383b**.
+Version remains **0.2.2**. The entire supplied `AUDIT-standby-022-rx4.md`
+was read. Both root audit files remain untracked and are excluded from the
+validation copies and commits. Work stayed on `task/standby-fx4` in the
+requested worktree. No push, gh/GitHub access, branch switch, other worktree
+access, or subagent delegation was used.
+
+### Findings and regression evidence
+
+The new tests are `tests/testthat/test-fx5-regressions.R` and
+`tests/testthat/test-fx5-browser.R`. Every requested finding has a test that
+fails on clean 166da18 and passes with the fix. Existing fx4 choice/delay tests
+were updated to reflect the restored supported options, retaining their
+invalid-value checks (including negative infinity).
+
+| Finding | Status | Before on 166da18 | After / test |
+| --- | --- | --- | --- |
+| R1: infinite toast duration | **FIXED** | `toast(duration = Inf)` raises a finite-number error. | Infinite delay is mapped to `FALSE` before normalization; Shiny JSON contains `"timeout":false`. Tests cover named Inf and the shared `"infinity"`/`"infinite"` sentinels. A real Chrome test waits for the toast to open and checks the library's timeout setting and absence of a close timer. Roxygen/Rd and NEWS document never-close values. |
+| R2: infinite/NULL Alertify delay | **FIXED** | Both `delay = Inf` and `delay = NULL` raise finite-number errors. | Both map to numeric `0` before normalization; negative finite delays remain supported. Payload tests cover NULL, Inf, named Inf and both string sentinels. Chrome checks each real Alertify notification's delay is zero, its close timer is absent, and it rendered. Help and NEWS document these values. |
+| R3: custom toast themes | **FIXED** | `theme = "mytheme"` raises an allowlist error. | Any one non-NA string without whitespace, control characters or quotes is accepted, including custom class suffixes and the existing empty/default values. Tests reject ASCII/Unicode whitespace, both quotes and attribute-breakout examples. Named theme inputs are unnamed. Chrome verifies `iziToast-theme-mytheme`. |
+| R3: layout 3 and entrance animations | **FIXED** | Layout 3 and `revealIn` / `slideIn` raise allowlist errors. | Numeric/integer/string 3 become integer 3; both transitions are accepted. Separate tests fail independently on the baseline. Chrome verifies `iziToast-layout3`, its computed 2px border radius, and the exact computed `iziT-revealIn` / `iziT-slideIn` animation names. All are documented. |
+| N2: integer/named numeric zero Bootbox messages | **FIXED** | `0` errors, but `0L` and named numeric zero reach JS. | A numeric equality check catches every numeric zero, including integer and named values. Tests retain string `"0"` and positive integer messages. |
+| N3: named validated values | **FIXED** | Named choices and flags are returned with names; named FALSE duration errors; `notice(layout = c(growl = "growl"))` becomes a JSON object. | All scalar validators return unnamed values, and every caller assigns the returned value. Per-argument flag validation replaces the side-effect-only `validate_flags()` helper. CSS length normalization also removes names; icon/backdrop and atomic Bootbox content discard names before use. Direct helper tests and actual Shiny JSON comparisons cover all eight senders, every logical sender argument, custom icons, backdrop and the audit's named layout. Colour validators' four constructor callers also consume the result. |
+| M2 rest: missing vizLoad label flag | **FIXED** | `add_label = NA` gives `missing value where TRUE/FALSE needed`. | Scalar logical validation gives `` `add_label` must be TRUE or FALSE. `` Tests cover NA, NULL, empty/vector logicals, strings and both valid flags. |
+| M-A: omitted behaviour changes in NEWS | **FIXED** | Twelve new required release-note assertions fail. | NEWS lists the eight senders and every newly validated argument; per-layout NULL notice defaults; question toast; Bootbox aliases/static backdrop; numeric PNotify dimensions; loader styles; strictly positive SpinKit sizes and rejection of NULL; restored never-close handling; custom toast styles; named scalar handling; zero Bootbox messages; vizLoad labels; NULL Tingle content and NULL toast fields. A release-note regression test and generated-help checks pass. |
+| N1: NULL SpinKit size | **Documented, intentionally retained** | NULL is rejected by fx4's positive-size requirement. | Rejection remains as explicitly permitted/requested. NEWS now says NULL, zero and negative sizes are rejected and the default is still `"40px"`. |
+
+The shared infinity predicate also excludes complex values before recognizing
+numeric sentinels. A control test confirms complex infinity gives the named
+finite-number error for all three notification senders; it already passed on
+the baseline and is not counted as a newly failing regression.
+
+### Compatibility re-check and complete allowed sets
+
+I re-read all R validation sites, the pre-fx4 source/help at `46a430b`, and the
+bundled bridges/libraries/styles. This review covers supported library options;
+arbitrary unknown values that merely fall through to a default, produce an
+unstyled class, or rely on JavaScript truthiness are not additional supported
+choices. There were no further supported option-set regressions after R1-R3.
+The explicit SpinKit NULL/zero/negative rejection remains the requested exception.
+Existing positive-input tests exercise every finite choice and every logical
+flag; fx5 adds the missing library-supported toast options and named-input checks.
+
+| Function / validated argument | Allowed values after fx5; bundled evidence |
+| --- | --- |
+| `alertify_alert(type)`, `alertify_notify(type)` | `success`, `error`, `warning`, `message`; bridge switch/type classes. |
+| `alertify_alert(transition)` | `pulse`, `slide`, `zoom`, `fade`, `flipx`, `flipy`; `.ajs-*` incoming/outgoing animation selectors in `alertify.min.css`. |
+| `alertify_alert()` flags | `transition_off`, `closable`, `auto_reset`, `frameless`, `maximizable`, `modal`, `movable`, `move_bounded`, `overflow`, `padding`, `pinnable`, `resizeable`, `start_maximized`: each one non-NA `TRUE` or `FALSE`. |
+| `alertify_notify(position)` | `bottom-right`, `bottom-left`, `bottom-center`, `top-right`, `top-left`, `top-center`; notifier's top/bottom and left/right/center positioning. |
+| `alertify_notify(delay)` | Any finite real number, including negative and zero, or a numeric string; NULL, positive Inf, and case-insensitive/trimmed `infinity` / `infinite` map to 0. Bundled `delay(a)` coerces `+a` and arms a timer only for values greater than zero. |
+| `bootBox(size)` | `small` / `sm`, `large` / `lg`, `extra-large` / `xl`, empty string, NULL. Aliases normalize to long names, including the Bootstrap 3 extra-large fallback. Bundled Bootbox explicitly switches over these aliases. |
+| `bootBox(backdrop)` | TRUE, FALSE, NULL, or case-insensitive `static`; static maps to NULL, which the bridge maps to Bootstrap's static backdrop. |
+| `bootBox()` flags / message | `close_on_escape`, `show`, `close_button`, `animate`: scalar non-NA logical. Message: nonempty scalar atomic content or HTML/tag content; NULL, length-zero/vector atomic input, NA, FALSE and every numeric zero are rejected before Bootbox's `if (!r.message)` guard. String `"0"` is retained. |
+| `tingle(close_button)` | One non-NA TRUE/FALSE. |
+| `tingle(button_type / button_position)` | `default`, `primary`, `danger` / `right`, `left`; all corresponding `tingle-btn--*` CSS selectors exist. |
+| `notify(type)` | `notice`, `info`, `success`, `error`; all four bridge dispatches exist. |
+| `notify(animation / animate_speed)` | `none`, `fade` / `slow`, `normal`, `fast`. PNotify core tests for fade; only the three `pnotify-fade-*` speeds are styled. No Animate module is bundled. |
+| `notify(icon)` | One non-NA logical or string (custom icon classes, including empty string). |
+| `notify()` flags | `hide`, `sticker`, `closer`, `shadow`, `mouse_reset`, `translucent`, `non_blocking`: one non-NA TRUE/FALSE each. |
+| `notify(delay)` | Finite non-negative real number/numeric string; positive Inf or case-insensitive/trimmed `infinity` / `infinite` disables hiding. The library's never-close sentinel is numeric Infinity; R preserves that behaviour by setting hide to FALSE. |
+| `notify(width / min_height / max_text_height)` | NULL or one non-NA CSS string, including `auto`, `calc(...)`, `var(...)` and reset/empty values; finite bare numbers/numeric strings become pixel strings. Trailing-decimal-dot forms are rejected. PNotify assigns dimensions only for strings. |
+| `toast(type)` | `info`, `success`, `warning`, `error`, `question`, NULL; all five bundled methods exist and the bridge dispatches them. |
+| `toast(theme)` | NULL, or any one non-NA string without whitespace/control characters/single or double quotes, including empty string. iziToast uses `classList.add('iziToast-theme-' + theme)`, supporting custom themes. |
+| `toast(position)` | `bottomRight`, `bottomLeft`, `topRight`, `topLeft`, `topCenter`, `bottomCenter`, `center`; same seven library positions. |
+| `toast(layout)` | 1, 2, 3 or strings `"1"`, `"2"`, `"3"`; normalized to integers. Base style is layout 1; CSS explicitly styles layout 2 and 3. |
+| `toast(duration)` | Finite non-negative real number/numeric string, FALSE, NULL, positive Inf, or case-insensitive/trimmed `infinity` / `infinite`. Inf/string sentinels normalize to FALSE. Falsy timeout values disable the bundled close timer. |
+| `toast(transition_in)` | `bounceInLeft`, `bounceInRight`, `bounceInUp`, `bounceInDown`, `fadeIn`, `fadeInDown`, `fadeInUp`, `fadeInLeft`, `fadeInRight`, `flipInX`, `revealIn`, `slideIn`, empty string, NULL. All twelve animations have bundled CSS. |
+| `toast(transition_out)` | `fadeOut`, `fadeOutDown`, `fadeOutUp`, `fadeOutLeft`, `fadeOutRight`, `flipOutX`, empty string, NULL. These are the six bundled exit animations. |
+| `toast()` flags | `balloon`, `close`, `close_on_escape`, `close_on_click`, `rtl`, `drag_to_close`, `pause_on_hover`, `reset_on_hover`, `overlay`, `overlay_close`, `animate_inside`: one non-NA TRUE/FALSE each. |
+| `toast(display_mode)` | Numeric 0, 1, 2, or exact digit strings (surrounding whitespace allowed); normalized to integers. Existing bridge queue/replacement semantics are unchanged. |
+| `toast()` normalized dimensions | `title_size`, `title_line_height`, `message_size`, `message_line_height`, `image_width`: same CSS-string/finite-number normalization as PNotify dimensions; NULL image width selects the existing 50px default. Other NULL dimensions remain NULL. |
+| `notice(type / layout)` | `notice`, `success`, `warning`, `error` / `growl`, `attached`, `bar`; bundled layout/effect CSS and the four `sbyNS.css` type styles. |
+| `notice(effect)` | Growl: `jelly`, `scale`, `slide`, `genie`; attached: `flip`, `bouncyflip`; bar: `slidetop`, `exploader`. NULL selects the first entry for the chosen layout. Cross-layout effects are rejected, matching the old help's supported combinations. |
+| `microTip(position / size)` | Position: `top`, `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left`, `bottom-right`. Size: `fit`, `small`, `medium`, `large`, empty string, NULL. CSS styles all eight positions and three fixed widths; JS removes the size attribute for fit/empty/NULL. |
+| `loaders(style)` | `half`, `inverse`, `rounded`, `blink`, NULL; all four data-attribute selectors exist. Supplying text retains the existing override to no style. |
+| `loaders(type)` | `default`, `bar`, `bar-ping-pong`, `border`, `double`, `clock`, `curtain`, `pokeball`, `ball`, `smartphone`, `bouncing`, `music`; existing `match.arg()` retains unambiguous prefixes. |
+| `spinkit(type / size)` | Exact types: `plane`, `chase`, `bounce`, `wave`, `pulse`, `flow`, `swing`, `circle`, `circle-fade`, `grid`, `fold`, `wander`. Size: finite strictly positive number/numeric string (pixels), or strictly positive CSS length. Units: px, em, rem, ex, rex, cap, rcap, ch, rch, ic, ric, lh, rlh, cm, mm, Q, in, pt, pc, %, viewport vw/vh/vi/vb/vmin/vmax with optional s/l/d prefix, and cqw/cqh/cqi/cqb/cqmin/cqmax (case-insensitive). NULL is intentionally rejected. |
+| `spinners(type)` | Integers 1 through 8, numeric equivalents, or exact digit strings with optional surrounding whitespace. |
+| `threeDots(type)` | `elastic`, `pulse`, `flashing`, `collision`, `revolution`, `carousel`, `typing`, `windmill`, `bricks`, `floating`, `fire`, `spin`, `falling`, `stretching`, `gathering`, `hourglass`, `overtaking`, `shuttle`, `bouncing`, `rolling`; existing unambiguous `match.arg()` prefixes retained. |
+| `vizLoad(type / size / add_label)` | Types: `bars`, `squares`, `circles`, `dots`, `spinner`, `dashed`, `line`, `bordered_line`, with existing unambiguous type prefixes. Line types: `fluid`, `large`, `medium`, `small`; other types: `large`, `medium`, `small`, `tiny`. `add_label`: one non-NA TRUE/FALSE. |
+| Four spinner constructors' `color` | Single non-NA valid R/CSS colour name, transparent, currentColor, hex 3/4/6/8, rgb/rgba and hsl/hsla (legacy and modern supported syntax). `vizLoad()` also permits NULL. Prior colour/alpha/channel tests remain intact. |
+| Preview helpers | `previewAlerts(type)`: `alertify`, `bootbox`, `notice`, `notify`, `tingle`, `toast`; `previewSpinners(spinner)`: `threedots`, `spinkit`, `vizload`, `spinners`, `loaders`. Existing unambiguous `match.arg()` prefixes retained. |
+
+Whitespace/quote class rejection, unknown enum values, invalid cross-layout
+effects and invalid/missing scalar flags are intentional validation, not a loss
+of a styled bundled option. R1-R3 restore supported, meaningful library options
+that the fx4 validation excluded.
+
+### Validation results
+
+All test runs took place in disposable copies under:
+
+`C:/Users/DELL/AppData/Local/Temp/standby-fx5-22db13a6161742b781c71af48e7cf83d`
+
+`baseline/` is clean `git archive 166da18` with only the two new fx5 test files
+overlaid. `current/` contains the final source and tests, excluding `.git` and
+both audit files. Snapshot rewrites in disposable copies were not copied back.
+
+* Baseline new-test run: **14 tests, 23 failed expectations, 10 errors,
+  12 passed expectations, zero skips**. The extra complex-infinity control is
+  already passing. Early errors stop some baseline loops, so pass totals differ.
+* Fixed new-test run: **14 tests, 170 passed expectations, zero failures,
+  errors, warnings or skips**, including both Chrome tests.
+* Final full `devtools::test()` run: **160 tests, 3,305 passed expectations,
+  zero failures, errors, warnings or skips**. Explicitly, `sum(r$failed) == 0`
+  and `sum(r$error) == 0`. Chrome tests ran, rather than skipping.
+  R 4.6.1 (2026-06-24 ucrt), Windows 11 x64.
+* After committing source/help/tests, `devtools::document(); git diff --exit-code`
+  completed successfully with **no tracked diff**. `git diff --check` passed.
+* A clean `git archive HEAD` at fix commit **0545568** was extracted to
+  `source/`, built, and checked with `R CMD check --as-cran --no-manual`.
+  Both processes exited **0**; check result: **0 errors, 0 warnings, 1 NOTE**.
+  The only NOTE is the maintainer email change, quoted below. Installed tests:
+  **2,765 passes, 75 skips, zero failures/warnings**. Skips are the 41 existing
+  snapshot tests and 34 browser blocks under the existing CRAN skip policy;
+  all ran in the development suite. Examples, installation, vignette checks
+  and vignette rebuilding passed.
+
+```text
+* checking CRAN incoming feasibility ... [40s] NOTE
+Maintainer: 'Aravind Hebbali <aravindhebbali@rsquaredacademy.com>'
+
+New maintainer:
+  Aravind Hebbali <aravindhebbali@rsquaredacademy.com>
+Old maintainer(s):
+  Aravind Hebbali <hebbali.aravind@gmail.com>
+```
+
+Tarball SHA256:
+`e3dc5a8485c00deb45b674348f7d30c4af33649c8e3c5e8effeef17ca92d85a4`.
+The only later change is this build-excluded report.
+
+### Commands and artifacts
+
+The read-only review used `Get-Content`, `rg`, `git show 46a430b:...`,
+`git diff`, `git status`, and Python UTF-8 reads/searches of bundled source.
+Edits used `apply_patch` and Python; no test was run in the working source tree.
+The test driver writes result data frames (excluding list columns) to
+`baseline-results.csv` and `current-results.csv` outside the copies, and prints
+`sum(r$failed)`, `sum(r$error)`, `sum(r$skipped)` and `sum(r$passed)` explicitly.
+
+```powershell
+$v = 'C:/Users/DELL/AppData/Local/Temp/standby-fx5-22db13a6161742b781c71af48e7cf83d'
+git archive 166da18 -o "$v/baseline.zip"
+Expand-Archive -LiteralPath "$v/baseline.zip" -DestinationPath "$v/baseline"
+Copy-Item tests/testthat/test-fx5-*.R "$v/baseline/tests/testthat/"
+# Create current/ from the working source, excluding .git and both audit files.
+Get-ChildItem -Force | Where-Object { $_.Name -notin @('.git','AUDIT-standby-022.md','AUDIT-standby-022-rx4.md') } | Copy-Item -Destination "$v/current" -Recurse -Force
+# After edits, recopy changed source/help/tests/NEWS only.
+Rscript "$v/run-tests.R" "$v/baseline" fx5
+Rscript "$v/run-tests.R" "$v/current" fx5
+Rscript "$v/run-tests.R" "$v/current"
+# Logs: baseline.log, after-fx5.log, full-tests.log, full-tests-final.log.
+git add NEWS.md R man tests/testthat/test-fx4-m2.R tests/testthat/test-fx5-regressions.R tests/testthat/test-fx5-browser.R
+git commit -m 'Restore notification options and normalize validated inputs (standby-fx5)'
+$env:LC_ALL = 'C'
+$env:LANG = 'C'
+Rscript -e 'devtools::document()'
+git diff --exit-code
+git diff --check
+git archive HEAD -o "$v/head.zip"
+Expand-Archive -LiteralPath "$v/head.zip" -DestinationPath "$v/source"
+# Run the following in the disposable validation directory.
+& 'C:/Program Files/R/R-4.6.1/bin/R.exe' CMD build source
+Remove-Item Env:NOT_CRAN -ErrorAction SilentlyContinue
+& 'C:/Program Files/R/R-4.6.1/bin/R.exe' CMD check --as-cran --no-manual standby_0.2.2.tar.gz
+Get-FileHash standby_0.2.2.tar.gz -Algorithm SHA256
+```
+
+Driver (`run-tests.R`):
+
+```r
+args <- commandArgs(TRUE)
+setwd(args[1])
+Sys.setenv(NOT_CRAN = "true")
+testthat::set_max_fails(Inf)
+r <- as.data.frame(devtools::test(
+  filter = if (length(args) > 1) args[2] else NULL,
+  stop_on_failure = FALSE
+))
+write.csv(r[, !vapply(r, is.list, logical(1))],
+          paste0(args[1], "-results.csv"), row.names = FALSE)
+cat("TEST_TOTALS tests=", nrow(r), " failed=", sum(r$failed),
+    " error=", sum(r$error), " skipped=", sum(r$skipped),
+    " passed=", sum(r$passed), "\n", sep = "")
+quit(status = if (sum(r$failed) + sum(r$error) > 0) 1 else 0)
+```
+
+Final archive/check logs: `build.log`, `check.log`,
+`standby.Rcheck/00check.log`, `standby.Rcheck/tests/testthat.Rout`.
+The final report-only commit changes build-excluded `docs-dev/` content.
+This round closes the earlier report's open `vizLoad(add_label)` follow-up;
+its L2 dependency identities/cache versions and L3 wording/API follow-ups remain
+outside this round.
