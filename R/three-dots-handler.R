@@ -46,7 +46,7 @@ threeDots <- function(uiOutput, type = "elastic", color = '#9880ff') {
                             "carousel", "typing", "windmill", "bricks", "floating",
                             "fire", "spin", "falling", "stretching", "gathering",
                             "hourglass", "overtaking", "shuttle", "bouncing", "rolling"))
-  validate_color(color, "color")
+  color <- validate_color(color, "color")
   color <- normalize_color(color)
   id <- generate_id("threedots")
   # The bundled stylesheet draws some dots from box-shadow declarations that

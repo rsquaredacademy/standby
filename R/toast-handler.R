@@ -12,7 +12,10 @@
 #' \item \code{"error"}
 #' \item \code{"question"}
 #' }
-#' @param theme Theme of toast. Choose between \code{"light"} or \code{"dark"}.
+#' @param theme Theme of toast: \code{"light"}, \code{"dark"}, or a custom theme
+#'   name used as the suffix of the \code{iziToast-theme-} class. Must be one
+#'   non-NA string without whitespace or quotes; \code{NULL} or \code{""} uses
+#'   the default theme.
 #' @param position Where toast will be shown. Defaults to \code{"center"}. Valid values are:
 #' \itemize{
 #' \item \code{"bottomRight"}
@@ -23,7 +26,8 @@
 #' \item \code{"bottomCenter"}
 #' \item \code{"center"}
 #' }
-#' @param duration Time in milliseconds to close the toast. Defaults to \code{5000}. Use \code{FALSE} to disable.
+#' @param duration Time in milliseconds to close the toast. Defaults to \code{5000}. Use \code{FALSE}, \code{Inf}, or \code{NULL} to disable.
+#'   The strings \code{"infinity"} and \code{"infinite"} also disable closing.
 #' @param progress_bar_color Progress bar color. Choose between hexadecimal, RGB or keyword values.
 #' @param background_color Background color of the toast. Choose between hexadecimal, RGB or keyword values.
 #' @param max_width Maximum width of the toast.
@@ -37,7 +41,7 @@
 #' @param image_width Width of cover image. Defaults to \code{"50px"}. A bare
 #'   number is interpreted as pixels.
 #' @param zindex The z-index CSS attribute of the toast. Defaults to \code{99999}.
-#' @param layout Size of the toast. Choose between \code{1} or \code{2}.
+#' @param layout Size of the toast. Choose between \code{1}, \code{2}, or \code{3}.
 #' @param balloon Logical; if \code{TRUE}, applies a balloon like toast. Defaults to \code{FALSE}.
 #' @param close Logical; if \code{TRUE} (the default), shows a \code{x} close button.
 #' @param close_on_escape Logical; if \code{TRUE}, allows to close toast using ESC key. Defaults to \code{FALSE}.
@@ -70,6 +74,8 @@
 #' \item \code{"fadeInLeft"}
 #' \item \code{"fadeInRight"}
 #' \item \code{"flipInX"}
+#' \item \code{"revealIn"}
+#' \item \code{"slideIn"}
 #' }
 #' @param transition_out Toast close animation. Defaults to \code{"fadeOut"}. Valid values are:
 #' \itemize{
@@ -135,22 +141,30 @@ toast <- function(title = "Hey", message = NULL, type = NULL, theme = NULL, posi
   if (is.null(title)) title <- ""
   if (is.null(message)) message <- ""
 
-  validate_choice(type, c("info", "success", "warning", "error", "question"), "type", null = TRUE)
-  validate_choice(theme, c("light", "dark", ""), "theme", null = TRUE)
-  validate_choice(position, c("bottomRight", "bottomLeft", "topRight", "topLeft",
+  type <- validate_choice(type, c("info", "success", "warning", "error", "question"), "type", null = TRUE)
+  theme <- validate_class_token(theme, "theme", null = TRUE)
+  position <- validate_choice(position, c("bottomRight", "bottomLeft", "topRight", "topLeft",
     "topCenter", "bottomCenter", "center"), "position")
-  validate_choice(layout, c(1, 2), "layout")
+  layout <- validate_choice(layout, c(1, 2, 3), "layout")
   layout <- as.integer(layout)
+  if (is_infinite_delay(duration)) duration <- FALSE
   duration <- normalize_delay(duration, "duration", false = TRUE, null = TRUE)
-  validate_choice(transition_in, c("bounceInLeft", "bounceInRight", "bounceInUp",
+  transition_in <- validate_choice(transition_in, c("bounceInLeft", "bounceInRight", "bounceInUp",
     "bounceInDown", "fadeIn", "fadeInDown", "fadeInUp", "fadeInLeft",
-    "fadeInRight", "flipInX", ""), "transition_in", null = TRUE)
-  validate_choice(transition_out, c("fadeOut", "fadeOutDown", "fadeOutUp",
+    "fadeInRight", "flipInX", "revealIn", "slideIn", ""), "transition_in", null = TRUE)
+  transition_out <- validate_choice(transition_out, c("fadeOut", "fadeOutDown", "fadeOutUp",
     "fadeOutLeft", "fadeOutRight", "flipOutX", ""), "transition_out", null = TRUE)
-  validate_flags(list(balloon = balloon, close = close, close_on_escape = close_on_escape,
-    close_on_click = close_on_click, rtl = rtl, drag_to_close = drag_to_close,
-    pause_on_hover = pause_on_hover, reset_on_hover = reset_on_hover,
-    overlay = overlay, overlay_close = overlay_close, animate_inside = animate_inside))
+  balloon <- validate_flag(balloon, "balloon")
+  close <- validate_flag(close, "close")
+  close_on_escape <- validate_flag(close_on_escape, "close_on_escape")
+  close_on_click <- validate_flag(close_on_click, "close_on_click")
+  rtl <- validate_flag(rtl, "rtl")
+  drag_to_close <- validate_flag(drag_to_close, "drag_to_close")
+  pause_on_hover <- validate_flag(pause_on_hover, "pause_on_hover")
+  reset_on_hover <- validate_flag(reset_on_hover, "reset_on_hover")
+  overlay <- validate_flag(overlay, "overlay")
+  overlay_close <- validate_flag(overlay_close, "overlay_close")
+  animate_inside <- validate_flag(animate_inside, "animate_inside")
 
   # display_mode: 0 queues, 1 replaces, 2 replaces an identical toast.
   if (is.character(display_mode) && length(display_mode) == 1L &&

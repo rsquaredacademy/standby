@@ -80,12 +80,12 @@
 notice <- function(message = "Hello", type = "notice", layout = "growl",
                    effect = NULL, session = getDefaultReactiveDomain()) {
 
-  validate_choice(type, c("notice", "success", "warning", "error"), "type")
-  validate_choice(layout, c("growl", "attached", "bar"), "layout")
+  type <- validate_choice(type, c("notice", "success", "warning", "error"), "type")
+  layout <- validate_choice(layout, c("growl", "attached", "bar"), "layout")
   effects <- switch(layout, growl = c("jelly", "scale", "slide", "genie"),
     attached = c("flip", "bouncyflip"), bar = c("slidetop", "exploader"))
   if (is.null(effect)) effect <- effects[[1]]
-  validate_choice(effect, effects, "effect")
+  effect <- validate_choice(effect, effects, "effect")
 
   notice = list(
     message = message,

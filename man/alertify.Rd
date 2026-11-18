@@ -95,7 +95,8 @@ type-specific accent border and header colour. For
 
 \item{session}{Shiny session object.}
 
-\item{delay}{The time (in seconds) to wait before the notification is auto-dismissed. \code{0} will keep notification open till clicked.}
+\item{delay}{The time (in seconds) to wait before the notification is auto-dismissed. \code{0}, \code{Inf}, or \code{NULL} will keep notification open till clicked.
+The strings \code{"infinity"} and \code{"infinite"} also keep it open.}
 
 \item{position}{Position of the notification. Defaults to \code{"bottom-right"}. Valid values are:
 \itemize{

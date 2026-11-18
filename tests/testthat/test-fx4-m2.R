@@ -10,10 +10,9 @@ fx4_choices <- list(
   list(notify, "animation", c("none", "fade")),
   list(notify, "animate_speed", c("slow", "normal", "fast")),
   list(toast, "type", c("info", "success", "warning", "error", "question")),
-  list(toast, "theme", c("light", "dark", "")),
   list(toast, "position", c("bottomRight", "bottomLeft", "topRight", "topLeft", "topCenter", "bottomCenter", "center")),
-  list(toast, "layout", c(1, 2)),
-  list(toast, "transition_in", c("bounceInLeft", "bounceInRight", "bounceInUp", "bounceInDown", "fadeIn", "fadeInDown", "fadeInUp", "fadeInLeft", "fadeInRight", "flipInX", "")),
+  list(toast, "layout", c(1, 2, 3)),
+  list(toast, "transition_in", c("bounceInLeft", "bounceInRight", "bounceInUp", "bounceInDown", "fadeIn", "fadeInDown", "fadeInUp", "fadeInLeft", "fadeInRight", "flipInX", "revealIn", "slideIn", "")),
   list(toast, "transition_out", c("fadeOut", "fadeOutDown", "fadeOutUp", "fadeOutLeft", "fadeOutRight", "flipOutX", "")),
   list(notice, "type", c("notice", "success", "warning", "error")),
   list(notice, "layout", c("growl", "attached", "bar")),
@@ -67,7 +66,7 @@ test_that("fx4 M2: logical arguments reject missing and vector conditions", {
 
 test_that("fx4 M2: delays validate numeric values and preserve supported sentinels", {
   for (spec in list(list(alertify_notify, "delay"), list(notify, "delay"), list(toast, "duration"))) {
-    for (value in list("abc", NA, NaN, Inf, c(1, 2), TRUE)) {
+    for (value in list("abc", NA, NaN, -Inf, c(1, 2), TRUE)) {
       if (identical(spec[[1]], notify) && identical(value, Inf)) next
       expect_error(do.call(fxb_payload, c(list(fun = spec[[1]]), setNames(list(value), spec[[2]]))),
                    paste0("`", spec[[2]], "` must be a single finite"), fixed = TRUE)

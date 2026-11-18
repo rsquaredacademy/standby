@@ -67,9 +67,9 @@
 microTip <- function(id = NULL, tip = "Hey! tooltip!", position = "top", size = NULL,
                      session = getDefaultReactiveDomain()) {
 
-  validate_choice(position, c("top", "bottom", "left", "right", "top-left",
+  position <- validate_choice(position, c("top", "bottom", "left", "right", "top-left",
     "top-right", "bottom-left", "bottom-right"), "position")
-  validate_choice(size, c("fit", "small", "medium", "large", ""), "size", null = TRUE)
+  size <- validate_choice(size, c("fit", "small", "medium", "large", ""), "size", null = TRUE)
 
   notice = list(
     id       = id,

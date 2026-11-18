@@ -6,6 +6,14 @@ fresh audit of that fix round.
 
 ## Colours and loaders
 
+* `loaders(style =)` accepts only `half`, `inverse`, `rounded`, `blink`, or
+  `NULL`; invalid values now raise an R error. Blink emits separate styling
+  attributes.
+* `spinkit(size =)` requires a strictly positive CSS length. Zero, negative
+  lengths, and `NULL` are no longer accepted; the default remains `"40px"`.
+* `vizLoad(add_label =)` now requires one non-missing logical value and gives
+  a clear R error for `NA`.
+
 * SpinKit normalizes numeric and unitless sizes to pixels for every type, including wander travel, and rejects invalid lengths (rx2 N01).
 * CSS length normalization rejects trailing decimal dots such as `"12."` instead of emitting invalid CSS (rx2 N02 / rx2h L01).
 * All four colour-taking constructors validate complete CSS colour expressions
@@ -38,6 +46,34 @@ fresh audit of that fix round.
 
 ## Alerts, modals and tooltips
 
+
+* Eight message senders now raise clear R errors for invalid values that were
+  previously silently ignored or failed in the browser. Validated arguments:
+  `alertify_alert()` (`type`, `transition`, `transition_off`, `closable`,
+  `auto_reset`, `frameless`, `maximizable`, `modal`, `movable`, `move_bounded`,
+  `overflow`, `padding`, `pinnable`, `resizeable`, `start_maximized`);
+  `alertify_notify()` (`type`, `position`, `delay`);
+  `bootBox()` (`size`, `backdrop`, `close_on_escape`, `show`, `close_button`,
+  `animate`, `message`);
+  `tingle()` (`close_button`, `button_type`, `button_position`);
+  `notify()` (`type`, `icon`, `animation`, `animate_speed`, `delay`, `hide`,
+  `sticker`, `closer`, `shadow`, `mouse_reset`, `translucent`, `non_blocking`,
+  `width`, `min_height`, `max_text_height`);
+  `toast()` (`type`, `theme`, `position`, `layout`, `duration`, `transition_in`,
+  `transition_out`, `balloon`, `close`, `close_on_escape`, `close_on_click`,
+  `rtl`, `drag_to_close`, `pause_on_hover`, `reset_on_hover`, `overlay`,
+  `overlay_close`, `animate_inside`);
+  `notice()` (`type`, `layout`, `effect`); and `microTip()` (`position`, `size`).
+* `notice(effect = NULL)` now selects the default for its layout: `jelly` for
+  `growl`, `flip` for `attached`, and `slidetop` for `bar`. The default growl
+  appearance is unchanged.
+* `bootBox()` accepts size aliases `sm`, `lg`, and `xl`, and
+  `backdrop = "static"`. Numeric zero messages, including `0L`, now give the
+  same clear R error as empty messages.
+* `tingle(content = NULL)` now sends empty content so the modal can open.
+* Validated arguments discard scalar names before use, so named values such as
+  `notice(layout = c(growl = "growl"))` serialize as scalar JSON values.
+
 * Documented that `alertify_alert()`, `alertify_notify()`, `bootBox()`, `tingle()`, `toast()` and `notice()` render HTML; escape untrusted input with `htmltools::htmlEscape()`.
 
 * Reused `alertify_alert()` dialogs replace previous semantic type classes, so
@@ -58,6 +94,9 @@ fresh audit of that fix round.
 
 ## PNotify notifications
 
+* `notify()` accepts numeric `width`, `min_height`, and `max_text_height`
+  values as pixels, so `width = 500` applies a width of `"500px"`.
+
 * `notify(non_blocking = TRUE)` now passes pointer events through its body and
   fades while the pointer is over it, with close/sticker controls still usable
   according to their arguments (aud2 M09).
@@ -68,6 +107,16 @@ fresh audit of that fix round.
   opacity of 0.7 (fx1 H11, H12). Documented title/text defaults match arguments.
 
 ## Toasts
+
+* `toast(type = "question")` now dispatches to the bundled question toast.
+* `toast()` converts `NULL` titles and messages to empty strings, so calls
+  that supply only a title can display normally.
+* `toast()` accepts custom theme class names without whitespace or quotes,
+  layout `3`, and the bundled `revealIn` and `slideIn` entrance animations.
+* `toast(duration = Inf)` keeps the toast open, like `FALSE` or `NULL`.
+  `alertify_notify(delay = Inf)` and `delay = NULL` keep notifications open,
+  like `0`. Both also accept `"infinity"` and `"infinite"` as never-close
+  sentinels.
 
 * Relative image widths reserve the actual used cover width plus 10 pixels in
   either direction and update when the viewport or cover size changes

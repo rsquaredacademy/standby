@@ -66,7 +66,7 @@
 #'
 loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
 
-  validate_choice(style, c("half", "inverse", "rounded", "blink"), "style", null = TRUE)
+  style <- validate_choice(style, c("half", "inverse", "rounded", "blink"), "style", null = TRUE)
   type <- match.arg(type, c("default", "bar", "bar-ping-pong", "border", "double",
                             "clock", "curtain", "pokeball", "ball", "smartphone",
                             "bouncing", "music"))

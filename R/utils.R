@@ -754,6 +754,7 @@ spinner_css <- function(color, id) {
 
 
 validate_color <- function(color, name = "color", allow_null = FALSE) {
+  color <- unname(color)
   if (is.null(color)) {
     if (allow_null) return(invisible(NULL))
     stop(sprintf("`%s` cannot be NULL.", name), call. = FALSE)
@@ -778,6 +779,7 @@ validate_color <- function(color, name = "color", allow_null = FALSE) {
 
 # Normalise a CSS length supplied as a bare number or a string with units.
 normalize_css_length <- function(value, name = "length", strict = FALSE) {
+  value <- unname(value)
   if (is.null(value)) return(NULL)
   invalid <- function() {
     stop(sprintf("Invalid `%s`: expected a single finite CSS length (e.g. 40, '40px', '2.5em' or '50%%').", name), call. = FALSE)
@@ -807,6 +809,7 @@ normalize_css_length <- function(value, name = "length", strict = FALSE) {
 
 # Validate exact choices without partial matching or vector condition errors.
 validate_choice <- function(value, choices, name, null = FALSE) {
+  value <- unname(value)
   if (null && is.null(value)) return(invisible(value))
   if (!(is.character(value) || is.numeric(value)) || is.factor(value) || is.complex(value) ||
       length(value) != 1L || is.na(value) || !value %in% choices) {
@@ -818,7 +821,19 @@ validate_choice <- function(value, choices, name, null = FALSE) {
   invisible(value)
 }
 
+# A theme becomes one class token, including user-defined theme names.
+validate_class_token <- function(value, name, null = FALSE) {
+  if (null && is.null(value)) return(NULL)
+  if (!is.character(value) || length(value) != 1L || is.na(value) ||
+      grepl("[\\s\\p{Z}\\p{Cc}\"']", value, perl = TRUE)) {
+    stop("`", name, "` must be a single non-NA string without whitespace or quotes",
+         if (null) ", or NULL" else "", ".", call. = FALSE)
+  }
+  unname(value)
+}
+
 validate_flag <- function(value, name, null = FALSE) {
+  value <- unname(value)
   if (null && is.null(value)) return(invisible(value))
   if (!is.logical(value) || length(value) != 1L || is.na(value)) {
     stop("`", name, "` must be TRUE or FALSE", if (null) ", or NULL" else "",
@@ -827,12 +842,9 @@ validate_flag <- function(value, name, null = FALSE) {
   invisible(value)
 }
 
-validate_flags <- function(values) {
-  for (name in names(values)) validate_flag(values[[name]], name)
-}
-
 normalize_delay <- function(value, name, false = FALSE, null = FALSE,
                             negative = FALSE) {
+  value <- unname(value)
   if ((false && identical(value, FALSE)) || (null && is.null(value))) return(value)
   valid <- (is.numeric(value) && !is.complex(value)) || is.character(value)
   number <- if (valid && length(value) == 1L) suppressWarnings(as.numeric(value)) else NA_real_
@@ -849,7 +861,7 @@ normalize_delay <- function(value, name, false = FALSE, null = FALSE,
 # JavaScript numeric Infinity, so it can never be forwarded as a string.
 is_infinite_delay <- function(delay) {
   if (is.null(delay) || length(delay) != 1L || is.na(delay)) return(FALSE)
-  if (is.numeric(delay)) return(is.infinite(delay) && delay > 0)
+  if (is.numeric(delay) && !is.complex(delay)) return(is.infinite(delay) && delay > 0)
   if (is.character(delay)) {
     return(tolower(trimws(delay)) %in% c("infinity", "infinite"))
   }

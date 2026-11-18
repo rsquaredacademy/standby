@@ -60,7 +60,10 @@ toast(
 \item \code{"question"}
 }}
 
-\item{theme}{Theme of toast. Choose between \code{"light"} or \code{"dark"}.}
+\item{theme}{Theme of toast: \code{"light"}, \code{"dark"}, or a custom theme
+name used as the suffix of the \code{iziToast-theme-} class. Must be one
+non-NA string without whitespace or quotes; \code{NULL} or \code{""} uses
+the default theme.}
 
 \item{position}{Where toast will be shown. Defaults to \code{"center"}. Valid values are:
 \itemize{
@@ -73,7 +76,8 @@ toast(
 \item \code{"center"}
 }}
 
-\item{duration}{Time in milliseconds to close the toast. Defaults to \code{5000}. Use \code{FALSE} to disable.}
+\item{duration}{Time in milliseconds to close the toast. Defaults to \code{5000}. Use \code{FALSE}, \code{Inf}, or \code{NULL} to disable.
+The strings \code{"infinity"} and \code{"infinite"} also disable closing.}
 
 \item{progress_bar_color}{Progress bar color. Choose between hexadecimal, RGB or keyword values.}
 
@@ -100,7 +104,7 @@ number is interpreted as pixels.}
 
 \item{zindex}{The z-index CSS attribute of the toast. Defaults to \code{99999}.}
 
-\item{layout}{Size of the toast. Choose between \code{1} or \code{2}.}
+\item{layout}{Size of the toast. Choose between \code{1}, \code{2}, or \code{3}.}
 
 \item{balloon}{Logical; if \code{TRUE}, applies a balloon like toast. Defaults to \code{FALSE}.}
 
@@ -148,6 +152,8 @@ number is interpreted as pixels.}
 \item \code{"fadeInLeft"}
 \item \code{"fadeInRight"}
 \item \code{"flipInX"}
+\item \code{"revealIn"}
+\item \code{"slideIn"}
 }}
 
 \item{transition_out}{Toast close animation. Defaults to \code{"fadeOut"}. Valid values are:

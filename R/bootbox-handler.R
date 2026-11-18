@@ -71,12 +71,15 @@ bootBox <- function(title = "Your title", message = "Your message here...", size
                     animate = TRUE, class = NULL,
                     session = getDefaultReactiveDomain()) {
 
-  validate_choice(size, c("small", "sm", "large", "lg", "extra-large", "xl", ""), "size", null = TRUE)
+  size <- validate_choice(size, c("small", "sm", "large", "lg", "extra-large", "xl", ""), "size", null = TRUE)
   if (!is.null(size) && size %in% c("sm", "lg", "xl")) {
     size <- c(sm = "small", lg = "large", xl = "extra-large")[[size]]
   }
-  validate_flags(list(close_on_escape = close_on_escape, show = show,
-    close_button = close_button, animate = animate))
+  close_on_escape <- validate_flag(close_on_escape, "close_on_escape")
+  show <- validate_flag(show, "show")
+  close_button <- validate_flag(close_button, "close_button")
+  animate <- validate_flag(animate, "animate")
+  backdrop <- unname(backdrop)
   if (is.character(backdrop) && length(backdrop) == 1L &&
       !is.na(backdrop) && tolower(backdrop) == "static") {
     backdrop <- NULL
@@ -86,9 +89,11 @@ bootBox <- function(title = "Your title", message = "Your message here...", size
       stop('`backdrop` must be TRUE or FALSE, NULL, or "static".', call. = FALSE)
     }
   }
+  if (is.atomic(message)) message <- unname(message)
   if (is.null(message) || length(message) == 0L ||
       (is.atomic(message) && (length(message) != 1L || is.na(message) ||
-        identical(message, FALSE) || identical(message, 0) || identical(as.character(message), "")))) {
+        identical(message, FALSE) || (is.numeric(message) && isTRUE(message == 0)) ||
+        identical(as.character(message), "")))) {
     stop("`message` must be non-empty text or HTML.", call. = FALSE)
   }
 

@@ -24,7 +24,8 @@
 #' \item \code{"flipx"}
 #' \item \code{"flipy"}
 #' }
-#' @param delay The time (in seconds) to wait before the notification is auto-dismissed. \code{0} will keep notification open till clicked.
+#' @param delay The time (in seconds) to wait before the notification is auto-dismissed. \code{0}, \code{Inf}, or \code{NULL} will keep notification open till clicked.
+#'   The strings \code{"infinity"} and \code{"infinite"} also keep it open.
 #' @param position Position of the notification. Defaults to \code{"bottom-right"}. Valid values are:
 #' \itemize{
 #' \item \code{"bottom-right"}
@@ -126,13 +127,21 @@ alertify_alert <- function(title = "Alert Title", message = "Alert Message",
                            resizeable = FALSE, start_maximized = FALSE,
                            session = getDefaultReactiveDomain()) {
 
-  validate_choice(type, c("success", "error", "warning", "message"), "type")
-  validate_choice(transition, c("pulse", "slide", "zoom", "fade", "flipx", "flipy"), "transition")
-  validate_flags(list(transition_off = transition_off, closable = closable,
-    auto_reset = auto_reset, frameless = frameless, maximizable = maximizable,
-    modal = modal, movable = movable, move_bounded = move_bounded,
-    overflow = overflow, padding = padding, pinnable = pinnable,
-    resizeable = resizeable, start_maximized = start_maximized))
+  type <- validate_choice(type, c("success", "error", "warning", "message"), "type")
+  transition <- validate_choice(transition, c("pulse", "slide", "zoom", "fade", "flipx", "flipy"), "transition")
+  transition_off <- validate_flag(transition_off, "transition_off")
+  closable <- validate_flag(closable, "closable")
+  auto_reset <- validate_flag(auto_reset, "auto_reset")
+  frameless <- validate_flag(frameless, "frameless")
+  maximizable <- validate_flag(maximizable, "maximizable")
+  modal <- validate_flag(modal, "modal")
+  movable <- validate_flag(movable, "movable")
+  move_bounded <- validate_flag(move_bounded, "move_bounded")
+  overflow <- validate_flag(overflow, "overflow")
+  padding <- validate_flag(padding, "padding")
+  pinnable <- validate_flag(pinnable, "pinnable")
+  resizeable <- validate_flag(resizeable, "resizeable")
+  start_maximized <- validate_flag(start_maximized, "start_maximized")
 
   notice = list(
     title          = title,
@@ -168,10 +177,11 @@ alertify_notify <- function(message = "Alert Message", type = "success",
                             delay = 5, position = "bottom-right",
                             session = getDefaultReactiveDomain()) {
 
-  validate_choice(type, c("success", "error", "warning", "message"), "type")
-  validate_choice(position, c("bottom-right", "bottom-left", "bottom-center",
+  type <- validate_choice(type, c("success", "error", "warning", "message"), "type")
+  position <- validate_choice(position, c("bottom-right", "bottom-left", "bottom-center",
     "top-right", "top-left", "top-center"), "position")
   # Alertify deliberately keeps notifications open for non-positive delays.
+  if (is.null(delay) || is_infinite_delay(delay)) delay <- 0
   delay <- normalize_delay(delay, "delay", negative = TRUE)
 
   notice = list(

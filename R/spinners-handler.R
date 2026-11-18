@@ -55,7 +55,7 @@ spinners <- function(uiOutput, type = 1, color = "#0275d8") {
   }
   type <- as.integer(type)
 
-  validate_color(color, "color")
+  color <- validate_color(color, "color")
   # Resolve R colour names (for example "green", "gray50") to one hex value so
   # the main colour and the generated shades share the same hue.
   color <- normalize_color(color)

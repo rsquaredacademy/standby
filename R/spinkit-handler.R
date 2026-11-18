@@ -63,7 +63,7 @@ spinkit <- function(uiOutput, type = "plane", color = "#333", size = "40px") {
   if (!is.character(type) || length(type) != 1L || is.na(type) || !type %in% types) {
     stop("`type` must be one of: ", paste(types, collapse = ", "), ".", call. = FALSE)
   }
-  validate_color(color, "color")
+  color <- validate_color(color, "color")
   color <- normalize_color(color)
   size <- normalize_css_length(size, name = "size", strict = TRUE)
   magnitude <- if (is.null(size)) NA_real_ else {

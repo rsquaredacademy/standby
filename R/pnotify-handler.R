@@ -83,15 +83,20 @@ notify <- function(title = "Hey", text = NULL, type = "notice", icon = TRUE,
                    translucent = FALSE, non_blocking = FALSE,
                    session = getDefaultReactiveDomain()) {
 
-  validate_choice(type, c("notice", "info", "success", "error"), "type")
-  validate_choice(animation, c("none", "fade"), "animation")
-  validate_choice(animate_speed, c("slow", "normal", "fast"), "animate_speed")
+  type <- validate_choice(type, c("notice", "info", "success", "error"), "type")
+  animation <- validate_choice(animation, c("none", "fade"), "animation")
+  animate_speed <- validate_choice(animate_speed, c("slow", "normal", "fast"), "animate_speed")
+  icon <- unname(icon)
   if (!(is.character(icon) && length(icon) == 1L && !is.na(icon))) {
-    validate_flag(icon, "icon")
+    icon <- validate_flag(icon, "icon")
   }
-  validate_flags(list(hide = hide, sticker = sticker,
-    closer = closer, shadow = shadow, mouse_reset = mouse_reset,
-    translucent = translucent, non_blocking = non_blocking))
+  hide <- validate_flag(hide, "hide")
+  sticker <- validate_flag(sticker, "sticker")
+  closer <- validate_flag(closer, "closer")
+  shadow <- validate_flag(shadow, "shadow")
+  mouse_reset <- validate_flag(mouse_reset, "mouse_reset")
+  translucent <- validate_flag(translucent, "translucent")
+  non_blocking <- validate_flag(non_blocking, "non_blocking")
   if (!is_infinite_delay(delay)) delay <- normalize_delay(delay, "delay")
   # PNotify applies dimensions only when they are strings. Keep CSS expressions
   # (including auto/calc/var) and normalize bare numbers consistently with toast.

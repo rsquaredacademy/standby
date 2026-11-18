@@ -60,6 +60,7 @@
 #'
 vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_label = FALSE, label = "Loading...") {
 
+  add_label <- validate_flag(add_label, "add_label")
   type <- match.arg(type, c("bars", "squares", "circles", "dots", "spinner", "dashed", "line", "bordered_line"))
 
   valid_sizes <- if (type %in% c("line", "bordered_line")) {
@@ -74,7 +75,7 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
          call. = FALSE)
   }
   if (!is.null(color)) {
-    validate_color(color, "color")
+    color <- validate_color(color, "color")
     color <- normalize_color(color)
   }
   id <- generate_id("viz")
