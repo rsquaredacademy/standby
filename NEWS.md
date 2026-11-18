@@ -6,7 +6,6 @@ fresh audit of that fix round.
 
 ## Colours and loaders
 
-* `alertify_notify(delay =)` and `toast(duration =)` keep treating `FALSE`, `NA`, `Inf` and `-Inf` as "stay open", as in 0.2.1 (rx5 R4).
 * `loaders(style =)` accepts only `half`, `inverse`, `rounded`, `blink`, or
   `NULL`; invalid values now raise an R error. Blink emits separate styling
   attributes.
@@ -117,7 +116,8 @@ fresh audit of that fix round.
 * `toast(duration = Inf)` keeps the toast open, like `FALSE` or `NULL`.
   `alertify_notify(delay = Inf)` and `delay = NULL` keep notifications open,
   like `0`. Both also accept `"infinity"` and `"infinite"` as never-close
-  sentinels.
+  sentinels, and, as in 0.2.1, a single `FALSE`, `NA` (logical, numeric or
+  character), `NaN` or `-Inf` also keeps the toast or notification open.
 
 * Relative image widths reserve the actual used cover width plus 10 pixels in
   either direction and update when the viewport or cover size changes

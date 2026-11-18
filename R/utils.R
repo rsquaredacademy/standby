@@ -864,6 +864,7 @@ is_stay_open_delay <- function(delay) {
   if (length(delay) != 1L) return(FALSE)
   if (identical(unname(delay), FALSE)) return(TRUE)
   if (is.logical(delay) || is.numeric(delay)) return(is.na(delay) || is.infinite(delay))
+  if (is.character(delay) && is.na(delay)) return(TRUE)
   is_infinite_delay(delay)
 }
 
