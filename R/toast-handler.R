@@ -130,6 +130,10 @@ toast <- function(title = "Hey", message = NULL, type = NULL, theme = NULL, posi
                  animate_inside = TRUE, transition_in = 'fadeInUp', transition_out = 'fadeOut',
                  session = getDefaultReactiveDomain()) {
 
+  # iziToast reads .length on both fields, including in a title-only toast.
+  if (is.null(title)) title <- ""
+  if (is.null(message)) message <- ""
+
   # display_mode: 0 queues, 1 replaces, 2 replaces an identical toast.
   if (is.character(display_mode) && length(display_mode) == 1L &&
       !is.na(display_mode) && grepl("^[012]$", trimws(display_mode))) {
