@@ -857,6 +857,16 @@ normalize_delay <- function(value, name, false = FALSE, null = FALSE,
   number
 }
 
+# 0.2.1 kept a notification open for FALSE, NA and +/-Inf delays (the JS
+# libraries treat them as "no timer"); keep accepting them as "stay open".
+is_stay_open_delay <- function(delay) {
+  if (is.null(delay)) return(FALSE)
+  if (length(delay) != 1L) return(FALSE)
+  if (identical(unname(delay), FALSE)) return(TRUE)
+  if (is.logical(delay) || is.numeric(delay)) return(is.na(delay) || is.infinite(delay))
+  is_infinite_delay(delay)
+}
+
 # The documented "never close" delay sentinel. PNotify compares against the
 # JavaScript numeric Infinity, so it can never be forwarded as a string.
 is_infinite_delay <- function(delay) {

@@ -68,6 +68,8 @@ test_that("fx4 M2: delays validate numeric values and preserve supported sentine
   for (spec in list(list(alertify_notify, "delay"), list(notify, "delay"), list(toast, "duration"))) {
     for (value in list("abc", NA, NaN, -Inf, c(1, 2), TRUE)) {
       if (identical(spec[[1]], notify) && identical(value, Inf)) next
+      # rx5 R4/L-1: alertify and toast treat NA/NaN/-Inf as "stay open" (0.2.1 behaviour)
+      if (!identical(spec[[1]], notify) && length(value) == 1L && (is.na(value) || identical(value, -Inf))) next
       expect_error(do.call(fxb_payload, c(list(fun = spec[[1]]), setNames(list(value), spec[[2]]))),
                    paste0("`", spec[[2]], "` must be a single finite"), fixed = TRUE)
     }

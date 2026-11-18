@@ -181,7 +181,7 @@ alertify_notify <- function(message = "Alert Message", type = "success",
   position <- validate_choice(position, c("bottom-right", "bottom-left", "bottom-center",
     "top-right", "top-left", "top-center"), "position")
   # Alertify deliberately keeps notifications open for non-positive delays.
-  if (is.null(delay) || is_infinite_delay(delay)) delay <- 0
+  if (is.null(delay) || is_stay_open_delay(delay)) delay <- 0
   delay <- normalize_delay(delay, "delay", negative = TRUE)
 
   notice = list(

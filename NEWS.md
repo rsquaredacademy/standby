@@ -6,6 +6,7 @@ fresh audit of that fix round.
 
 ## Colours and loaders
 
+* `alertify_notify(delay =)` and `toast(duration =)` keep treating `FALSE`, `NA`, `Inf` and `-Inf` as "stay open", as in 0.2.1 (rx5 R4).
 * `loaders(style =)` accepts only `half`, `inverse`, `rounded`, `blink`, or
   `NULL`; invalid values now raise an R error. Blink emits separate styling
   attributes.

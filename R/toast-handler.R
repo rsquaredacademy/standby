@@ -147,7 +147,7 @@ toast <- function(title = "Hey", message = NULL, type = NULL, theme = NULL, posi
     "topCenter", "bottomCenter", "center"), "position")
   layout <- validate_choice(layout, c(1, 2, 3), "layout")
   layout <- as.integer(layout)
-  if (is_infinite_delay(duration)) duration <- FALSE
+  if (is_stay_open_delay(duration)) duration <- FALSE
   duration <- normalize_delay(duration, "duration", false = TRUE, null = TRUE)
   transition_in <- validate_choice(transition_in, c("bounceInLeft", "bounceInRight", "bounceInUp",
     "bounceInDown", "fadeIn", "fadeInDown", "fadeInUp", "fadeInLeft",
