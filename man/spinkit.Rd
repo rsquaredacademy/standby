@@ -33,7 +33,7 @@ color name, hexadecimal, or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()
 values. Names use R's \code{colors()} values; CSS colour names not in R are
 also accepted.}
 
-\item{size}{Size of the spinner as a CSS length. Bare numbers and unitless
+\item{size}{Size of the spinner as a positive CSS length. Bare numbers and unitless
 numeric strings are interpreted as pixels. Defaults to \code{"40px"}.}
 }
 \value{
