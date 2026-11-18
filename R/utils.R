@@ -754,6 +754,7 @@ spinner_css <- function(color, id) {
 
 
 validate_color <- function(color, name = "color", allow_null = FALSE) {
+  color <- unname(color)
   if (is.null(color)) {
     if (allow_null) return(invisible(NULL))
     stop(sprintf("`%s` cannot be NULL.", name), call. = FALSE)
@@ -778,6 +779,7 @@ validate_color <- function(color, name = "color", allow_null = FALSE) {
 
 # Normalise a CSS length supplied as a bare number or a string with units.
 normalize_css_length <- function(value, name = "length", strict = FALSE) {
+  value <- unname(value)
   if (is.null(value)) return(NULL)
   invalid <- function() {
     stop(sprintf("Invalid `%s`: expected a single finite CSS length (e.g. 40, '40px', '2.5em' or '50%%').", name), call. = FALSE)
@@ -805,11 +807,72 @@ normalize_css_length <- function(value, name = "length", strict = FALSE) {
   trimmed
 }
 
+# Validate exact choices without partial matching or vector condition errors.
+validate_choice <- function(value, choices, name, null = FALSE) {
+  value <- unname(value)
+  if (null && is.null(value)) return(invisible(value))
+  if (!(is.character(value) || is.numeric(value)) || is.factor(value) || is.complex(value) ||
+      length(value) != 1L || is.na(value) || !value %in% choices) {
+    labels <- as.character(choices)
+    labels[!nzchar(labels)] <- '""'
+    stop("`", name, "` must be one of: ", paste(labels, collapse = ", "),
+         if (null) ", NULL" else "", ".", call. = FALSE)
+  }
+  invisible(value)
+}
+
+# A theme becomes one class token, including user-defined theme names.
+validate_class_token <- function(value, name, null = FALSE) {
+  if (null && is.null(value)) return(NULL)
+  if (!is.character(value) || length(value) != 1L || is.na(value) ||
+      grepl("[\\s\\p{Z}\\p{Cc}\"']", value, perl = TRUE)) {
+    stop("`", name, "` must be a single non-NA string without whitespace or quotes",
+         if (null) ", or NULL" else "", ".", call. = FALSE)
+  }
+  unname(value)
+}
+
+validate_flag <- function(value, name, null = FALSE) {
+  value <- unname(value)
+  if (null && is.null(value)) return(invisible(value))
+  if (!is.logical(value) || length(value) != 1L || is.na(value)) {
+    stop("`", name, "` must be TRUE or FALSE", if (null) ", or NULL" else "",
+         ".", call. = FALSE)
+  }
+  invisible(value)
+}
+
+normalize_delay <- function(value, name, false = FALSE, null = FALSE,
+                            negative = FALSE) {
+  value <- unname(value)
+  if ((false && identical(value, FALSE)) || (null && is.null(value))) return(value)
+  valid <- (is.numeric(value) && !is.complex(value)) || is.character(value)
+  number <- if (valid && length(value) == 1L) suppressWarnings(as.numeric(value)) else NA_real_
+  if (length(number) != 1L || !is.finite(number) || (!negative && number < 0)) {
+    stop("`", name, "` must be a single finite ",
+         if (!negative) "non-negative " else "", "number",
+         if (false) ", or FALSE" else "", if (null) ", or NULL" else "",
+         ".", call. = FALSE)
+  }
+  number
+}
+
+# 0.2.1 kept a notification open for FALSE, NA and +/-Inf delays (the JS
+# libraries treat them as "no timer"); keep accepting them as "stay open".
+is_stay_open_delay <- function(delay) {
+  if (is.null(delay)) return(FALSE)
+  if (length(delay) != 1L) return(FALSE)
+  if (identical(unname(delay), FALSE)) return(TRUE)
+  if (is.logical(delay) || is.numeric(delay)) return(is.na(delay) || is.infinite(delay))
+  if (is.character(delay) && is.na(delay)) return(TRUE)
+  is_infinite_delay(delay)
+}
+
 # The documented "never close" delay sentinel. PNotify compares against the
 # JavaScript numeric Infinity, so it can never be forwarded as a string.
 is_infinite_delay <- function(delay) {
   if (is.null(delay) || length(delay) != 1L || is.na(delay)) return(FALSE)
-  if (is.numeric(delay)) return(is.infinite(delay) && delay > 0)
+  if (is.numeric(delay) && !is.complex(delay)) return(is.infinite(delay) && delay > 0)
   if (is.character(delay)) {
     return(tolower(trimws(delay)) %in% c("infinity", "infinite"))
   }

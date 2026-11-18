@@ -21,9 +21,9 @@ bootBox(
 )
 }
 \arguments{
-\item{title}{Adds a header to the dialog.}
+\item{title}{Adds a header to the dialog. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
-\item{message}{Text displayed in the dialog.}
+\item{message}{Text displayed in the dialog. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
 \item{size}{Adds the relevant Bootstrap modal size class to the dialog wrapper. Valid values are:
 \itemize{
@@ -32,7 +32,9 @@ bootBox(
 \item \code{"extra-large"}
 }
   With Shiny's default Bootstrap 3, extra-large uses a responsive width up to
-  1140 pixels on viewports at least 992 pixels wide.}
+  1140 pixels on viewports at least 992 pixels wide.
+  The aliases \code{"sm"}, \code{"lg"}, and \code{"xl"} are also accepted;
+  \code{NULL} or \code{""} uses the standard modal size.}
 
 \item{close_on_escape}{Logical; if \code{TRUE} (the default), allows the user to dismiss the dialog by hitting \code{ESC} key.}
 
@@ -44,7 +46,8 @@ Valid values are:
 \item \code{NULL}: The backdrop is displayed, but clicking on it has no effect.
 \item \code{TRUE}: The backdrop is displayed, and clicking on it dismisses the dialog.
 \item \code{FALSE}: The backdrop is not displayed.
-}}
+}
+  The Bootbox value \code{"static"} is also accepted and behaves like \code{NULL}.}
 
 \item{close_button}{Logical; if \code{TRUE} (the default), a close button is displayed.}
 

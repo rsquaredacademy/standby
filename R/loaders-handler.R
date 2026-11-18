@@ -18,7 +18,8 @@
 #' \item bouncing
 #' \item music
 #' }
-#' @param style Custom styling for the loaders.
+#' @param style Custom styling for the loaders: \code{"half"}, \code{"inverse"},
+#'   \code{"rounded"}, or \code{"blink"}. Use \code{NULL} for no custom style.
 #' @param text Custom text. Available only for the following types:
 #' \itemize{
 #' \item default
@@ -65,6 +66,7 @@
 #'
 loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
 
+  style <- validate_choice(style, c("half", "inverse", "rounded", "blink"), "style", null = TRUE)
   type <- match.arg(type, c("default", "bar", "bar-ping-pong", "border", "double",
                             "clock", "curtain", "pokeball", "ball", "smartphone",
                             "bouncing", "music"))
@@ -81,9 +83,12 @@ loaders <- function(uiOutput, type = "default", style = NULL, text = NULL) {
 
   if (!is.null(style)) {
     if (style == "blink") {
-      data_tag$attribs[['data-text data-blink']] <- NA
+      data_tag$attribs[['data-text']] <- NA
+      data_tag$attribs[['data-blink']] <- NA
     } else {
-      data_tag$attribs[[paste0('data-', style)]] <- NA
+      attribute <- switch(style, half = "data-half", inverse = "data-inverse",
+                          rounded = "data-rounded")
+      data_tag$attribs[[attribute]] <- NA
     }
   }
 

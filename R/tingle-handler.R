@@ -2,9 +2,9 @@
 #'
 #' Minimalist and easy to use modals.
 #'
-#' @param content Content of the modal.
+#' @param content Content of the modal. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param close_button Logical; if \code{TRUE}, displays a button to close the modal. Defaults to \code{FALSE}.
-#' @param button_label Label of \code{close_button}.
+#' @param button_label Label of \code{close_button}. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param button_type Type of button. Defaults to \code{"default"}. Other valid values are:
 #' \itemize{
 #' \item \code{"primary"}
@@ -57,6 +57,11 @@
 tingle <- function(content = "Hello", close_button = FALSE, button_label = "Close",
                    button_type = "default", button_position = "right",
                    session = getDefaultReactiveDomain()) {
+
+  close_button <- validate_flag(close_button, "close_button")
+  button_type <- validate_choice(button_type, c("default", "primary", "danger"), "button_type")
+  button_position <- validate_choice(button_position, c("right", "left"), "button_position")
+  if (is.null(content)) content <- ""
 
   notice = list(
     content = content

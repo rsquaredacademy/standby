@@ -2,8 +2,8 @@
 #'
 #' Pretty browser alerts and notifications.
 #'
-#' @param title Dialog title.
-#' @param message Dialog contents.
+#' @param title Dialog title. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
+#' @param message Dialog contents. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param type Alert/notification type. Defaults to \code{"success"}. Valid values are:
 #' \itemize{
 #' \item \code{"success"}
@@ -14,7 +14,7 @@
 #' For \code{alertify_alert()} the type sets a class on the dialog and a
 #' type-specific accent border and header colour. For
 #' \code{alertify_notify()} it sets the notification style.
-#' @param btn_label The \code{OK} button label.
+#' @param btn_label The \code{OK} button label. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param transition Transition effect to be used when showing/hiding the dialog. Defaults to \code{"pulse"}. Valid values are:
 #' \itemize{
 #' \item \code{"pulse"}
@@ -24,7 +24,8 @@
 #' \item \code{"flipx"}
 #' \item \code{"flipy"}
 #' }
-#' @param delay The time (in seconds) to wait before the notification is auto-dismissed. \code{0} will keep notification open till clicked.
+#' @param delay The time (in seconds) to wait before the notification is auto-dismissed. \code{0}, \code{Inf}, or \code{NULL} will keep notification open till clicked.
+#'   The strings \code{"infinity"} and \code{"infinite"} also keep it open.
 #' @param position Position of the notification. Defaults to \code{"bottom-right"}. Valid values are:
 #' \itemize{
 #' \item \code{"bottom-right"}
@@ -126,6 +127,22 @@ alertify_alert <- function(title = "Alert Title", message = "Alert Message",
                            resizeable = FALSE, start_maximized = FALSE,
                            session = getDefaultReactiveDomain()) {
 
+  type <- validate_choice(type, c("success", "error", "warning", "message"), "type")
+  transition <- validate_choice(transition, c("pulse", "slide", "zoom", "fade", "flipx", "flipy"), "transition")
+  transition_off <- validate_flag(transition_off, "transition_off")
+  closable <- validate_flag(closable, "closable")
+  auto_reset <- validate_flag(auto_reset, "auto_reset")
+  frameless <- validate_flag(frameless, "frameless")
+  maximizable <- validate_flag(maximizable, "maximizable")
+  modal <- validate_flag(modal, "modal")
+  movable <- validate_flag(movable, "movable")
+  move_bounded <- validate_flag(move_bounded, "move_bounded")
+  overflow <- validate_flag(overflow, "overflow")
+  padding <- validate_flag(padding, "padding")
+  pinnable <- validate_flag(pinnable, "pinnable")
+  resizeable <- validate_flag(resizeable, "resizeable")
+  start_maximized <- validate_flag(start_maximized, "start_maximized")
+
   notice = list(
     title          = title,
     message        = message,
@@ -159,6 +176,13 @@ alertify_alert <- function(title = "Alert Title", message = "Alert Message",
 alertify_notify <- function(message = "Alert Message", type = "success",
                             delay = 5, position = "bottom-right",
                             session = getDefaultReactiveDomain()) {
+
+  type <- validate_choice(type, c("success", "error", "warning", "message"), "type")
+  position <- validate_choice(position, c("bottom-right", "bottom-left", "bottom-center",
+    "top-right", "top-left", "top-center"), "position")
+  # Alertify deliberately keeps notifications open for non-positive delays.
+  if (is.null(delay) || is_stay_open_delay(delay)) delay <- 0
+  delay <- normalize_delay(delay, "delay", negative = TRUE)
 
   notice = list(
     message  = message,

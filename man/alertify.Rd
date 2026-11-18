@@ -40,9 +40,9 @@ alertify_notify(
 )
 }
 \arguments{
-\item{title}{Dialog title.}
+\item{title}{Dialog title. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
-\item{message}{Dialog contents.}
+\item{message}{Dialog contents. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
 \item{type}{Alert/notification type. Defaults to \code{"success"}. Valid values are:
 \itemize{
@@ -55,7 +55,7 @@ For \code{alertify_alert()} the type sets a class on the dialog and a
 type-specific accent border and header colour. For
 \code{alertify_notify()} it sets the notification style.}
 
-\item{btn_label}{The \code{OK} button label.}
+\item{btn_label}{The \code{OK} button label. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
 \item{transition}{Transition effect to be used when showing/hiding the dialog. Defaults to \code{"pulse"}. Valid values are:
 \itemize{
@@ -95,7 +95,8 @@ type-specific accent border and header colour. For
 
 \item{session}{Shiny session object.}
 
-\item{delay}{The time (in seconds) to wait before the notification is auto-dismissed. \code{0} will keep notification open till clicked.}
+\item{delay}{The time (in seconds) to wait before the notification is auto-dismissed. \code{0}, \code{Inf}, or \code{NULL} will keep notification open till clicked.
+The strings \code{"infinity"} and \code{"infinite"} also keep it open.}
 
 \item{position}{Position of the notification. Defaults to \code{"bottom-right"}. Valid values are:
 \itemize{

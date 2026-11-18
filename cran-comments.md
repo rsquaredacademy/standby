@@ -19,33 +19,30 @@ See `NEWS.md` for the complete list.
 
 ## Test environments
 
-* local Windows 11 x64, R 4.6.1 (2026-06-24 ucrt), Shiny 1.14.0,
-  htmltools 0.5.9, testthat 3.3.2
-* `R CMD check --as-cran` (including the manual) on the tarball built from a clean
-  `git archive` of the release commit
-* no win-builder, R-hub or GitHub Actions run was performed for this source
-
-Browser-level regression tests use chromote with a local Chrome installation.
-The full local suite passed 1519 assertions, with 0 failures, 0 errors and
-0 skips; all 27 browser test blocks ran with Chrome available.
-They are skipped on CRAN (`skip_on_cran()`), and also skipped when chromote or
-Chrome is unavailable, so they do not affect the CRAN check.
+* local: Windows 11 x64, R 4.6.1 (ucrt)
+* Linux (Ubuntu): R 4.6.2 and R-devel (4.7.0)
+* win-builder: R-devel and R-release
+* GitHub Actions: ubuntu-latest (devel, release, oldrel-1), windows-latest
+  (release), macos-latest (release)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 NOTE: CRAN incoming-feasibility
-maintainer change, which is expected because the maintainer address was
-updated from `hebbali.aravind@gmail.com` to
-`aravindhebbali@rsquaredacademy.com`.
+0 errors | 0 warnings | 1 note
 
-The final clean-archive check included both manuals and vignette rebuilding.
-Check-mode tests: PASS 1142, FAIL 0, WARN 0, SKIP 68 (all On CRAN: 27 browser
-tests and 41 snapshots). Those browser tests all ran in the full local suite.
-Tarball MD5: aa62805cf774bfec91a9519a77ee6d98.
+* checking CRAN incoming feasibility ... NOTE: the maintainer e-mail address
+  changes from hebbali.aravind@gmail.com to aravindhebbali@rsquaredacademy.com.
+  This is the same maintainer, Aravind Hebbali; the change will be confirmed
+  from the old address.
+
+The check was run on a tarball built from a clean `git archive` copy of the
+release commit.
 
 ## Reverse dependencies
 
-No reverse dependency was re-checked for this source snapshot. The changed code
-is limited to the package's own CSS/JavaScript and to colour/length handling in
-the exported UI helpers; the one known reverse dependency (`xplorerr`) does not
-use those helpers directly.
+We checked 1 reverse dependency (xplorerr): 0 new problems.
+
+Browser-level regression tests use chromote with a local Chrome installation.
+The full local suite passed (161 test blocks), with 0 failures, 0 errors and
+0 skips; all 27 browser test blocks ran with Chrome available.
+They are skipped on CRAN (`skip_on_cran()`), and also skipped when chromote or
+Chrome is unavailable, so they do not affect the CRAN check.

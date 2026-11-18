@@ -11,12 +11,12 @@ notice(
   message = "Hello",
   type = "notice",
   layout = "growl",
-  effect = "jelly",
+  effect = NULL,
   session = getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{message}{Notification message.}
+\item{message}{Notification message. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
 \item{type}{Notification type. Defaults to \code{"notice"}. Other valid values are:
 \itemize{
@@ -33,7 +33,9 @@ notice(
 \item \code{"bar"}
 }}
 
-\item{effect}{Notification effect type. Valid values include:
+\item{effect}{Notification effect type. The default \code{NULL} selects
+  \code{"jelly"} for growl, \code{"flip"} for attached, or \code{"slidetop"}
+  for bar. An explicit effect must be valid for the selected layout:
 \itemize{
 \item For \code{"growl"} layout
 \itemize{
