@@ -38,6 +38,8 @@ fresh audit of that fix round.
 
 ## Alerts, modals and tooltips
 
+* Documented that `alertify_alert()`, `alertify_notify()`, `bootBox()`, `tingle()`, `toast()` and `notice()` render HTML; escape untrusted input with `htmltools::htmlEscape()`.
+
 * Reused `alertify_alert()` dialogs replace previous semantic type classes, so
   error followed by success or warning has the correct accent (aud2 M01;
   fx1 M04). The bridge forwards maximizable, resizable and label settings;

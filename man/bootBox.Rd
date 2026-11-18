@@ -21,9 +21,9 @@ bootBox(
 )
 }
 \arguments{
-\item{title}{Adds a header to the dialog.}
+\item{title}{Adds a header to the dialog. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
-\item{message}{Text displayed in the dialog.}
+\item{message}{Text displayed in the dialog. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
 \item{size}{Adds the relevant Bootstrap modal size class to the dialog wrapper. Valid values are:
 \itemize{

@@ -2,8 +2,8 @@
 #'
 #' Pretty browser alerts and notifications.
 #'
-#' @param title Dialog title.
-#' @param message Dialog contents.
+#' @param title Dialog title. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
+#' @param message Dialog contents. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param type Alert/notification type. Defaults to \code{"success"}. Valid values are:
 #' \itemize{
 #' \item \code{"success"}
@@ -14,7 +14,7 @@
 #' For \code{alertify_alert()} the type sets a class on the dialog and a
 #' type-specific accent border and header colour. For
 #' \code{alertify_notify()} it sets the notification style.
-#' @param btn_label The \code{OK} button label.
+#' @param btn_label The \code{OK} button label. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param transition Transition effect to be used when showing/hiding the dialog. Defaults to \code{"pulse"}. Valid values are:
 #' \itemize{
 #' \item \code{"pulse"}

@@ -2,9 +2,9 @@
 #'
 #' Minimalist and easy to use modals.
 #'
-#' @param content Content of the modal.
+#' @param content Content of the modal. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param close_button Logical; if \code{TRUE}, displays a button to close the modal. Defaults to \code{FALSE}.
-#' @param button_label Label of \code{close_button}.
+#' @param button_label Label of \code{close_button}. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param button_type Type of button. Defaults to \code{"default"}. Other valid values are:
 #' \itemize{
 #' \item \code{"primary"}

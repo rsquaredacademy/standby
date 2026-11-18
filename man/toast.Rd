@@ -47,9 +47,9 @@ toast(
 )
 }
 \arguments{
-\item{title}{Title of the toast.}
+\item{title}{Title of the toast. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
-\item{message}{Message of toast.}
+\item{message}{Message of toast. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
 \item{type}{Type of notification. Defaults to \code{NULL}. Valid values are:
 \itemize{

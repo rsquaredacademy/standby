@@ -2,8 +2,8 @@
 #'
 #' Lightweight toast notifications
 #'
-#' @param title Title of the toast.
-#' @param message Message of toast.
+#' @param title Title of the toast. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
+#' @param message Message of toast. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param type Type of notification. Defaults to \code{NULL}. Valid values are:
 #' \itemize{
 #' \item \code{"info"}

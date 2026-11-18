@@ -16,7 +16,7 @@ notice(
 )
 }
 \arguments{
-\item{message}{Notification message.}
+\item{message}{Notification message. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.}
 
 \item{type}{Notification type. Defaults to \code{"notice"}. Other valid values are:
 \itemize{

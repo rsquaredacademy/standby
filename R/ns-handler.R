@@ -2,7 +2,7 @@
 #'
 #' Simple website notifications with effects
 #'
-#' @param message Notification message.
+#' @param message Notification message. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param type Notification type. Defaults to \code{"notice"}. Other valid values are:
 #' \itemize{
 #' \item \code{"success"}

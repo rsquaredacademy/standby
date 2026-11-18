@@ -2,8 +2,8 @@
 #'
 #' Bootstrap modals made easy.
 #'
-#' @param title Adds a header to the dialog.
-#' @param message Text displayed in the dialog.
+#' @param title Adds a header to the dialog. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
+#' @param message Text displayed in the dialog. Interpreted as HTML. Escape untrusted input with \code{htmltools::htmlEscape()}.
 #' @param size Adds the relevant Bootstrap modal size class to the dialog wrapper. Valid values are:
 #' \itemize{
 #' \item \code{"small"}
