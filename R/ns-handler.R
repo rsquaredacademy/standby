@@ -16,7 +16,9 @@
 #' \item \code{"attached"}
 #' \item \code{"bar"}
 #' }
-#' @param effect Notification effect type. Valid values include:
+#' @param effect Notification effect type. The default \code{NULL} selects
+#'   \code{"jelly"} for growl, \code{"flip"} for attached, or \code{"slidetop"}
+#'   for bar. An explicit effect must be valid for the selected layout:
 #' \itemize{
 #' \item For \code{"growl"} layout
 #' \itemize{
@@ -76,12 +78,14 @@
 #' @export
 #'
 notice <- function(message = "Hello", type = "notice", layout = "growl",
-                   effect = "jelly", session = getDefaultReactiveDomain()) {
+                   effect = NULL, session = getDefaultReactiveDomain()) {
 
   validate_choice(type, c("notice", "success", "warning", "error"), "type")
   validate_choice(layout, c("growl", "attached", "bar"), "layout")
-  validate_choice(effect, c("scale", "jelly", "slide", "genie", "flip",
-    "bouncyflip", "slidetop", "exploader"), "effect")
+  effects <- switch(layout, growl = c("jelly", "scale", "slide", "genie"),
+    attached = c("flip", "bouncyflip"), bar = c("slidetop", "exploader"))
+  if (is.null(effect)) effect <- effects[[1]]
+  validate_choice(effect, effects, "effect")
 
   notice = list(
     message = message,
