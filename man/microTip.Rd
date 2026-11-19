@@ -32,7 +32,8 @@ microTip(
 \item \code{"bottom-right"}
 }}
 
-\item{size}{Size of the tooltip. Defaults to \code{"fit"} as the tooltip will takeup only the size it requires to show the text.
+\item{size}{Size of the tooltip. Defaults to \code{NULL}, which fits the text,
+  as do \code{"fit"} and \code{""}.
 Valid values are:
 \itemize{
 \item \code{"fit"}

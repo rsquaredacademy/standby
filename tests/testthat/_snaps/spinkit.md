@@ -77,7 +77,6 @@
       <div class="sk-swing standby-wait" style="width: 40px; height: 40px;">
         <div class="sk-swing-dot" style="background-color:#333;"></div>
         <div class="sk-swing-dot" style="background-color:#333;"></div>
-        <div class="sk-swing-dot" style="background-color:#333;"></div>
       </div>
 
 # spinkit_circle() generates the correct HTML
@@ -143,7 +142,6 @@
       spinkit_wander(color = "#333", size = "40px")
     Output
       <div class="sk-wander standby-wait" style="width: 40px; height: 40px;">
-        <div class="sk-wander-cube" style="background-color:#333;"></div>
         <div class="sk-wander-cube" style="background-color:#333;"></div>
         <div class="sk-wander-cube" style="background-color:#333;"></div>
         <div class="sk-wander-cube" style="background-color:#333;"></div>

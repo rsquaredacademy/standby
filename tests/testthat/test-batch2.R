@@ -50,11 +50,11 @@ test_that("N6: vizLoad() validates size per type and errors on unsupported combi
   # line / bordered_line do not support tiny
   expect_error(
     vizLoad(shiny::div("test"), type = "line", size = "tiny"),
-    "not supported"
+    "`size` must be one of:"
   )
   expect_error(
     vizLoad(shiny::div("test"), type = "bordered_line", size = "tiny"),
-    "not supported"
+    "`size` must be one of:"
   )
 
   # other types do not support fluid
@@ -62,14 +62,14 @@ test_that("N6: vizLoad() validates size per type and errors on unsupported combi
   for (tp in unsupported_fluid) {
     expect_error(
       vizLoad(shiny::div("test"), type = tp, size = "fluid"),
-      "not supported"
+      "`size` must be one of:"
     )
   }
 
   # invalid size string errors
   expect_error(
     vizLoad(shiny::div("test"), type = "bars", size = "bogus"),
-    "not supported"
+    "`size` must be one of:"
   )
 })
 

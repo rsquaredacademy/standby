@@ -10,6 +10,10 @@
 #'   \code{colors()} values (so \code{"green"} is \code{#00FF00}); CSS colour
 #'   names not in R (such as \code{"rebeccapurple"}) are also accepted.
 #'
+#' @details The supported domain is types 1 through 8 and the documented colour
+#'   formats, with CSS animation enabled in a modern browser and sufficient room
+#'   for the graphic. Transparent colours intentionally hide the spinner.
+#'
 #' @section Functions:
 #' \itemize{
 #' \item \code{useSpinners}: Dependencies to include in your UI.

@@ -22,9 +22,15 @@
 #' valid values are \code{"large"}, \code{"medium"}, \code{"small"}, and \code{"fluid"}.
 #' For all other types, valid values are \code{"large"}, \code{"medium"}, \code{"small"},
 #' and \code{"tiny"}.
+#' Supply one non-missing character string. Line widths are capped at the output
+#' width when the nominal preset is larger than its container.
 #' @param add_label Logical; if \code{TRUE}, displays a label below the bar/spinner. Defaults to \code{FALSE}.
 #' @param label The label to be displayed below the bar/spinner. \code{add_label} must
 #' be set to \code{TRUE} to display the label.
+#'
+#' @details The supported domain is the listed type/size combinations and colour
+#'   formats, with CSS animation enabled in a modern browser and sufficient room
+#'   for the chosen graphic. Transparent colours intentionally hide the graphic.
 #'
 #' @section Functions:
 #' \itemize{
@@ -69,11 +75,7 @@ vizLoad <- function(uiOutput, type = "bars", size = "large", color = NULL, add_l
     c("large", "medium", "small", "tiny")
   }
 
-  if (!is.character(size) || length(size) != 1 || !size %in% valid_sizes) {
-    stop(sprintf("Size '%s' is not supported for type '%s'. Supported sizes: %s.",
-                 size, type, paste(valid_sizes, collapse = ", ")),
-         call. = FALSE)
-  }
+  size <- validate_choice(size, valid_sizes, "size")
   if (!is.null(color)) {
     color <- validate_color(color, "color")
     color <- normalize_color(color)

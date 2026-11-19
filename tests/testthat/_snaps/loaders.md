@@ -4,7 +4,7 @@
       glanceLoaders()
     Output
       <div class="standby">
-        <div id="loader" class="loader loader-default is-active"></div>
+        <div id="loader" class="loader sby-loader loader-default is-active"></div>
       </div>
 
 # loaders generates the correct HTML
@@ -13,7 +13,7 @@
       loaders(uiOutput = plotOutput("plot"), type = "default", style = "half", text = "Loading...")
     Output
       <div class="standby">
-        <div id="loader-1" class="loader sby-loader loader-default is-active standby-wait" data-text="Loading..."></div>
+        <div id="loader-1" class="loader sby-loader loader-default is-active standby-wait" data-half data-text="Loading..."></div>
         <div class="shiny-plot-output html-fill-item" id="plot" style="width:100%;height:400px;"></div>
       </div>
 

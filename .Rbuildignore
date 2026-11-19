@@ -5,6 +5,8 @@
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
 ^\.github$
+^\.git$
+^AUDIT-.*\.md$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$

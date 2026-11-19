@@ -27,6 +27,11 @@ names not in R (such as \code{"rebeccapurple"}) are also accepted.}
 \description{
 A collection of loading spinners animated with CSS
 }
+\details{
+The supported domain is types 1 through 8 and the documented colour
+  formats, with CSS animation enabled in a modern browser and sufficient room
+  for the graphic. Transparent colours intentionally hide the spinner.
+}
 \section{Functions}{
 
 \itemize{

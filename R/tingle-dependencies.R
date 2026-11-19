@@ -3,7 +3,7 @@
 useTingle <- function() {
   htmltools::htmlDependency(
     name = "tingle",
-    version = "0.1.0",
+    version = "0.2.2",
     src = c(file = "tingle"),
     script = list(list(src = "js/tingle.min.js", defer = NA), 
                   list(src = "js/sbyTingle.js", defer = NA)),

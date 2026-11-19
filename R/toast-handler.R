@@ -28,6 +28,8 @@
 #' }
 #' @param duration Time in milliseconds to close the toast. Defaults to \code{5000}. Use \code{FALSE}, \code{Inf}, or \code{NULL} to disable.
 #'   The strings \code{"infinity"} and \code{"infinite"} also disable closing.
+#'   For compatibility, \code{0}, \code{NA}, \code{NaN}, and \code{-Inf}
+#'   also keep the toast open.
 #' @param progress_bar_color Progress bar color. Choose between hexadecimal, RGB or keyword values.
 #' @param background_color Background color of the toast. Choose between hexadecimal, RGB or keyword values.
 #' @param max_width Maximum width of the toast.
@@ -77,6 +79,7 @@
 #' \item \code{"revealIn"}
 #' \item \code{"slideIn"}
 #' }
+#' Use \code{NULL} or \code{""} for no open animation.
 #' @param transition_out Toast close animation. Defaults to \code{"fadeOut"}. Valid values are:
 #' \itemize{
 #' \item \code{"fadeOut"}
@@ -86,6 +89,7 @@
 #' \item \code{"fadeOutRight"}
 #' \item \code{"flipOutX"}
 #' }
+#' Use \code{NULL} or \code{""} for no close animation.
 #' @param session Shiny session object.
 #'
 #' @section Functions:
@@ -179,12 +183,12 @@ toast <- function(title = "Hey", message = NULL, type = NULL, theme = NULL, posi
 
   # iziToast appends "px" to unit-less values; normalise on the R side so a
   # number and the documented "50px" both work and never become "50pxpx".
-  title_size <- normalize_css_length(title_size)
-  title_line_height <- normalize_css_length(title_line_height)
-  message_size <- normalize_css_length(message_size)
-  message_line_height <- normalize_css_length(message_line_height)
+  title_size <- normalize_css_length(title_size, "title_size")
+  title_line_height <- normalize_css_length(title_line_height, "title_line_height")
+  message_size <- normalize_css_length(message_size, "message_size")
+  message_line_height <- normalize_css_length(message_line_height, "message_line_height")
   if (is.null(image_width)) image_width <- "50px"
-  image_width <- normalize_css_length(image_width)
+  image_width <- normalize_css_length(image_width, "image_width")
 
   notice = list(
     type              = type,

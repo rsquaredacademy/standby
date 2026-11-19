@@ -1,4 +1,6 @@
-.standby-wait {
+/* Keep positioning stable when another use*() helper loads its family CSS
+   after this shared dependency. Family rules may set position: relative. */
+.standby > .standby-wait {
   margin: auto;
   left: 0;
   right: 0;
@@ -10,4 +12,17 @@
 
 .standby {
   position: relative;
+}
+
+/* Center the visible projection, leaving its shadow source at left: -9999px.
+   Shadows must stay offset from their source to retain solid dot centres. */
+.sby-dot-projection {
+  width: 10px;
+  height: 10px;
+}
+
+/* The line presets have nominal widths up to 1000px. Fit smaller outputs. */
+.standby > .lv-line,
+.standby > .lv-bordered_line {
+  max-width: 100%;
 }

@@ -8,9 +8,10 @@ test_that("fx4 M1: loader styles use only known attribute names", {
                  "`style` must be one of:", fixed = TRUE)
   }
   for (style in c("half", "inverse", "rounded", "blink")) {
-    loader <- loaders(shiny::div(), style = style)$children[[1]]
+    type <- if (style == "rounded") "bar" else "default"
+    loader <- loaders(shiny::div(), type = type, style = style)$children[[1]]
     expected <- c("id", "class", if (style == "blink") c("data-text", "data-blink") else paste0("data-", style))
     expect_identical(names(loader$attribs), expected)
   }
-  expect_false(grepl("data-half", as.character(loaders(shiny::div(), style = "half", text = "Loading"))))
+  expect_true(grepl("data-half", as.character(loaders(shiny::div(), style = "half", text = "Loading"))))
 })

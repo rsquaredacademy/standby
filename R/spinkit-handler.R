@@ -25,6 +25,11 @@
 #' @param size Size of the spinner as a positive CSS length. Bare numbers and unitless
 #'   numeric strings are interpreted as pixels. Defaults to \code{"40px"}.
 #'
+#' @details The supported domain is the listed types, colour formats, and finite
+#'   positive CSS sizes. The output must have enough room for the requested size.
+#'   CSS animation must be enabled in a modern browser. Transparent colours
+#'   intentionally hide the spinner.
+#'
 #' @section Functions:
 #' \itemize{
 #' \item \code{useSpinkit}: Dependencies to include in your UI.

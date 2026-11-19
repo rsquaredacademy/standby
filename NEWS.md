@@ -6,6 +6,33 @@ fresh audit of that fix round.
 
 ## Colours and loaders
 
+* All 20 `threeDots()` types render their intended animation. Shadow animations
+  now use separate centering wrappers to preserve solid projected dots;
+  emoji types have bounded widths and no
+  coloured bar; ring/orbit centres stay transparent (standby-fx6 H1).
+* `loaders(type = "music")` displays the animated hey-oh coin (H2).
+  Supported styles are preserved alongside custom text. `half` supports default;
+  `inverse` supports default/bar; `rounded` supports bar/bar-ping-pong; `blink`
+  supports default/bar/border. Unsupported style/text combinations now error
+  with their valid types, and text must be one non-missing string (H3).
+* SpinKit swing emits exactly two dots and wander exactly three cubes, avoiding
+  duplicate elements and doubled opacity for translucent colours (H4).
+* `vizLoad(size =)` rejects NULL, empty, factor, list and other invalid inputs
+  with a clear error naming `size` and its valid choices (M1).
+* Shared centering remains effective regardless of dependency order when
+  spinner families are combined. VizLoad line presets fit smaller outputs.
+* Previews omit empty CSS declarations, use a visible SpinKit colour, and
+  include the CSS Loaders class. Spinner 5 no longer emits bare declarations.
+  Tooltip defaults, toast length errors, and stay-open documentation agree with
+  the arguments. Bundled dependency revision stamps are now 0.2.2 (L1-L3).
+* The supported visual domain is the documented types, colour formats, positive
+  SpinKit sizes and type-specific VizLoad sizes/loader options, in a modern
+  browser with CSS animation enabled and room for the requested graphic.
+  Transparent colours intentionally hide graphics; emoji colours stay native.
+  A Chrome regression grid covers every type, supported loader style/text pair,
+  SpinKit sizes 24/40/64px and all VizLoad size choices, including raster checks
+  for visible animation, viewport bounds and stray children.
+
 * `loaders(style =)` accepts only `half`, `inverse`, `rounded`, `blink`, or
   `NULL`; invalid values now raise an R error. Blink emits separate styling
   attributes.

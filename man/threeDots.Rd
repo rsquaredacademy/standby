@@ -13,11 +13,17 @@ threeDots(uiOutput, type = "elastic", color = "#9880ff")
 \arguments{
 \item{uiOutput}{An output element to be wrapped within a loader.}
 
-\item{type}{The type of animation to use. Visit \url{https://nzbin.github.io/three-dots/} for details.}
+\item{type}{The type of animation to use. Visit \url{https://nzbin.github.io/three-dots/} for details.
+Supported types are \code{elastic}, \code{pulse}, \code{flashing},
+\code{collision}, \code{revolution}, \code{carousel}, \code{typing},
+\code{windmill}, \code{bricks}, \code{floating}, \code{fire}, \code{spin},
+\code{falling}, \code{stretching}, \code{gathering}, \code{hourglass},
+\code{overtaking}, \code{shuttle}, \code{bouncing}, and \code{rolling}.}
 
 \item{color}{The color of the loader. Choose between a color name, hexadecimal,
 or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values. Names use R's
-\code{colors()} values; CSS colour names not in R are also accepted.}
+\code{colors()} values; CSS colour names not in R are also accepted.
+The emoji types \code{bouncing} and \code{rolling} retain their native colours.}
 }
 \value{
 \code{useThreeDots()} returns a Shiny tag list of HTML dependencies to include in the UI;
@@ -25,6 +31,11 @@ or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values. Names use R's
 }
 \description{
 Single element CSS loading animation.
+}
+\details{
+The supported domain is the listed types and colour formats, rendered
+  with CSS animation enabled in a modern browser and sufficient room in the
+  output for the animation. Transparent colours intentionally hide the dots.
 }
 \section{Functions}{
 

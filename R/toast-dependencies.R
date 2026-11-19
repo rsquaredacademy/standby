@@ -4,7 +4,7 @@ useToast <- function() {
 
   htmltools::htmlDependency(
     name = "toast",
-    version = "0.1.0",
+    version = "0.2.2",
     src = c(file = "toast"),
     script = list(list(src = "js/iziToast.min.js", defer = NA),
                   list(src = "js/sbyToast.js", defer = NA)),

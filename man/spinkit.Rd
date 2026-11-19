@@ -43,6 +43,12 @@ numeric strings are interpreted as pixels. Defaults to \code{"40px"}.}
 \description{
 Simple CSS spinners.
 }
+\details{
+The supported domain is the listed types, colour formats, and finite
+  positive CSS sizes. The output must have enough room for the requested size.
+  CSS animation must be enabled in a modern browser. Transparent colours
+  intentionally hide the spinner.
+}
 \section{Functions}{
 
 \itemize{

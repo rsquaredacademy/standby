@@ -29,7 +29,7 @@ test_that("fx3 N02: trailing decimal dots are rejected as malformed CSS numbers"
     expect_error(spinkit(shiny::div(), size = size), "Invalid `size`")
     for (arg in c("title_size", "message_size", "title_line_height", "message_line_height", "image_width")) {
       expect_error(do.call(fxb_payload, c(list(fun = toast), setNames(list(size), arg))),
-                   "Invalid `length`")
+                   paste0("Invalid `", arg, "`"))
     }
   }
   for (size in c("12", "12.5", ".5", "12px")) {
