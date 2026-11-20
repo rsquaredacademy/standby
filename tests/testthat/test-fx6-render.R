@@ -8,7 +8,9 @@ fx6_check_case <- function(case, name) {
     var nodes=[root].concat(Array.from(root.querySelectorAll('*'))), names=[];
     nodes.forEach(function(el){[null,'::before','::after'].forEach(function(p){
       var c=getComputedStyle(el,p);if((p===null||c.content!=='none')&&c.animationName!=='none')names.push(c.animationName);});});
-    return {x:r.x,y:r.y,width:r.width,height:r.height,children:root.children.length,
+    // Size from the layout box: a running scale() animation (SpinKit pulse
+    // starts at scale(0)) can make the transformed rect 0x0 at frame 0.
+    return {x:r.x,y:r.y,width:Math.max(r.width,root.offsetWidth),height:Math.max(r.height,root.offsetHeight),children:root.children.length,
       shown:getComputedStyle(root).visibility==='visible',animations:names.length,
       running:document.getAnimations().some(function(a){return a.playState==='running';}),
       scroll:document.documentElement.scrollWidth};})()")
