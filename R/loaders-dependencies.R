@@ -5,7 +5,7 @@ useLoaders <- function() {
 
   loader <- htmltools::htmlDependency(
     name = "loaders",
-    version = "0.1.0",
+    version = "0.2.2",
     src = c(file = "loaders"),
     stylesheet = "css/loaders.css",
     package = "standby"

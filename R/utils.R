@@ -7,14 +7,14 @@ glanceThreeDots <- function(type = "elastic") {
   )
 }
 
-glanceSpinkit <- function(type = "rotating-plane", color = NULL, width = NULL, height = NULL) {
+glanceSpinkit <- function(type = "rotating-plane", color = "#fff", width = NULL, height = NULL) {
   tags$div(
     class = "standby",
     tags$div(
       class = paste0("sk-plane", " standby-wait"),
-      style = c(paste0('width:', width, ';'),
-                paste0('height:', height, ';'),
-                paste0('background-color:', color, ';'))
+      style = c(if (!is.null(width)) paste0('width:', width, ';'),
+                if (!is.null(height)) paste0('height:', height, ';'),
+                if (!is.null(color)) paste0('background-color:', color, ';'))
     )
   )
 }
@@ -44,7 +44,7 @@ glanceLoaders <- function(type = "default") {
     class = "standby",
     tags$div(
       id = "loader",
-      class = paste0("loader loader-", type, " is-active")
+      class = paste0("loader sby-loader loader-", type, " is-active")
     )
   )
 }
@@ -104,7 +104,7 @@ spinkit_swing <- function(color = NULL, size = NULL) {
   tags$div(
     class = "sk-swing standby-wait",
     style = c(if (!is.null(size)) paste0('width: ', size, '; height: ', size, ";")),
-    lapply(1:3, function(i) div(class = "sk-swing-dot",
+    lapply(1:2, function(i) div(class = "sk-swing-dot",
                                 style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
@@ -147,7 +147,7 @@ spinkit_wander <- function(color = NULL, size = NULL) {
   tags$div(
     class = "sk-wander standby-wait",
     style = c(if (!is.null(size)) paste0('width: ', size, '; height: ', size, ";")),
-    lapply(1:4, function(i) div(class = "sk-wander-cube",
+    lapply(1:3, function(i) div(class = "sk-wander-cube",
                                 style = c(if (!is.null(color)) paste0('background-color:', color, ';'))))
   )
 }
@@ -577,9 +577,7 @@ spinner_css <- function(color, id) {
   s05 <- spinner_shade(color, 0.5)
   s07 <- spinner_shade(color, 0.7)
   paste0(
-            "-webkit-animation: load5 1.1s infinite ease;
-            animation: load5 1.1s infinite ease; 
-            @-webkit-keyframes load5-", id, " {
+            "@-webkit-keyframes load5-", id, " {
               0%,
               100% {
                 box-shadow: 0em -2.6em 0em 0em ", color, ", 

@@ -1,0 +1,5 @@
+standby.Rcheck/
+standby_*.tar.gz
+*-results.rds
+fx6.log
+fx6-results.csv

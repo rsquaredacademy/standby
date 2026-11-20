@@ -34,7 +34,9 @@ vizLoad(
 \item{size}{The size of the bar/spinner. For \code{"line"} and \code{"bordered_line"},
 valid values are \code{"large"}, \code{"medium"}, \code{"small"}, and \code{"fluid"}.
 For all other types, valid values are \code{"large"}, \code{"medium"}, \code{"small"},
-and \code{"tiny"}.}
+and \code{"tiny"}.
+Supply one non-missing character string. Line widths are capped at the output
+width when the nominal preset is larger than its container.}
 
 \item{color}{The color of the bar/spinner. Choose between a color name,
 hexadecimal, or \code{rgb()}/\code{rgba()}/\code{hsl()}/\code{hsla()} values.
@@ -52,6 +54,11 @@ be set to \code{TRUE} to display the label.}
 }
 \description{
 Loading bars and spinners.
+}
+\details{
+The supported domain is the listed type/size combinations and colour
+  formats, with CSS animation enabled in a modern browser and sufficient room
+  for the chosen graphic. Transparent colours intentionally hide the graphic.
 }
 \section{Functions}{
 

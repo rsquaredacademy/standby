@@ -1,0 +1,173 @@
+"file","context","test","nb","failed","skipped","error","warning","user","system","real","passed"
+"test-audit-fixes.R","audit-fixes","H01: loader handlers do not build selectors from output ids",5,0,FALSE,FALSE,0,0.0500000000000003,0.03,0.0699999999999994,5
+"test-audit-fixes.R","audit-fixes","H03: spinkit colours are scoped to each widget",12,0,FALSE,FALSE,0,0.36,0.0600000000000001,0.59,12
+"test-audit-fixes.R","audit-fixes","H04: threeDots sets --primary-color on the widget",3,0,FALSE,FALSE,0,0.00999999999999979,0,0.0300000000000002,3
+"test-audit-fixes.R","audit-fixes","H05: colour names use one interpretation for main colour and shades",10,0,FALSE,FALSE,0,0.21,0,0.28,10
+"test-audit-fixes.R","audit-fixes","H06: valid documented CSS colours are accepted",43,0,FALSE,FALSE,0,0.51,0.0299999999999999,0.89,43
+"test-audit-fixes.R","audit-fixes","H07: spinner shades preserve the requested alpha",12,0,FALSE,FALSE,0,0.13,0.05,0.34,12
+"test-audit-fixes.R","audit-fixes","H08: channels are quantised half-up like CSS",6,0,FALSE,FALSE,0,0.0800000000000001,0.03,0.12,6
+"test-audit-fixes.R","audit-fixes","H09: notify() sends FALSE, not JSON null, for absent text/title",6,0,FALSE,FALSE,0,0.0999999999999996,0.0499999999999999,0.47,6
+"test-audit-fixes.R","audit-fixes","H10: notify() renders element inputs to trusted HTML",6,0,FALSE,FALSE,0,0.0200000000000005,0.03,0.22,6
+"test-audit-fixes.R","audit-fixes","H11: notify(delay = 'infinity') disables automatic hiding",4,0,FALSE,FALSE,0,0.0300000000000002,0.03,0.0899999999999999,4
+"test-audit-fixes.R","audit-fixes","H12: the translucent class has shipped styling",3,0,FALSE,FALSE,0,0,0.0299999999999999,0.15,3
+"test-audit-fixes.R","audit-fixes","H13: microTip removes a stale size when size is NULL",2,0,FALSE,FALSE,0,0.00999999999999979,0,0.0300000000000002,2
+"test-audit-fixes.R","audit-fixes","H14: bootBox uses a dialog so onEscape is respected",4,0,FALSE,FALSE,0,0,0.01,0.130000000000001,4
+"test-audit-fixes.R","audit-fixes","H15: toast image width is always a usable CSS length",3,0,FALSE,FALSE,0,0.14,0.04,0.23,3
+"test-audit-fixes.R","audit-fixes","H16: toast font sizes and line heights are normalised per value",11,0,FALSE,FALSE,0,0.0500000000000007,0.08,0.19,11
+"test-audit-fixes.R","audit-fixes","H17: toast display_mode implements the documented modes",6,0,FALSE,FALSE,0,0.0300000000000002,0.03,0.0899999999999999,6
+"test-audit-fixes.R","audit-fixes","H18: previewSpinners('vizload') renders the vizload loader",4,0,FALSE,FALSE,0,0.0200000000000005,0.03,0.0899999999999999,4
+"test-audit-fixes.R","audit-fixes","H19: CSS Loaders base rules do not target the spinner .loader",5,0,FALSE,FALSE,0,0.0299999999999994,0,0.109999999999999,5
+"test-audit-fixes.R","audit-fixes","M01 + M03: DESCRIPTION metadata",3,0,FALSE,FALSE,0,0.0200000000000005,0.01,0.19,3
+"test-audit-fixes.R","audit-fixes","M04: alertify alert types have a defined effect",6,0,FALSE,FALSE,0,0.0699999999999994,0.01,0.220000000000001,6
+"test-audit-fixes.R","audit-fixes","L01: the unavailable tinyverse badge is gone",2,0,FALSE,FALSE,0,0.0200000000000005,0,0.0299999999999994,2
+"test-batch1.R","batch1","N1: color injection payload errors for every loader",4,0,FALSE,FALSE,0,0.0599999999999996,0,0.149999999999999,4
+"test-batch1.R","batch1","N1: vizLoad validates type against documented types",2,0,FALSE,FALSE,0,0.0299999999999994,0,0.0500000000000007,2
+"test-batch1.R","batch1","N1: valid colors render properly across formats",60,0,FALSE,FALSE,0,0.43,0.0599999999999998,0.81,60
+"test-batch1.R","batch1","N1: invalid colors with dangerous characters are rejected",9,0,FALSE,FALSE,0,0.109999999999999,0,0.16,9
+"test-batch1.R","batch1","N2: spinners generated CSS is scoped per instance",7,0,FALSE,FALSE,0,0.0700000000000003,0,0.17,7
+"test-batch1.R","batch1","N2: spinners type 5 keyframes are scoped per instance",15,0,FALSE,FALSE,0,0.0600000000000005,0.0700000000000001,0.389999999999999,15
+"test-batch1.R","batch1","N2: vizLoad circles CSS is scoped per instance",7,0,FALSE,FALSE,0,0.0299999999999994,0,0.33,7
+"test-batch1.R","batch1","N2: vizLoad label CSS is scoped per instance",7,0,FALSE,FALSE,0,0.0300000000000002,0.02,0.18,7
+"test-batch1.R","batch1","N3: alertify_alert formals match documented defaults",6,0,FALSE,FALSE,0,0.0300000000000002,0.03,0.130000000000001,6
+"test-batch2.R","batch2","C1: two threeDots() calls have different ids and scoped CSS",7,0,FALSE,FALSE,0,0.0499999999999998,0.0599999999999998,0.299999999999999,7
+"test-batch2.R","batch2","C2: two loaders() calls have different ids",3,0,FALSE,FALSE,0,0.0999999999999996,0.03,0.350000000000001,3
+"test-batch2.R","batch2","N9: loaders() and threeDots() error on invalid type",3,0,FALSE,FALSE,0,0,0.02,0.0600000000000005,3
+"test-batch2.R","batch2","N6: vizLoad() validates size per type and errors on unsupported combinations",9,0,FALSE,FALSE,0,0.0800000000000001,0.05,0.199999999999999,9
+"test-batch2.R","batch2","N7: vizLoad() small/tiny replaces lvl-5 offset with lv-mid",26,0,FALSE,FALSE,0,0.140000000000001,0,0.219999999999999,26
+"test-batch2.R","batch2","N4 + H02: vizLoad(type = 'dots', color = ...) uses animation variables",8,0,FALSE,FALSE,0,0.0599999999999996,0.01,0.17,8
+"test-batch2.R","batch2","N5 + C12: alertify_alert() payload contains expected keys and preserves R argument names",8,0,FALSE,FALSE,0,0.0499999999999998,0.03,0.57,8
+"test-batch2.R","batch2","C11: toast(type = ...) includes type in payload",4,0,FALSE,FALSE,0,0.0199999999999996,0.03,0.350000000000001,4
+"test-batch2.R","batch2","C13: bootBox() with class = NULL produces no animation classes",3,0,FALSE,FALSE,0,0.0900000000000007,0,0.6,3
+"test-batch2.R","batch2","N8: doc defaults match code defaults for toast() and notify()",3,0,FALSE,FALSE,0,0,0.0499999999999998,0.0700000000000003,3
+"test-browser-regressions.R","browser-regressions","H01: loaders and tooltips work with literal but non-selector ids",10,0,FALSE,FALSE,0,1.03,0.25,5,10
+"test-browser-regressions.R","browser-regressions","H02: vizLoad dots animate in the requested colour",9,0,FALSE,FALSE,0,0.140000000000001,0.05,1.08,9
+"test-browser-regressions.R","browser-regressions","H03: SpinKit colours do not bleed between widgets",2,0,FALSE,FALSE,0,0.0600000000000005,0.0299999999999998,0.5,2
+"test-browser-regressions.R","browser-regressions","H04: Three Dots animations use the requested colour",3,0,FALSE,FALSE,0,0.109999999999999,0.0500000000000003,0.629999999999999,3
+"test-browser-regressions.R","browser-regressions","H09: notify() does not render the literal text null",4,0,FALSE,FALSE,0,0.4,0.11,1.79,4
+"test-browser-regressions.R","browser-regressions","H10: notify() renders element inputs as elements",5,0,FALSE,FALSE,0,0.210000000000001,0.0899999999999999,1.16,5
+"test-browser-regressions.R","browser-regressions","H11: notify(delay = 'infinity') keeps the notice open",1,0,FALSE,FALSE,0,1.02,0.0800000000000001,1.92,1
+"test-browser-regressions.R","browser-regressions","H12: notify(translucent = TRUE) is see-through",1,0,FALSE,FALSE,0,0.34,0.0100000000000002,1.15,1
+"test-browser-regressions.R","browser-regressions","H14: bootBox keeps the dialog open on Escape when requested",4,0,FALSE,FALSE,0,1,0.0699999999999998,3.44,4
+"test-browser-regressions.R","browser-regressions","H15: toast cover images use a usable width",2,0,FALSE,FALSE,0,0.52,0.0499999999999998,2,2
+"test-browser-regressions.R","browser-regressions","H16: toast title and message sizes use their own values",5,0,FALSE,FALSE,0,0.520000000000001,0.0899999999999999,2.23,5
+"test-browser-regressions.R","browser-regressions","H17: toast display mode 0 queues the next toast",4,0,FALSE,FALSE,0,1.93,0.0300000000000002,3.25,4
+"test-browser-regressions.R","browser-regressions","H17: toast display mode 1 replaces the displayed toast",2,0,FALSE,FALSE,0,0.799999999999999,0.0899999999999999,2.7,2
+"test-browser-regressions.R","browser-regressions","H19: CSS Loaders do not hide spinner bars",3,0,FALSE,FALSE,0,0.16,0.0299999999999998,0.419999999999995,3
+"test-browser-regressions.R","browser-regressions","M04: alertify alert types have a visible effect",2,0,FALSE,FALSE,0,0.290000000000001,0.14,0.979999999999997,2
+"test-dependencies.R","dependencies","alertify dependencies work as expected",6,0,FALSE,FALSE,0,0.0299999999999994,0.0600000000000001,0.199999999999996,6
+"test-dependencies.R","dependencies","bootbox dependencies work as expected",6,0,FALSE,FALSE,0,0.0500000000000007,0.0699999999999998,0.350000000000001,6
+"test-dependencies.R","dependencies","loaders dependencies work as expected",4,0,FALSE,FALSE,0,0.0800000000000001,0.02,0.390000000000001,4
+"test-dependencies.R","dependencies","microtip dependencies work as expected",5,0,FALSE,FALSE,0,0.0600000000000005,0.02,0.190000000000005,5
+"test-dependencies.R","dependencies","ns dependencies work as expected",6,0,FALSE,FALSE,0,0.0700000000000003,0.02,0.299999999999997,6
+"test-dependencies.R","dependencies","pnotify dependencies work as expected",7,0,FALSE,FALSE,0,0.0299999999999994,0.0600000000000001,0.200000000000003,7
+"test-dependencies.R","dependencies","spinkit dependencies work as expected",4,0,FALSE,FALSE,0,0,0.00999999999999979,0.289999999999999,4
+"test-dependencies.R","dependencies","spinners dependencies work as expected",4,0,FALSE,FALSE,0,0.0700000000000003,0.02,0.109999999999999,4
+"test-dependencies.R","dependencies","threedots dependencies work as expected",4,0,FALSE,FALSE,0,0.0399999999999991,0.04,0.149999999999999,4
+"test-dependencies.R","dependencies","tingle dependencies work as expected",6,0,FALSE,FALSE,0,0.0600000000000005,0.02,0.160000000000004,6
+"test-dependencies.R","dependencies","toast dependencies work as expected",6,0,FALSE,FALSE,0,0.0199999999999996,0.0800000000000001,0.18,6
+"test-dependencies.R","dependencies","vizLoad dependencies work as expected",5,0,FALSE,FALSE,0,0.0600000000000005,0.00999999999999979,0.200000000000003,5
+"test-fx2-browser.R","fx2-browser","fx2 H01: flashing preserves hue and alpha at every phase",216,0,FALSE,FALSE,0,1.66,1.08,6.58,216
+"test-fx2-browser.R","fx2-browser","fx2 M01: reused Alertify alerts replace their type accent",7,0,FALSE,FALSE,0,0.32,0,0.780000000000001,7
+"test-fx2-browser.R","fx2-browser","fx2 M02: accepted CSS colours actually paint in Chrome",11,0,FALSE,FALSE,0,0.219999999999999,0.0300000000000002,0.969999999999999,11
+"test-fx2-browser.R","fx2-browser","fx2 M03: viz dots darken clamped CSS channels",1,0,FALSE,FALSE,0,0.23,0.0599999999999996,0.590000000000003,1
+"test-fx2-browser.R","fx2-browser","fx2 M04: wander travel scales with each widget size",3,0,FALSE,FALSE,0,0.170000000000002,0,0.43,3
+"test-fx2-browser.R","fx2-browser","fx2 M06: relative cover widths reserve used space and resize",8,0,FALSE,FALSE,0,0.629999999999999,0.16,3.16999999999999,8
+"test-fx2-browser.R","fx2-browser","fx2 M07: stale Escape and repeated clicks cannot drain the queue",6,0,FALSE,FALSE,0,6.44,0.5,12.25,6
+"test-fx2-browser.R","fx2-browser","fx2 M08: comma-decimal options preserve computed toast sizes",2,0,FALSE,FALSE,0,0.330000000000002,0.0300000000000002,0.689999999999998,2
+"test-fx2-browser.R","fx2-browser","fx2 M09: nonblocking notices fade and pass clicks through with controls",12,0,FALSE,FALSE,0,1.78,0.109999999999999,3.96000000000001,12
+"test-fx2-browser.R","fx2-browser","fx2 M10: repeated Tingle closes remove nodes and listeners",4,0,FALSE,FALSE,0,0.190000000000001,0.0800000000000001,0.719999999999999,4
+"test-fx2-browser.R","fx2-browser","fx2 M11: notice types have distinct computed appearance",2,0,FALSE,FALSE,0,0.199999999999999,0.0599999999999996,0.739999999999995,2
+"test-fx2-browser.R","fx2-browser","fx2 L01: extra-large BootBox works with default Bootstrap 3",6,0,FALSE,FALSE,0,0.170000000000002,0.11,0.739999999999995,6
+"test-fx2-inputs.R","fx2-inputs","fx2 M02: malformed CSS colours are rejected completely",80,0,FALSE,FALSE,0,0.710000000000001,0.100000000000001,1.21000000000001,80
+"test-fx2-inputs.R","fx2-inputs","fx2 M05: SpinKit rejects invalid scalar types",40,0,FALSE,FALSE,0,0.129999999999999,0.00999999999999979,0.219999999999999,40
+"test-fx2-inputs.R","fx2-inputs","fx2 M08: CSS numbers ignore OutDec",6,0,FALSE,FALSE,0,0.0299999999999976,0.0499999999999998,0.120000000000005,6
+"test-fx2-inputs.R","fx2-inputs","fx2 L02: toast display modes require exact integers",15,0,FALSE,FALSE,0,0.100000000000001,0.0600000000000005,0.180000000000007,15
+"test-fx2-inputs.R","fx2-inputs","fx2 L03: shared help describes actual dependency returns",41,0,FALSE,FALSE,0,0.240000000000002,0.0999999999999996,0.450000000000003,41
+"test-fx3-browser.R","fx3-browser","fx3 N01: wander numeric sizes have their requested width and quarter-cycle travel",21,0,FALSE,FALSE,0,0.390000000000001,0.04,0.930000000000007,21
+"test-fx3-browser.R","fx3-browser","fx3 N01: all SpinKit types compute numeric and relative widths consistently",121,0,FALSE,FALSE,0,1.78,0.66,4.14,121
+"test-fx3-inputs.R","fx3-inputs","fx3 N01: every SpinKit type receives the normalized size",116,0,FALSE,FALSE,0,0.82,0.0499999999999998,1.06,116
+"test-fx3-inputs.R","fx3-inputs","fx3 N02: trailing decimal dots are rejected as malformed CSS numbers",34,0,FALSE,FALSE,0,0.420000000000002,0.109999999999999,0.870000000000005,34
+"test-fx4-h1.R","fx4-h1","fx4 H1: toast string fields never serialize NULL as JSON null",18,0,FALSE,FALSE,0,0.169999999999995,0.0300000000000002,0.27000000000001,18
+"test-fx4-h1.R","fx4-h1","fx4 H1: default and NULL-title toasts appear in Chrome",4,0,FALSE,FALSE,0,0.469999999999999,0.04,1.65000000000001,4
+"test-fx4-h2.R","fx4-h2","fx4 H2: every HTML content parameter documents escaping",20,0,FALSE,FALSE,0,0.100000000000001,0.0599999999999996,0.390000000000001,20
+"test-fx4-l1.R","fx4-l1","fx4 L1: notice defaults and explicit effects match each layout",36,0,FALSE,FALSE,0,0.359999999999999,0.12,1.28,36
+"test-fx4-l1.R","fx4-l1","fx4 L1: each default notice has a bundled animation in Chrome",3,0,FALSE,FALSE,0,0.149999999999999,0.0500000000000007,0.569999999999993,3
+"test-fx4-m1.R","fx4-m1","fx4 M1: loader styles use only known attribute names",19,0,FALSE,FALSE,0,0.140000000000001,0.0700000000000003,0.489999999999995,19
+"test-fx4-m2.R","fx4-m2","fx4 M2: eight senders reject invalid choices and name valid values",747,0,FALSE,FALSE,0,1.99,0.319999999999999,3.48,747
+"test-fx4-m2.R","fx4-m2","fx4 M2: logical arguments reject missing and vector conditions",189,0,FALSE,FALSE,0,2.08,0.180000000000001,3.34,189
+"test-fx4-m2.R","fx4-m2","fx4 M2: delays validate numeric values and preserve supported sentinels",30,0,FALSE,FALSE,0,0.280000000000001,0.0699999999999994,0.629999999999995,30
+"test-fx4-m2.R","fx4-m2","fx4 M2: dimensions, Bootbox aliases and empty content reach JS safely",23,0,FALSE,FALSE,0,0.149999999999999,0.14,0.349999999999994,23
+"test-fx4-m2.R","fx4-m2","fx4 M2: the bundled question toast type reaches iziToast",1,0,FALSE,FALSE,0,0.109999999999999,0,0.400000000000006,1
+"test-fx4-m3.R","fx4-m3","fx4 M3: SpinKit requires positive CSS lengths for every type",228,0,FALSE,FALSE,0,2.17,0.210000000000001,3.11,228
+"test-fx5-browser.R","fx5-browser","fx5 R3: restored toast options render bundled classes and animations",8,0,FALSE,FALSE,0,0.18,0.0500000000000007,0.440000000000012,8
+"test-fx5-browser.R","fx5-browser","fx5 R1 and R2: never-close payloads do not arm library close timers",5,0,FALSE,FALSE,0,0.789999999999999,0.109999999999999,1.84,5
+"test-fx5-regressions.R","fx5-regressions","fx5 R1: infinite toast duration disables automatic closing",4,0,FALSE,FALSE,0,0.0300000000000011,0.0500000000000007,0.140000000000001,4
+"test-fx5-regressions.R","fx5-regressions","fx5 R2: infinite and NULL Alertify delays keep notices open",5,0,FALSE,FALSE,0,0.0300000000000011,0.0299999999999994,0.159999999999997,5
+"test-fx5-regressions.R","fx5-regressions","fx5 delay sentinels reject complex infinity with a named error",3,0,FALSE,FALSE,0,0.0499999999999972,0.0400000000000009,0.0799999999999983,3
+"test-fx5-regressions.R","fx5-regressions","fx5 R3: custom themes remain available without attribute breakout",19,0,FALSE,FALSE,0,0.130000000000003,0.109999999999999,0.370000000000005,19
+"test-fx5-regressions.R","fx5-regressions","fx5 R3: bundled toast layout 3 remains available",3,0,FALSE,FALSE,0,0.0300000000000011,0.0300000000000011,0.0799999999999983,3
+"test-fx5-regressions.R","fx5-regressions","fx5 R3: bundled revealIn and slideIn remain available",2,0,FALSE,FALSE,0,0.0399999999999991,0.0199999999999996,0.0799999999999983,2
+"test-fx5-regressions.R","fx5-regressions","fx5 N2: every numeric zero message fails before Bootbox dispatch",7,0,FALSE,FALSE,0,0.0600000000000023,0.0299999999999994,0.100000000000009,7
+"test-fx5-regressions.R","fx5-regressions","fx5 N3: validators return unnamed values and senders use them",5,0,FALSE,FALSE,0,0.0200000000000031,0.00999999999999979,0.13000000000001,5
+"test-fx5-regressions.R","fx5-regressions","fx5 N3: named sender arguments serialize as scalars",85,0,FALSE,FALSE,0,0.890000000000001,0.59,2.21000000000001,85
+"test-fx5-regressions.R","fx5-regressions","fx5 M2: vizLoad rejects missing label flags clearly",7,0,FALSE,FALSE,0,0.0499999999999972,0,0.11999999999999,7
+"test-fx5-regressions.R","fx5-regressions","fx5 M-A: NEWS records the validation and default changes",12,0,FALSE,FALSE,0,0.0300000000000011,0,0.0799999999999983,12
+"test-fx5-regressions.R","fx5-regressions","fx5 docs: toast and Alertify document restored options",5,0,FALSE,FALSE,0,0.140000000000001,0,0.210000000000008,5
+"test-fx6-inputs.R","fx6-inputs","fx6 H3: only supported loader type/style/text combinations are accepted",120,0,FALSE,FALSE,0,1.11,0.220000000000001,1.99000000000001,120
+"test-fx6-inputs.R","fx6-inputs","fx6 M1: invalid vizLoad sizes always name the argument and choices",80,0,FALSE,FALSE,0,0.920000000000002,0.0299999999999994,1.53,80
+"test-fx6-inputs.R","fx6-inputs","fx6 lows: previews and generated spinner CSS are well formed",4,0,FALSE,FALSE,0,0.0399999999999991,0,0.0600000000000023,4
+"test-fx6-render.R","fx6-render","fx6 real-render gate covers every threeDots type",392,0,FALSE,FALSE,0,6.43,1.63,21.08,392
+"test-fx6-render.R","fx6-render","fx6 real-render gate covers every loaders type",211,0,FALSE,FALSE,0,3.19,0.859999999999999,11.15,211
+"test-fx6-render.R","fx6-render","fx6 real-render gate covers every spinkit type",216,0,FALSE,FALSE,0,3.2,0.6,14.74,216
+"test-fx6-render.R","fx6-render","fx6 real-render gate covers every spinners type",144,0,FALSE,FALSE,0,2.58,0.390000000000001,7.80000000000001,144
+"test-fx6-render.R","fx6-render","fx6 real-render gate covers every vizLoad type",134,0,FALSE,FALSE,0,2.05,0.619999999999999,8.16999999999999,134
+"test-fx6-render.R","fx6-render","fx6 real-render gate covers supported loader styles with and without text",296,0,FALSE,FALSE,0,4.65000000000001,1.03,17.75,296
+"test-fx6-render.R","fx6-render","fx6 real-render gate covers SpinKit sizes and translucent swing/wander",540,0,FALSE,FALSE,0,8.78,1.55,28.13,540
+"test-fx6-render.R","fx6-render","fx6 real-render gate covers every supported vizLoad size",402,0,FALSE,FALSE,0,8.22,1.54,18.25,402
+"test-loaders.R","loaders","glanceLoaders() generates the correct HTML",1,0,FALSE,FALSE,0,0.189999999999998,0,0.189999999999998,1
+"test-loaders.R","loaders","loaders generates the correct HTML",1,0,FALSE,FALSE,0,0.0600000000000023,0.0300000000000011,0.0900000000000034,1
+"test-loaders.R","loaders","loaders generates the correct HTML when style is blink",1,0,FALSE,FALSE,0,0.0500000000000114,0.0199999999999996,0.0800000000000125,1
+"test-loaders.R","loaders","loaders generates the correct HTML when style is inverse",1,0,FALSE,FALSE,0,0.0599999999999881,0,0.129999999999995,1
+"test-loaders.R","loaders","loaders generates the correct HTML when type is curtain",1,0,FALSE,FALSE,0,0.0300000000000011,0.0300000000000011,0.0699999999999932,1
+"test-loaders.R","loaders","loaders generates the correct HTML when type is smartphone",1,0,FALSE,FALSE,0,0.0600000000000023,0,0.0999999999999943,1
+"test-rx5-stay-open.R","rx5-stay-open","rx5 R4/L-1: FALSE, NA and +/-Inf delays keep notifications open",15,0,FALSE,FALSE,0,0.129999999999995,0.0800000000000018,0.319999999999993,15
+"test-spinkit.R","spinkit","glanceSpinkit() generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.0300000000000011,0.0800000000000125,1
+"test-spinkit.R","spinkit","spinkit_plane() generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.00999999999999801,0.0999999999999943,1
+"test-spinkit.R","spinkit","spinkit_chase() generates the correct HTML",1,0,FALSE,FALSE,0,0.039999999999992,0,0.0600000000000023,1
+"test-spinkit.R","spinkit","spinkit_bounce() generates the correct HTML",1,0,FALSE,FALSE,0,0.019999999999996,0.0199999999999996,0.0699999999999932,1
+"test-spinkit.R","spinkit","spinkit_wave() generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.0100000000000016,0.0499999999999829,1
+"test-spinkit.R","spinkit","spinkit_pulse() generates the correct HTML",1,0,FALSE,FALSE,0,0.0499999999999972,0,0.039999999999992,1
+"test-spinkit.R","spinkit","spinkit_flow() generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.0199999999999996,0.0600000000000023,1
+"test-spinkit.R","spinkit","spinkit_swing() generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.0300000000000011,0.110000000000014,1
+"test-spinkit.R","spinkit","spinkit_circle() generates the correct HTML",1,0,FALSE,FALSE,0,0.0499999999999972,0.0300000000000011,0.129999999999995,1
+"test-spinkit.R","spinkit","spinkit_circle_fade() generates the correct HTML",1,0,FALSE,FALSE,0,0.180000000000007,0,0.419999999999987,1
+"test-spinkit.R","spinkit","spinkit_grid() generates the correct HTML",1,0,FALSE,FALSE,0,0.0100000000000051,0.0100000000000016,0.120000000000005,1
+"test-spinkit.R","spinkit","spinkit_wander() generates the correct HTML",1,0,FALSE,FALSE,0,0,0.0199999999999996,0.0800000000000125,1
+"test-spinkit.R","spinkit","spinkit_fold() generates the correct HTML",1,0,FALSE,FALSE,0,0,0,0.0500000000000114,1
+"test-spinkit.R","spinkit","spinkit() generates the correct HTML",1,0,FALSE,FALSE,0,0.0100000000000051,0.0300000000000011,0.0599999999999739,1
+"test-spinners-type-rgba.R","spinners-type-rgba","spinners() validates type against supported values",7,0,FALSE,FALSE,0,0.0299999999999869,0.0300000000000011,0.120000000000005,7
+"test-spinners-type-rgba.R","spinners-type-rgba","spinners() accepts type as a numeric string",2,0,FALSE,FALSE,0,0.0500000000000114,0.0500000000000007,0.149999999999977,2
+"test-spinners-type-rgba.R","spinners-type-rgba","spinners() types 5 and 8 accept functional colour notation",515,0,FALSE,FALSE,0,2.22,0.279999999999998,2.75999999999999,515
+"test-spinners-type-rgba.R","spinners-type-rgba","hex and named colours keep their CSS for all spinner types",22,0,FALSE,FALSE,0,0.0699999999999932,0.0199999999999996,0.0900000000000034,22
+"test-spinners.R","spinners","glanceSpinners() generates the correct HTML",1,0,FALSE,FALSE,0,0.0400000000000063,0,0.0300000000000011,1
+"test-spinners.R","spinners","spinners() generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.0100000000000016,0.0500000000000114,1
+"test-spinners.R","spinners","spinners() generates the correct HTML when type is 2",1,0,FALSE,FALSE,0,0.019999999999996,0.0300000000000011,0.0300000000000011,1
+"test-spinners.R","spinners","spinners() generates the correct HTML when type is 3",1,0,FALSE,FALSE,0,0.0300000000000011,0.0199999999999996,0.0499999999999829,1
+"test-spinners.R","spinners","spinners() generates the correct HTML when type is 4",1,0,FALSE,FALSE,0,0.0499999999999972,0,0.0400000000000205,1
+"test-spinners.R","spinners","spinners() generates the correct HTML when type is 5",1,0,FALSE,FALSE,0,0.0499999999999972,0,0.0499999999999829,1
+"test-spinners.R","spinners","spinners() generates the correct HTML when type is 8",1,0,FALSE,FALSE,0,0.0300000000000011,0.0199999999999996,0.039999999999992,1
+"test-standby.R","standby","standby dependencies work as expected",5,0,FALSE,FALSE,0,0.0400000000000063,0,0.0500000000000114,5
+"test-three-dots.R","three-dots","glanceThreeDots() generates expected HTML",1,0,FALSE,FALSE,0,0.00999999999999091,0.00999999999999801,0.0300000000000011,1
+"test-three-dots.R","three-dots","threeDots() generates the correct HTML",1,0,FALSE,FALSE,0,0.0200000000000102,0.00999999999999801,0.0499999999999829,1
+"test-vizload.R","vizload","glanceVizLoad generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.0199999999999996,0.0500000000000114,1
+"test-vizload.R","vizload","viz_bars() generates the correct HTML",1,0,FALSE,FALSE,0,0,0.0500000000000007,0.039999999999992,1
+"test-vizload.R","vizload","viz_squares() generates the correct HTML",1,0,FALSE,FALSE,0,0.0100000000000051,0.0300000000000011,0.0699999999999932,1
+"test-vizload.R","vizload","viz_circles() generates the correct HTML",1,0,FALSE,FALSE,0,0.0299999999999869,0.00999999999999801,0.0400000000000205,1
+"test-vizload.R","vizload","viz_dots() generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.0199999999999996,0.0300000000000011,1
+"test-vizload.R","vizload","viz_spinner() generates the correct HTML",1,0,FALSE,FALSE,0,0.019999999999996,0,0.039999999999992,1
+"test-vizload.R","vizload","viz_dashed() generates the correct HTML",1,0,FALSE,FALSE,0,0,0.0300000000000011,0.0300000000000011,1
+"test-vizload.R","vizload","viz_line() generates the correct HTML",1,0,FALSE,FALSE,0,0.0300000000000011,0.0199999999999996,0.0299999999999727,1
+"test-vizload.R","vizload","viz_bordered_line() generates the correct HTML",1,0,FALSE,FALSE,0,0.0299999999999869,0,0.0300000000000011,1
+"test-vizload.R","vizload","vizLoad() generates the correct HTML",1,0,FALSE,FALSE,0,0.0700000000000074,0,0.0600000000000023,1
+"test-vizload.R","vizload","vizLoad() generates the correct HTML when type is circles",1,0,FALSE,FALSE,0,0.0299999999999869,0.0299999999999976,0.0600000000000023,1
+"test-vizload.R","vizload","vizLoad() generates the correct HTML when add_label is TRUE",1,0,FALSE,FALSE,0,0.0300000000000011,0.0200000000000031,0.0600000000000023,1

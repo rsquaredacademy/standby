@@ -1451,7 +1451,7 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: hsl(0deg, 100%, 0%);
+  background-color: var(--primary-color);
   color: transparent;
   margin: -1px 0;
   filter: blur(2px);
@@ -1466,7 +1466,7 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: hsl(0deg, 100%, 0%);
+  background-color: var(--primary-color);
   color: transparent;
   opacity: 0;
   filter: blur(2px);
@@ -1521,7 +1521,7 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: hsl(0deg, 100%, 0%);
+  background-color: var(--primary-color);
   color: transparent;
   margin: -1px 0;
   filter: blur(2px);
@@ -1541,7 +1541,7 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: hsl(0deg, 100%, 0%);
+  background-color: var(--primary-color);
   color: transparent;
   filter: blur(2px);
 }
@@ -1635,7 +1635,7 @@
   height: 12px;
   border-radius: 6px;
   background-color: transparent;
-  color: hsl(0deg, 100%, 0%);
+  color: var(--primary-color);
   margin: -1px 0;
   box-shadow: 0 -20px 0 0;
   filter: blur(2px);
@@ -1653,7 +1653,7 @@
   height: 12px;
   border-radius: 6px;
   background-color: transparent;
-  color: hsl(0deg, 100%, 0%);
+  color: var(--primary-color);
   box-shadow: 0 -20px 0 0;
   filter: blur(2px);
 }
@@ -1700,7 +1700,7 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: hsl(0deg, 100%, 0%);
+  background-color: var(--primary-color);
   color: transparent;
   margin: -1px 0;
   filter: blur(2px);
@@ -1714,7 +1714,7 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: hsl(0deg, 100%, 0%);
+  background-color: var(--primary-color);
   color: transparent;
   filter: blur(2px);
 }
@@ -1762,6 +1762,8 @@
   */
 .dot-bouncing {
   position: relative;
+  width: 30px;
+  white-space: nowrap;
   height: 10px;
   font-size: 10px;
 }
@@ -1832,6 +1834,8 @@
   */
 .dot-rolling {
   position: relative;
+  width: 10px;
+  white-space: nowrap;
   height: 10px;
   font-size: 10px;
 }

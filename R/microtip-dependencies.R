@@ -4,7 +4,7 @@ useMicroTip <- function() {
   
   mtip <- htmltools::htmlDependency(
     name = "microtip",
-    version = "0.1.0",
+    version = "0.2.2",
     src = c(file = "microtip"),
     script = "js/microtip.js",
     stylesheet = "css/microtip.min.css",

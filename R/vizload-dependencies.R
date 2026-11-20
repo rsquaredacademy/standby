@@ -5,7 +5,7 @@ useVizLoad <- function() {
 
   viz <- htmltools::htmlDependency(
     name = "vizload",
-    version = "0.1.0",
+    version = "0.2.2",
     src = c(file = "vizload"),
     script = "js/ridics.js",
     stylesheet = "css/ridics.css",

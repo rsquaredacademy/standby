@@ -26,10 +26,17 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 \item smartphone
 \item bouncing
 \item music
-}}
+}
+The \code{music} type uses the bundled animated \code{hey-oh} coin graphic.}
 
 \item{style}{Custom styling for the loaders: \code{"half"}, \code{"inverse"},
-\code{"rounded"}, or \code{"blink"}. Use \code{NULL} for no custom style.}
+\code{"rounded"}, or \code{"blink"}. Use \code{NULL} for no custom style.
+\code{"half"} supports only \code{"default"}; \code{"inverse"} supports
+\code{"default"} and \code{"bar"}; \code{"rounded"} supports \code{"bar"}
+and \code{"bar-ping-pong"}; \code{"blink"} supports \code{"default"},
+\code{"bar"}, and \code{"border"}, blinking their text (\code{"Loading"}
+when \code{text = NULL}). Supported styles can be combined with custom text.
+Unsupported type/style or type/text combinations raise an error.}
 
 \item{text}{Custom text. Available only for the following types:
 \itemize{
@@ -38,7 +45,8 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 \item border
 \item curtain
 \item smartphone
-}}
+}
+Must be \code{NULL} or one non-missing character string.}
 }
 \value{
 \code{useLoaders()} returns a Shiny tag list of HTML dependencies to include in the UI;
@@ -46,6 +54,12 @@ loaders(uiOutput, type = "default", style = NULL, text = NULL)
 }
 \description{
 Simple CSS loaders
+}
+\details{
+The supported domain is the listed types and type-specific style/text
+  combinations. These loaders display a viewport overlay and require CSS
+  animation enabled in a modern browser. Allow at least 320 by 320 pixels
+  for the largest graphic at its default size.
 }
 \section{Functions}{
 

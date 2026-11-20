@@ -26,6 +26,8 @@
 #' }
 #' @param delay The time (in seconds) to wait before the notification is auto-dismissed. \code{0}, \code{Inf}, or \code{NULL} will keep notification open till clicked.
 #'   The strings \code{"infinity"} and \code{"infinite"} also keep it open.
+#'   For compatibility, \code{FALSE}, \code{NA}, \code{NaN}, \code{-Inf},
+#'   and negative numeric delays also keep the notification open.
 #' @param position Position of the notification. Defaults to \code{"bottom-right"}. Valid values are:
 #' \itemize{
 #' \item \code{"bottom-right"}

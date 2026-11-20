@@ -77,7 +77,9 @@ the default theme.}
 }}
 
 \item{duration}{Time in milliseconds to close the toast. Defaults to \code{5000}. Use \code{FALSE}, \code{Inf}, or \code{NULL} to disable.
-The strings \code{"infinity"} and \code{"infinite"} also disable closing.}
+The strings \code{"infinity"} and \code{"infinite"} also disable closing.
+For compatibility, \code{0}, \code{NA}, \code{NaN}, and \code{-Inf}
+also keep the toast open.}
 
 \item{progress_bar_color}{Progress bar color. Choose between hexadecimal, RGB or keyword values.}
 
@@ -154,7 +156,8 @@ number is interpreted as pixels.}
 \item \code{"flipInX"}
 \item \code{"revealIn"}
 \item \code{"slideIn"}
-}}
+}
+Use \code{NULL} or \code{""} for no open animation.}
 
 \item{transition_out}{Toast close animation. Defaults to \code{"fadeOut"}. Valid values are:
 \itemize{
@@ -164,7 +167,8 @@ number is interpreted as pixels.}
 \item \code{"fadeOutLeft"}
 \item \code{"fadeOutRight"}
 \item \code{"flipOutX"}
-}}
+}
+Use \code{NULL} or \code{""} for no close animation.}
 
 \item{session}{Shiny session object.}
 }
